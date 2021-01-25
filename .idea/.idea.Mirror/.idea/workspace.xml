@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="c841a182-c860-4ee3-883f-be3b479ae402" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9e/40bffb1f/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/--Temporary--/Test2/Test2.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/WorldHealthBar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/InventoryItems/Guns/Gun.cs" root0="SKIP_HIGHLIGHTING" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Health/PlayerHealthbar.cs" />
+        <option value="$PROJECT_DIR$/Assets/Everything/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Hittable.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Health/WorldHealthBar.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResourceLoader.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneTestThree/StaticScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/StaticScript.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneOne/PlayerObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneTestThree/OnlyOne.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneTestThree/GlobalEventSingleton.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneTestThree/GameSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/SceneTwoNetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Health/NameTag.cs" />
+        <option value="$PROJECT_DIR$/Assets/SceneTestThree/ResourceLoader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/LogFactory.cs" />
+        <option value="$PROJECT_DIR$/Assets/Item.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/PlayerObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Interfaces.cs" />
+        <option value="$PROJECT_DIR$/Assets/Everything/PlayerWeapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Everything/Weapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/ParentSpawn.cs" />
+        <option value="$PROJECT_DIR$/Assets/--Temporary--/ResourceLoader.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerWeapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Items/Weapons/Weapon.cs" />
+        <option value="$PROJECT_DIR$/Assets/Items/Weapons/Item.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/ParentSpawn.cs" />
+        <option value="$PROJECT_DIR$/../WTF_Stane/Assets/InventoryItems/Guns/Gun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Hittable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Test.cs" />
+        <option value="$PROJECT_DIR$/Assets/--Temporary--/Test2/Test2.cs" />
+        <option value="$PROJECT_DIR$/Assets/Items/Item.cs" />
+        <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1ml0YI2WrHP01Oy9Ppo7k7oVstN" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="settings.editor.selected.configurable" value="CodeLensConfigurable" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/build01/Mirror.exe" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="E:\Miha\Custom Games\Mirror\Builds\build01" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c841a182-c860-4ee3-883f-be3b479ae402" name="Default Changelist" comment="" />
+      <created>1610052920199</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1610052920199</updated>
+      <workItem from="1610052946530" duration="69000" />
+      <workItem from="1610053119421" duration="2202000" />
+      <workItem from="1610123614395" duration="5444000" />
+      <workItem from="1610141636730" duration="2542000" />
+      <workItem from="1610201566538" duration="16700000" />
+      <workItem from="1610226019241" duration="926000" />
+      <workItem from="1610298159421" duration="6909000" />
+      <workItem from="1610310634122" duration="1275000" />
+      <workItem from="1610351041520" duration="1275000" />
+      <workItem from="1610388912359" duration="1084000" />
+      <workItem from="1610560814355" duration="37000" />
+      <workItem from="1610649553714" duration="1397000" />
+      <workItem from="1610661475005" duration="187000" />
+      <workItem from="1610662407396" duration="3063000" />
+      <workItem from="1610705815211" duration="8084000" />
+      <workItem from="1610743427941" duration="374000" />
+      <workItem from="1610797274646" duration="1149000" />
+      <workItem from="1610825353053" duration="3196000" />
+      <workItem from="1610833999790" duration="3310000" />
+      <workItem from="1610989367250" duration="1753000" />
+      <workItem from="1611044836247" duration="718000" />
+      <workItem from="1611399148365" duration="2837000" />
+      <workItem from="1611413675963" duration="5066000" />
+      <workItem from="1611435655385" duration="8304000" />
+      <workItem from="1611493188195" duration="7181000" />
+      <workItem from="1611509749824" duration="264000" />
+      <workItem from="1611520067638" duration="7627000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="-1459" y="166" key="SettingsEditor" timestamp="1611401648889">
+      <screen x="-1920" y="1" width="1920" height="1040" />
+    </state>
+    <state x="-1459" y="166" key="SettingsEditor/-1920.1.1920.1040/0.0.1920.1040@-1920.1.1920.1040" timestamp="1611401648889" />
+    <state x="-1738" y="32" width="1531" height="1027" key="dock-window-1" timestamp="1611498322453">
+      <screen x="-1920" y="1" width="1920" height="1040" />
+    </state>
+    <state x="-722" y="1" width="729" height="1047" key="dock-window-1/-1920.1.1920.1040/0.0.1920.1040@-1920.1.1920.1040" timestamp="1610304734863" />
+    <state x="-1738" y="32" width="1531" height="1027" key="dock-window-1/-1920.1.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1611498322453" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1611520344576">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/-1920.1.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1611520344576" />
+  </component>
+</project>
