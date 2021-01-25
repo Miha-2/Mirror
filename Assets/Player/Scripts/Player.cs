@@ -41,8 +41,8 @@ namespace MirrorProject.TestSceneTwo
         {
             world_healthbar.owned = hasAuthority;
             
-            world_healthbar.UpdateHealthbar(maxHealth, health);
-            UI_healthbar.UpdateHealthbar(maxHealth, health);
+            world_healthbar.UpdateHealthbar(maxHealth, Health);
+            UI_healthbar.UpdateHealthbar(maxHealth, Health);
             playerAnimator.SetFloat("SpeedMultiplier", speed * 1.4f);
             //Later change do change layer so spectator camera can see it..
         }
@@ -51,25 +51,17 @@ namespace MirrorProject.TestSceneTwo
         {
             base.OnStartAuthority();
             startPos = transform.position;
-            
-            GameSystem.PauseStatusChanged.AddListener(delegate(bool arg0)
-            {
-                if(arg0)
-                    PlayerInput.Disable();
-                else
-                    PlayerInput.Enable();
-            });
-            
-            if(PlayerInput == null)
-                PlayerInput = new PlayerInput();
+
+            if (PlayerInput == null)
+                PlayerInput = GameSystem.PlayerGlobalInput;
             PlayerInput.Enable();
 
             if(cc == null)
                 cc = GetComponent<CharacterController>();
             
             playerCam.gameObject.SetActive(true);
-            PlayerInput.Player.Jump.performed += context => jumped = true;
-            PlayerInput.Player.ResetPosition.performed += context => reset = 3;
+            PlayerInput.PlayerMovement.Jump.performed += context => jumped = true;
+            PlayerInput.PlayerMovement.ResetPosition.performed += context => reset = 3;
         }
 
         private void Update()
@@ -94,7 +86,7 @@ namespace MirrorProject.TestSceneTwo
         private Vector3 startPos;
         private void MovePlayer()
         {
-            moveInput = PlayerInput.Player.Movement.ReadValue<Vector2>();
+            moveInput = PlayerInput.PlayerMovement.Movement.ReadValue<Vector2>();
 
             // if(cc.isGrounded)
             
@@ -119,7 +111,7 @@ namespace MirrorProject.TestSceneTwo
         
         private void MoveCamera()
         {
-            Vector2 mouseDelta = PlayerInput.Player.MouseDelta.ReadValue<Vector2>();
+            Vector2 mouseDelta = PlayerInput.PlayerMovement.MouseDelta.ReadValue<Vector2>();
             
             transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y + mouseDelta.x * sensitivityLeftRight, 0f);
             float y = cameraPivot.localRotation.eulerAngles.x - mouseDelta.y * sensitivityUpDown;
@@ -159,6 +151,7 @@ namespace MirrorProject.TestSceneTwo
 
         protected override void OnHealthChanged(float old, float newHealth)
         {
+            print(nameof(newHealth)+ newHealth+nameof(old)+old);
             newHealth = Mathf.Max(0f, newHealth);
             world_healthbar.UpdateHealthbar(maxHealth, newHealth);
             UI_healthbar.UpdateHealthbar(maxHealth, newHealth);

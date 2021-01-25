@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+
 // ReSharper disable Unity.PerformanceCriticalCodeCameraMain
 // ReSharper disable Unity.PerformanceCriticalCodeInvocation
 
@@ -10,7 +12,7 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
     private Camera activeCamera;
     [SerializeField] private GameObject pauseMenu = null;
 
-    private PlayerInput PlayerInput;
+    public PlayerInput playerInput;
     private bool isPaused = false;
 
     public bool IsPaused
@@ -19,7 +21,21 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
         set
         {
             pauseMenu.SetActive(value);
-            GameSystem.PauseStatusChanged.Invoke(value);
+            // GameSystem.PauseStatusChanged.Invoke(value);
+            if (value)
+            {
+                print("disabling");
+                playerInput.ItemInteractions.Disable();
+                playerInput.PlayerMovement.Disable();
+            }
+            else
+            {
+                print("enabling");
+                playerInput.ItemInteractions.Enable();
+                playerInput.PlayerMovement.Enable();
+            }
+
+            CursorLocked = !value;
             isPaused = value;
         }
     }
@@ -27,10 +43,11 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 
     private void Start()
     {
-        PlayerInput = new PlayerInput();
-        PlayerInput.UiActions.Enable();
-        PlayerInput.UiActions.PauseMenu.performed += context => IsPaused = !IsPaused;
-        PlayerInput.UiActions.ToggleCursor.performed += context => CursorLocked = !CursorLocked;
+        playerInput = new PlayerInput();
+        
+        playerInput.UiActions.Enable();
+        playerInput.UiActions.PauseMenu.performed += context => IsPaused = !IsPaused;
+        playerInput.UiActions.ToggleCursor.performed += context => CursorLocked = !CursorLocked;
     }
     private bool _cursorLocked;
     

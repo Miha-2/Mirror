@@ -27,6 +27,8 @@ public class Gun : Item
     [SerializeField] [Tooltip("Range at wich damage starts dropping")] protected float startDropoff = 100f;
     [Header("Gun Other")]
     [SerializeField] protected LayerMask hitMask = 0;
+
+    [SerializeField] private GameObject hitObject = null;
     
     private float nextFire;
     private int ammo;
@@ -124,10 +126,11 @@ public class Gun : Item
     [Command]
     private void CmdShoot()
     {
+        print("shot");
         Vector3 shotDir = BulletSpread();
 
         RaycastHit hitPoint;
-        if (Physics.Raycast(Camera.transform.position, shotDir, out hitPoint, range, hitMask))
+        if (Physics.Raycast(Camera.transform.position + Camera.transform.forward * .2f, shotDir, out hitPoint, range, hitMask))
         {
             if(!hitPoint.collider.TryGetComponent(out Hittable hittable))
                 hittable = hitPoint.collider.GetComponentInParent<Hittable>();
@@ -145,19 +148,28 @@ public class Gun : Item
                 //print("Bullet distance: " + hitPoint.distance);
                 //print("Bullet damage: " + calculatedDamage);
 
-                hittable.health -= calculatedDamage;
+                hittable.Hit(calculatedDamage);
+            }
+            else
+            {
+                print($"hit {hitPoint.collider.name} isn't of type {nameof(Hittable)}");
             }
 
             ////////////////////////
             /// 
-            /*
-            Transform hitObj = Instantiate(hitObject, hitPoint.point, Quaternion.identity).transform;
-            hitObj.SetParent(hitPoint.transform, true);
 
-            float color = hitPoint.distance > startDropoff ? damage - (((hitPoint.distance - startDropoff) / (range - startDropoff)) * damage) : damage;*/
+            GameObject hitObj = Instantiate(hitObject, hitPoint.point, Quaternion.identity);
+            // hitObj.transform.SetParent(hitPoint.transform, true);
+            NetworkServer.Spawn(hitObj);
+
+            /*float color = hitPoint.distance > startDropoff ? damage - (((hitPoint.distance - startDropoff) / (range - startDropoff)) * damage) : damage;*/
             
             //hitObj.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.yellow, Color.red, color / damage);
             // hitObj.GetComponent<SelfDestroy>().destructionTime = markTimer;
+        }
+        else
+        {
+            print("raycast has missed");
         }
     }
     
@@ -166,7 +178,6 @@ public class Gun : Item
         float spread = bulletSpread;
         // float spread = isAiming ? bulletSpread / aimAccuracyMultiplier : bulletSpread;
         // spread = aimAccuracyMultiplier == 0f && isAiming ? 0f : spread;
-        print(Camera);
         Vector3 dir = Quaternion.AngleAxis(Random.Range(-spread, spread), Camera.transform.right) * Camera.transform.forward;
         dir = Quaternion.AngleAxis(Random.Range(-spread, spread), Camera.transform.up) * dir;    
         return dir;

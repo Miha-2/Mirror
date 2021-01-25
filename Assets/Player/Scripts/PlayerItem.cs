@@ -69,20 +69,13 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
 
     private void Start()
     {
-        GameSystem.PauseStatusChanged.AddListener(delegate(bool arg0)
-        {
-            if(arg0)
-                PlayerInput.Disable();
-            else
-                PlayerInput.Enable();
-        });
         amountText.enabled = false;
         _overrideController = (AnimatorOverrideController)_animator.runtimeAnimatorController;
         _networkAnimator = GetComponent<NetworkAnimator>();
         print(hasAuthority);
         if (hasAuthority)
         {
-            PlayerInput = new PlayerInput();
+            PlayerInput = GameSystem.PlayerGlobalInput;
             PlayerInput.Enable();
         }
     }

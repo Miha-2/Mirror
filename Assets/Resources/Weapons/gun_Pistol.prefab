@@ -398,6 +398,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   parentNetId: 0
+  Camera: {fileID: 0}
   anim_draw: {fileID: 7400000, guid: ffcf913f7c9dc0548949b90350ffb76a, type: 2}
   amountChanged:
     m_PersistentCalls:
@@ -418,12 +419,14 @@ MonoBehaviour:
   magazineSize: 20
   fireRate: 0.1
   reloadTime: 2
-  bulletSpread: 1.7
+  bulletSpread: 0
   aimAccuracyMultiplier: 10
   startDropoff: 100
   hitMask:
     serializedVersion: 2
     m_Bits: 4294967295
+  hitObject: {fileID: 8560593493621167639, guid: 40703da3a32bbaf4da1e271bd03e81dd,
+    type: 3}
 --- !u!1 &8274909319560544813
 GameObject:
   m_ObjectHideFlags: 0

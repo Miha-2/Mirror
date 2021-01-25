@@ -10,15 +10,28 @@ public class Hittable : NetworkBehaviour
     [Header("Health")]
     [SerializeField] protected float maxHealth = 20f;
     [SyncVar(hook = nameof(OnHealthChanged))]
-    /* [HideInInspector]*/ public float health;
+    /* [HideInInspector]*/ private float health;
     
+    
+    public float Health
+    {
+        get => health;
+        private set => health = value;
+    }
     
     private Renderer objectRenderer = null;
+
 
     protected void Awake()
     {
         objectRenderer = GetComponent<Renderer>();
-        health = maxHealth;
+        Health = maxHealth;
+    }
+
+    public void Hit(float damage)
+    {
+        print($"{name} was hit with damage of: {damage}");
+        Health -= damage;
     }
 
     protected virtual void OnHealthChanged(float old, float newHealth)

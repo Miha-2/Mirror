@@ -57,4 +57,18 @@ public static class GameSystem
     public static UnityEvent<Camera> ActiveCameraChanged = new UnityEvent<Camera>();
     
     public static UnityEvent<bool> PauseStatusChanged = new UnityEvent<bool>();
+
+    private static PlayerInput _playerInput;
+
+    public static PlayerInput PlayerGlobalInput
+    {
+        get
+        {
+            if (_playerInput == null)
+                _playerInput = Object.FindObjectOfType<GlobalEventSingleton>().playerInput;
+            return _playerInput;
+        }
+    }
+
+    public static bool ShowHitIndicator = false;
 }

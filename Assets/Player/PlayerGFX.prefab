@@ -1918,7 +1918,7 @@ MonoBehaviour:
   UI_healthbar: {fileID: 7183749802526722694}
   world_healthbar: {fileID: 7601480760597899156}
   playerAnimator: {fileID: 2643905920499120840}
-  speed: 5
+  speed: 8
   gravity: 22
   jumpForce: 7
   sensitivityUpDown: 0.125
