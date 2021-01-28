@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6526777681924113280}
   - component: {fileID: 3025197498453791659}
   m_Layer: 0
-  m_Name: PlayerObject
+  m_Name: NetworkPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -62,6 +62,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerPrefab: {fileID: 3479259488872986158, guid: 6b5b0b8df0ad5b04b9a4ab6b2a05b744,
+  playerPrefab: {fileID: 1992239135979513127, guid: e03696d26e360e34291c5632b3123da5,
     type: 3}
-  t: {fileID: 4042575792787862041, guid: ec6d0d83d24d24842b19c7b50c217db3, type: 3}

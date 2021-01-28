@@ -10,6 +10,19 @@ public static class GameSystem
 {
     private static bool _isLoaded = false;
     private static List<Item> _weapons = new List<Item>();
+    private static GlobalEventSingleton _globalEventSingleton;
+    
+    
+    public static GlobalEventSingleton EventSingleton
+    {
+        get 
+        { 
+            if (!_globalEventSingleton)
+                _globalEventSingleton = Object.FindObjectOfType<GlobalEventSingleton>();
+            return _globalEventSingleton; 
+        }
+    }
+
     public static List<Item> Weapons
     {
         get
@@ -55,6 +68,8 @@ public static class GameSystem
     }
 
     public static UnityEvent<Camera> ActiveCameraChanged = new UnityEvent<Camera>();
+
+    public static bool OnPause = false;
     
     public static UnityEvent<bool> PauseStatusChanged = new UnityEvent<bool>();
 
@@ -70,5 +85,5 @@ public static class GameSystem
         }
     }
 
-    public static bool ShowHitIndicator = false;
+    // public static bool ShowHitIndicator = false;
 }

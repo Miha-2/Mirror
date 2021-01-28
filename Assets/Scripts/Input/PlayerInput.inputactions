@@ -745,6 +745,33 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Test",
+            "id": "88ea48b7-f876-4e2e-a79f-3eb9f1384dd6",
+            "actions": [
+                {
+                    "name": "Ragdoll",
+                    "type": "Button",
+                    "id": "d298c5aa-f4a0-4c88-8a8e-c907e95e2857",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "29dbd4f9-bc34-4a82-8191-16f21527e37d",
+                    "path": "<Keyboard>/f8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Ragdoll",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,11 +12,23 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 {
     private Camera activeCamera;
     [SerializeField] private GameObject pauseMenu = null;
+    public Timer Timer = null;
 
     public PlayerInput playerInput;
     private bool isPaused = false;
+    
+    //Settings (to struct? later)
+    [Header("Settings")]
+    public ClientSettings clientSettings;
 
-    public bool IsPaused
+    public ServerSettings serverSettings;
+
+    public void UpdateDelay(TMP_InputField inputField)
+    {
+        serverSettings.respawnTime = float.Parse(inputField.text);
+    }
+
+    private bool IsPaused
     {
         get => isPaused;
         set
@@ -37,13 +50,14 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 
             CursorLocked = !value;
             isPaused = value;
+            GameSystem.OnPause = value;
         }
     }
-
 
     private void Start()
     {
         playerInput = new PlayerInput();
+        IsPaused = false;
         
         playerInput.UiActions.Enable();
         playerInput.UiActions.PauseMenu.performed += context => IsPaused = !IsPaused;

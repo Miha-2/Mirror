@@ -76,7 +76,8 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
         if (hasAuthority)
         {
             PlayerInput = GameSystem.PlayerGlobalInput;
-            PlayerInput.Enable();
+            if(!GameSystem.OnPause)
+                PlayerInput.ItemInteractions.Enable();
         }
     }
 
@@ -147,20 +148,20 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
             t.localPosition = Vector3.zero;
             t.localRotation = Quaternion.identity;
 
-            if(hasAuthority)
+            // if(hasAuthority)
                 Item = item;
         }
     }
 
     private void OnEnable()
     {
-        if (!hasAuthority) return;
-        PlayerInput?.ItemInteractions.Enable();
+        // if (!hasAuthority) return;
+        // PlayerInput?.ItemInteractions.Enable();
     }
 
     private void OnDisable()
     {
-        if (!hasAuthority) return;
-        PlayerInput?.ItemInteractions.Disable();
+        // if (!hasAuthority) return;
+        // PlayerInput?.ItemInteractions.Disable();
     }
 }

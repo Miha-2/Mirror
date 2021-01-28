@@ -16,31 +16,39 @@
         <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
       </path>
     </expand>
-    <select />
+    <select>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </select>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c841a182-c860-4ee3-883f-be3b479ae402" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ClientSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ClientSettings.cs.meta" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ServerSettings.cs" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Assets/Scripts/ServerSettings.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/(TextMesh Pro)/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/(TextMesh Pro)/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Animations/Player OverrideController.overrideController" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Animations/Player OverrideController.overrideController" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/NetworkPlayer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/NetworkPlayer.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Pistol.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Pistol.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Vector.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Vector.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Hittable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Hittable.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GameSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GameSettings.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/DynamicsManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,22 +61,21 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Plugins/PlayerInput/PlayerInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/--Temporary--/Test2/Test2.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9e/40bffb1f/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputActionReference.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/DelegateHelpers.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/WorldHealthBar.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Actions/InputActionRebindingExtensions.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/Timer.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/InventoryItems/Guns/Gun.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/ReadOnlyArray.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://C:/Program Files/Unity Editors/2020.1.13f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9e/40bffb1f/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Plugins/UI/InputSystemUIInputModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.inputsystem@1.0.0/InputSystem/Utilities/ReadOnlyArray.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Health/PlayerHealthbar.cs" />
-        <option value="$PROJECT_DIR$/Assets/Everything/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Hittable.cs" />
         <option value="$PROJECT_DIR$/Assets/TestSceneTwo/Health/WorldHealthBar.cs" />
         <option value="$PROJECT_DIR$/Assets/ResourceLoader.cs" />
         <option value="$PROJECT_DIR$/Assets/SceneTestThree/StaticScript.cs" />
@@ -99,23 +106,34 @@
         <option value="$PROJECT_DIR$/Assets/Items/Item.cs" />
         <option value="$PROJECT_DIR$/Assets/RebindAction.cs" />
         <option value="$PROJECT_DIR$/Assets/--Temporary--/Test2/Test2.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Hittable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" />
         <option value="$PROJECT_DIR$/Assets/ToggleSetting.cs" />
         <option value="$PROJECT_DIR$/Assets/CustomToggle.cs" />
         <option value="$PROJECT_DIR$/Assets/GameSettings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SelfDestroy.cs" />
-        <option value="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/Player.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/Timer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Settings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ClientSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ServerSettings.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/PauseMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Other/HitIndicator/HitObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GameSettings.cs" />
       </list>
     </option>
   </component>
   <component name="ProjectId" id="1ml0YI2WrHP01Oy9Ppo7k7oVstN" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -200,7 +218,11 @@
       <workItem from="1611583786405" duration="1405000" />
       <workItem from="1611591202786" duration="4230000" />
       <workItem from="1611603537539" duration="5005000" />
-      <workItem from="1611611443460" duration="846000" />
+      <workItem from="1611611443460" duration="1068000" />
+      <workItem from="1611680727352" duration="1567000" />
+      <workItem from="1611779961435" duration="8211000" />
+      <workItem from="1611837204671" duration="3823000" />
+      <workItem from="1611852148730" duration="2419000" />
     </task>
     <servers />
   </component>
@@ -209,6 +231,16 @@
   </component>
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
@@ -225,10 +257,19 @@
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="-1459" y="166" key="SettingsEditor" timestamp="1611401648889">
-      <screen x="-1920" y="1" width="1920" height="1040" />
+    <state x="154" y="151" width="1736" height="856" key="DiffContextDialog" timestamp="1611612521662">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="154" y="151" width="1736" height="856" key="DiffContextDialog/-1920.1.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1611612521662" />
+    <state x="461" y="165" key="SettingsEditor" timestamp="1611838385285">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="-1459" y="166" key="SettingsEditor/-1920.1.1920.1040/0.0.1920.1040@-1920.1.1920.1040" timestamp="1611401648889" />
+    <state x="461" y="165" key="SettingsEditor/-1920.1.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1611838385285" />
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1611784566201">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/-1920.1.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1611784566201" />
     <state x="-1738" y="32" width="1531" height="1027" key="dock-window-1" timestamp="1611498322453">
       <screen x="-1920" y="1" width="1920" height="1040" />
     </state>

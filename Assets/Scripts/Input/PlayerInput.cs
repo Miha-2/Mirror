@@ -758,6 +758,33 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Test"",
+            ""id"": ""88ea48b7-f876-4e2e-a79f-3eb9f1384dd6"",
+            ""actions"": [
+                {
+                    ""name"": ""Ragdoll"",
+                    ""type"": ""Button"",
+                    ""id"": ""d298c5aa-f4a0-4c88-8a8e-c907e95e2857"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""29dbd4f9-bc34-4a82-8191-16f21527e37d"",
+                    ""path"": ""<Keyboard>/f8"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Ragdoll"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -850,6 +877,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_MouseDelta = m_PlayerMovement.FindAction("MouseDelta", throwIfNotFound: true);
         m_PlayerMovement_ResetPosition = m_PlayerMovement.FindAction("ResetPosition", throwIfNotFound: true);
+        // Test
+        m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
+        m_Test_Ragdoll = m_Test.FindAction("Ragdoll", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -1147,6 +1177,39 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         }
     }
     public PlayerMovementActions @PlayerMovement => new PlayerMovementActions(this);
+
+    // Test
+    private readonly InputActionMap m_Test;
+    private ITestActions m_TestActionsCallbackInterface;
+    private readonly InputAction m_Test_Ragdoll;
+    public struct TestActions
+    {
+        private @PlayerInput m_Wrapper;
+        public TestActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Ragdoll => m_Wrapper.m_Test_Ragdoll;
+        public InputActionMap Get() { return m_Wrapper.m_Test; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(TestActions set) { return set.Get(); }
+        public void SetCallbacks(ITestActions instance)
+        {
+            if (m_Wrapper.m_TestActionsCallbackInterface != null)
+            {
+                @Ragdoll.started -= m_Wrapper.m_TestActionsCallbackInterface.OnRagdoll;
+                @Ragdoll.performed -= m_Wrapper.m_TestActionsCallbackInterface.OnRagdoll;
+                @Ragdoll.canceled -= m_Wrapper.m_TestActionsCallbackInterface.OnRagdoll;
+            }
+            m_Wrapper.m_TestActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @Ragdoll.started += instance.OnRagdoll;
+                @Ragdoll.performed += instance.OnRagdoll;
+                @Ragdoll.canceled += instance.OnRagdoll;
+            }
+        }
+    }
+    public TestActions @Test => new TestActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     public InputControlScheme KeyboardMouseScheme
     {
@@ -1222,5 +1285,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnResetPosition(InputAction.CallbackContext context);
+    }
+    public interface ITestActions
+    {
+        void OnRagdoll(InputAction.CallbackContext context);
     }
 }

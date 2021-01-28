@@ -11,13 +11,11 @@ using Random = UnityEngine.Random;
 namespace MirrorProject.TestSceneTwo
 {
     [RequireComponent(typeof(CharacterController))]
-    public class Player : Hittable
+    public class PlayerMovement : NetworkBehaviour
     {
         [Header("Data")]
         [SerializeField] private Camera playerCam = null;
         [SerializeField] private Transform cameraPivot = null;
-        [SerializeField] private HealthBar UI_healthbar = null;
-        [SerializeField] private WorldHealthBar world_healthbar = null;
         [SerializeField] protected Animator playerAnimator = null;
         private CharacterController cc = null;
         private PlayerInput PlayerInput;
@@ -39,22 +37,23 @@ namespace MirrorProject.TestSceneTwo
 
         private void Start()
         {
-            world_healthbar.owned = hasAuthority;
-            
-            world_healthbar.UpdateHealthbar(maxHealth, Health);
-            UI_healthbar.UpdateHealthbar(maxHealth, Health);
             playerAnimator.SetFloat("SpeedMultiplier", speed * 1.4f);
             //Later change do change layer so spectator camera can see it..
         }
 
+        private bool authorityStarted = false;
         public override void OnStartAuthority()
         {
             base.OnStartAuthority();
+            authorityStarted = true;
+            
             startPos = transform.position;
 
             if (PlayerInput == null)
                 PlayerInput = GameSystem.PlayerGlobalInput;
-            PlayerInput.Enable();
+            
+            if(!GameSystem.OnPause)
+                PlayerInput.PlayerMovement.Enable();
 
             if(cc == null)
                 cc = GetComponent<CharacterController>();
@@ -66,7 +65,8 @@ namespace MirrorProject.TestSceneTwo
 
         private void Update()
         {
-            if (!hasAuthority)return;
+            if (!hasAuthority) return;
+            if(!authorityStarted)return;
 
             if (reset > 0)
             {
@@ -86,7 +86,10 @@ namespace MirrorProject.TestSceneTwo
         private Vector3 startPos;
         private void MovePlayer()
         {
-            moveInput = PlayerInput.PlayerMovement.Movement.ReadValue<Vector2>();
+            // if(PlayerInput == null)
+            //     print("PlayerInput == null");
+            // else
+                moveInput = PlayerInput.PlayerMovement.Movement.ReadValue<Vector2>();
 
             // if(cc.isGrounded)
             
@@ -100,7 +103,9 @@ namespace MirrorProject.TestSceneTwo
             else if(jumped)
                 moveVector.y = jumpForce;
             else
-                moveVector.y = -cc.stepOffset / Time.deltaTime;
+            {
+                moveVector.y = -cc.skinWidth / Time.deltaTime;
+            }
             
             cc.Move(moveVector * Time.deltaTime);
             jumped = false;
@@ -121,40 +126,10 @@ namespace MirrorProject.TestSceneTwo
             cameraPivot.localRotation =
                 Quaternion.Euler(x,0f, 0f);
         }
-
-        // [Command]
-        // private void CmdShoot()
-        // {
-        //     print(gameObject + " shot");
-        //     if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out RaycastHit hit, 100f))
-        //     {
-        //         print(gameObject + " hit: " + hit.collider.name);
-        //         if(hit.collider.TryGetComponent(out Hittable hittable))
-        //         {
-        //             //hittable.RpcChangeColor(Random.ColorHSV(0f, 1f, .5f, 1f, 1f, 1f, 1f, 1f));
-        //             if(hittable.health <= 0) {print("health too low to hit"); return; }
-        //             hittable.health -= 1f;
-        //         }
-        //         else if (hit.collider.CompareTag("Object"))
-        //         {
-        //             Destroy(hit.collider.gameObject);
-        //
-        //             NetworkServer.Destroy(hit.collider.gameObject);
-        //         }
-        //     }
-        // }
         private void OnDrawGizmos()
         {
             Gizmos.color = hasAuthority ? Color.blue : Color.red;
             Gizmos.DrawLine(playerCam.transform.position, playerCam.transform.forward * 100f);
-        }
-
-        protected override void OnHealthChanged(float old, float newHealth)
-        {
-            print(nameof(newHealth)+ newHealth+nameof(old)+old);
-            newHealth = Mathf.Max(0f, newHealth);
-            world_healthbar.UpdateHealthbar(maxHealth, newHealth);
-            UI_healthbar.UpdateHealthbar(maxHealth, newHealth);
         }
     }
 }

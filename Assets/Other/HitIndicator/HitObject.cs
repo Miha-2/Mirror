@@ -9,7 +9,7 @@ public class HitObject : SelfDestroy
 {
     protected override void Start()
     {
-        if(GameSystem.ShowHitIndicator)
+        if(GameSystem.EventSingleton.clientSettings.showHits)
             base.Start();
         else
             Destroy(gameObject);

@@ -253,6 +253,7 @@
             <e p="HitObject.cs" t="Include" />
           </e>
         </e>
+        <e p="PauseMenu.cs" t="Include" />
         <e p="Player" t="Include">
           <e p="Health" t="Include">
             <e p="HealthBar.cs" t="Include" />
@@ -260,12 +261,15 @@
             <e p="WorldHealthBar.cs" t="Include" />
           </e>
           <e p="Scripts" t="Include">
-            <e p="Player.cs" t="Include" />
             <e p="PlayerItem.cs" t="Include" />
+            <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerObject.cs" t="Include" />
+            <e p="PlayerState.cs" t="Include" />
+            <e p="Timer.cs" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="ClientSettings.cs" t="Include" />
           <e p="GameSettings.cs" t="Include" />
           <e p="Hittable.cs" t="Include" />
           <e p="Input" t="Include">
@@ -274,10 +278,11 @@
           <e p="MainNetworkManager.cs" t="Include" />
           <e p="NameTag.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
-            <e p="ClientSettings.cs" t="Include" />
+            <e p="ClientSettings2.cs" t="Include" />
             <e p="GamePlayerSettings.cs" t="Include" />
           </e>
           <e p="SelfDestroy.cs" t="Include" />
+          <e p="ServerSettings.cs" t="Include" />
           <e p="Stable" t="Include">
             <e p="GameSystem.cs" t="Include" />
             <e p="GlobalEventSingleton.cs" t="Include" />

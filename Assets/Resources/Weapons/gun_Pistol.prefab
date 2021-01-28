@@ -412,7 +412,7 @@ MonoBehaviour:
   isAutomatic: 0
   canAim: 1
   range: 200
-  damage: 20
+  damage: 9
   minDamage: 8
   headShotMultiplier: 1.5
   hitForce: 8
