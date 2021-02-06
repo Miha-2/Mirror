@@ -6,7 +6,7 @@ using MirrorProject.TestSceneTwo;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerState : Hittable
+public class PlayerState : Destroyable
 {
     [Header("Data")]
     [SerializeField] private PlayerItem playerItem = null;
@@ -18,19 +18,34 @@ public class PlayerState : Hittable
     [Header("Health")]
     [SerializeField] private HealthBar UI_healthbar = null;
     [SerializeField] private WorldHealthBar world_healthbar = null;
+    [Space]
+    [SerializeField] private float regenAfter = 5f;
+    [SerializeField] private float regenRate = 8f;
+    private float regenTimer;
+    
     private Rigidbody[] ragdollRbs;
     private Collider[] ragdollColliders;
 
     private PlayerInput _playerInput;
-    
+    public override float Health
+    {
+        protected set
+        {
+            if (base.Health > value)
+                regenTimer = regenAfter;
+            base.Health = value;
+        }
+    }
+
     [HideInInspector] public UnityEvent PlayerDeath = new UnityEvent();
 
     private void Start()
     {
+        headshotMask = LayerMask.GetMask("Ragdoll");
         world_healthbar.owned = hasAuthority;
             
-        world_healthbar.UpdateHealthbar(maxHealth, Health);
-        UI_healthbar.UpdateHealthbar(maxHealth, Health);
+        world_healthbar.UpdateHealthbar(maxHealth,Health ,Health);
+        UI_healthbar.UpdateHealthbar(maxHealth,Health ,Health);
         
         ragdollRbs = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
@@ -41,35 +56,17 @@ public class PlayerState : Hittable
         SetRagdoll(false);
     }
 
-    protected override void OnHealthChanged(float old, float newHealth)
+    protected override void OnHealthChanged(float oldHealth, float newHealth)
     {
-        print(nameof(newHealth)+ newHealth+nameof(old)+old);
         newHealth = Mathf.Max(0f, newHealth);
-        world_healthbar.UpdateHealthbar(maxHealth, newHealth);
-        UI_healthbar.UpdateHealthbar(maxHealth, newHealth);
-
-        if(!hasAuthority) return;
-        if (newHealth <= 0f)
-        {
-            Death();
-        }
+        world_healthbar.UpdateHealthbar(maxHealth,oldHealth, newHealth);
+        UI_healthbar.UpdateHealthbar(maxHealth, oldHealth, newHealth);
     }
+    
+    #region Death
 
-    [ContextMenu("Die")]
+    //Server call
     private void Death()
-    {
-        Destroy(playerMovement);
-        // _playerInput.PlayerMovement.Disable();
-        if(playerItem.Item != null)
-            playerItem.Item.enabled = false;
-        
-        playerCamera.gameObject.SetActive(false);
-        
-        CmdDeath();
-    }
-
-    [Command]
-    private void CmdDeath()
     {
         Invoke(nameof(DeathCleanup), 8f);
         PlayerDeath.Invoke();
@@ -86,16 +83,50 @@ public class PlayerState : Hittable
     [ClientRpc]
     private void RpcDeath()
     {
+        if (hasAuthority)
+        {
+            Destroy(playerMovement);
+            
+            if(playerItem.Item != null)
+                playerItem.Item.enabled = false;
+        }
+        
+        playerCamera.gameObject.SetActive(false);
         if(playerItem.Item != null)
             playerItem.Item.transform.SetParent(rightHand, true);
         SetRagdoll(true);
     }
-    
-    // private bool isRagdoll = false;
+
+    #endregion
+
+    private LayerMask headshotMask;
+    public override void Hit(HitInfo hitInfo)
+    {
+        float multiplier = 1f;
+        Collider[] colliders = Physics.OverlapSphere(hitInfo.Point, .05f, headshotMask);
+        foreach (Collider collider in colliders)
+        {
+            if (collider.CompareTag("Head"))
+            {
+                multiplier = hitInfo.HeadshotMultiplier;
+                break;
+            }
+        }
+        Health -= hitInfo.Damage * multiplier;
+        if (Health <= 0f)
+            Death();
+    }
+
+    private void Update()
+    {
+        if(!isServer) return;
+        regenTimer -= Time.deltaTime;
+        if (regenTimer <= 0f && Math.Abs(Health - maxHealth) > .01f)
+            Health += regenRate * Time.deltaTime;
+    }
+
     private void SetRagdoll(bool state)
     {
-        // isRagdoll = state;
-            
         playerAnimator.enabled = !state;
 
         foreach (Rigidbody rb in ragdollRbs)
@@ -105,7 +136,9 @@ public class PlayerState : Hittable
 
         foreach (Collider _collider in ragdollColliders)
         {
-            _collider.enabled = state;
+            if (_collider is CharacterController)
+                continue;
+            _collider.isTrigger = !state;
         }
 
         cc.enabled = !state;

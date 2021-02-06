@@ -310,6 +310,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barObject: {fileID: 6100310072087224368}
   startOn: 0
+  smoothingTime: 0.125
+  startDelta: 0
+  endDelta: 0
+  healthDelta: 0
   healthSlider: {fileID: 7416897170022082346}
   fullHealthText: {fileID: 3075057266346196692}
   healthText: {fileID: 8604351034031018035}

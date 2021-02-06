@@ -234,7 +234,9 @@
           <e p="RebindAction.cs" t="Include" />
           <e p="ResourceLoader.cs" t="Include" />
           <e p="Test" t="Include">
+            <e p="Empty.cs" t="Include" />
             <e p="Test.cs" t="Include" />
+            <e p="TrailTest.cs" t="Include" />
           </e>
           <e p="Test2" t="Include">
             <e p="Test2.cs" t="Include" />
@@ -249,11 +251,16 @@
           </e>
         </e>
         <e p="Other" t="Include">
+          <e p="Bullet Holes" t="Include">
+            <e p="HoleProjector.cs" t="Include" />
+          </e>
+          <e p="BulletTrail" t="Include">
+            <e p="BulletTrail.cs" t="Include" />
+          </e>
           <e p="HitIndicator" t="Include">
             <e p="HitObject.cs" t="Include" />
           </e>
         </e>
-        <e p="PauseMenu.cs" t="Include" />
         <e p="Player" t="Include">
           <e p="Health" t="Include">
             <e p="HealthBar.cs" t="Include" />
@@ -270,25 +277,42 @@
         </e>
         <e p="Scripts" t="Include">
           <e p="ClientSettings.cs" t="Include" />
+          <e p="Destroyable.cs" t="Include" />
+          <e p="FPSDisplay.cs" t="Include" />
           <e p="GameSettings.cs" t="Include" />
-          <e p="Hittable.cs" t="Include" />
+          <e p="Hole Decal Data.cs" t="Include" />
           <e p="Input" t="Include">
             <e p="PlayerInput.cs" t="Include" />
           </e>
           <e p="MainNetworkManager.cs" t="Include" />
           <e p="NameTag.cs" t="Include" />
+          <e p="PauseMenu.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
             <e p="ClientSettings2.cs" t="Include" />
             <e p="GamePlayerSettings.cs" t="Include" />
+            <e p="Scriptable Materials" t="Include">
+              <e p="ScriptableMaterial.cs" t="Include" />
+            </e>
           </e>
           <e p="SelfDestroy.cs" t="Include" />
           <e p="ServerSettings.cs" t="Include" />
           <e p="Stable" t="Include">
             <e p="GameSystem.cs" t="Include" />
             <e p="GlobalEventSingleton.cs" t="Include" />
+            <e p="Hittable.cs" t="Include" />
+            <e p="IHittable.cs" t="Include" />
             <e p="Interfaces.cs" t="Include" />
             <e p="ParentSpawn.cs" t="Include" />
             <e p="Singelton.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="LocalPackages" t="Include">
+        <e p="com.unity.render-pipelines.high-definition-config" t="Include">
+          <e p="Runtime" t="Include">
+            <e p="ShaderConfig.cs" t="Include" />
+            <e p="ShaderConfig.cs.hlsl" t="Include" />
+            <e p="Unity.RenderPipelines.HighDefinition.Config.Runtime.asmdef" t="Include" />
           </e>
         </e>
       </e>
@@ -303,6 +327,7 @@
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
       <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Unity.RenderPipelines.HighDefinition.Config.Runtime.csproj" t="IncludeRecursive" />
     </e>
   </component>
 </project>

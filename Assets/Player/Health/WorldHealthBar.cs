@@ -15,19 +15,28 @@ public class WorldHealthBar : HealthBar
         base.Awake();
         sliderScale = healthSlider.localScale.x;
     }
-    public override void UpdateHealthbar(float maxHealth, float health)
+    public override void UpdateHealthbar(float maxHealth, float oldHealth, float newHealth)
     {
+        base.UpdateHealthbar(maxHealth, oldHealth, newHealth);
         if(owned) return; //later maybe check which camera is active (Camera.Active -> later static class)
         
         barObject.SetActive(true);
         if(sliderScale == 0f)
             sliderScale = healthSlider.localScale.x;
-        float sliderSize = health * sliderScale / maxHealth;
         fullHealthText.text = maxHealth.ToString("F0");
-        healthText.text = health.ToString("F0");
-        healthSlider.transform.localScale = new Vector3(sliderSize, healthSlider.transform.localScale.y, healthSlider.transform.localScale.z);
-        healthSlider.transform.localPosition = new Vector3(-(sliderScale - sliderSize) / 2, 0f, 0f);
-        if(health <= 0f)
+        healthText.text = newHealth.ToString("F0");
+        if(newHealth <= 0f)
             gameObject.SetActive(false);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (isSmoothing)
+        {
+            float sliderSize = sliderScale * healthDelta;
+            healthSlider.transform.localScale = new Vector3(sliderSize, healthSlider.transform.localScale.y, healthSlider.transform.localScale.z);
+            healthSlider.transform.localPosition = new Vector3(-(sliderScale - sliderSize) / 2, 0f, 0f);
+        }
     }
 }

@@ -30,6 +30,8 @@ namespace MirrorProject.TestSceneTwo
         [SerializeField] private float sensitivityLeftRight = 1f;
         [SerializeField] private float maxUp = 60f;
         [SerializeField] private float maxDown = -60f;
+
+        private GlobalEventSingleton _globalEventSingleton;
         //private float rotationX = 0f;
 
         private bool jumped = false;
@@ -45,6 +47,7 @@ namespace MirrorProject.TestSceneTwo
         public override void OnStartAuthority()
         {
             base.OnStartAuthority();
+            // _globalEventSingleton = GameSystem.EventSingleton;
             authorityStarted = true;
             
             startPos = transform.position;
@@ -59,6 +62,11 @@ namespace MirrorProject.TestSceneTwo
                 cc = GetComponent<CharacterController>();
             
             playerCam.gameObject.SetActive(true);
+            GlobalEventSingleton globalEventSingleton = GameSystem.EventSingleton;
+            // globalEventSingleton.SetActiveCamera(playerCam);
+            print(playerCam);
+            print(globalEventSingleton);
+            globalEventSingleton.SetActiveCamera(playerCam);
             PlayerInput.PlayerMovement.Jump.performed += context => jumped = true;
             PlayerInput.PlayerMovement.ResetPosition.performed += context => reset = 3;
         }

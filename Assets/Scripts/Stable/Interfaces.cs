@@ -1,9 +1,6 @@
 ﻿using UnityEngine;
 
-namespace MirrorProject.TestSceneTwo
+public interface IParentSpawner
 {
-    public interface IParentSpawner
-    {
-        void ParentSpawned(Transform t);
-    }
+    void ParentSpawned(Transform t);
 }

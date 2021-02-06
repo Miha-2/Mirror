@@ -10,7 +10,34 @@ using UnityEngine.InputSystem;
 
 public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 {
+    private Camera mainCamera;
     private Camera activeCamera;
+
+    public Camera ActiveCamera
+    {
+        get => activeCamera;
+        set
+        {
+            if (activeCamera != value)
+                GameSystem.ActiveCameraChanged.Invoke(value);
+            activeCamera = value;
+        }
+    }
+
+    public void SetActiveCamera(Camera cam)
+    {
+        mainCamera.enabled = false;
+        ActiveCamera.enabled = false;
+        cam.enabled = true;
+        ActiveCamera = cam;
+    }
+
+    public void SetActiveMain()
+    {
+        ActiveCamera.enabled = false;
+        mainCamera.enabled = true;
+    }
+
     [SerializeField] private GameObject pauseMenu = null;
     public Timer Timer = null;
 
@@ -22,6 +49,7 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
     public ClientSettings clientSettings;
 
     public ServerSettings serverSettings;
+    [Space] public BulletData bulletData;
 
     public void UpdateDelay(TMP_InputField inputField)
     {
@@ -56,8 +84,12 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 
     private void Start()
     {
+        mainCamera = Camera.main;
+        activeCamera = mainCamera;
+        
         playerInput = new PlayerInput();
         IsPaused = false;
+        CursorLocked = false;
         
         playerInput.UiActions.Enable();
         playerInput.UiActions.PauseMenu.performed += context => IsPaused = !IsPaused;
@@ -78,17 +110,17 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
 
     private void Update()
     {
-        CheckCamera();
+        // CheckCamera();
     }
 
-    private void CheckCamera()
-    {
-        if(activeCamera == null && !Camera.current)
-            activeCamera = Camera.main;
-        else if (activeCamera == Camera.current) return;
-        else if (!Camera.current) return;
-        
-        activeCamera = Camera.current;
-        GameSystem.ActiveCameraChanged.Invoke(activeCamera);
-    }
+    // private void CheckCamera()
+    // {
+    //     if(activeCamera == null && !Camera.current)
+    //         activeCamera = Camera.main;
+    //     else if (activeCamera == Camera.current) return;
+    //     else if (!Camera.current) return;
+    //     
+    //     activeCamera = Camera.current;
+    //     GameSystem.ActiveCameraChanged.Invoke(activeCamera);
+    // }
 }

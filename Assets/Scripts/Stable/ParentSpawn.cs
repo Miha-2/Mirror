@@ -42,7 +42,7 @@ public class ParentSpawn : NetworkBehaviour
             if (NetworkIdentity.spawned.ContainsKey(parentNetId)) SelfParent();
     }
 
-    private void SelfParent()
+    protected virtual void SelfParent()
     {
         if(NetworkIdentity.spawned[parentNetId].TryGetComponent(out IParentSpawner parentSpawner))
             parentSpawner.ParentSpawned(transform);

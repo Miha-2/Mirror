@@ -512,6 +512,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barObject: {fileID: 3363603584008730144}
   startOn: 1
+  smoothingTime: 0.125
+  startDelta: 0
+  endDelta: 0
+  healthDelta: 0
   healthRect: {fileID: 3363603582379749391}
   maxHealthText: {fileID: 3363603582974669390}
   healthText: {fileID: 3363603583502245294}
