@@ -37,10 +37,11 @@ public class Destroyable : NetworkBehaviour, IHittable
     }
 
 
-    public virtual void Hit(HitInfo hitInfo)
+    public virtual bool Hit(HitInfo hitInfo)
     {
         print($"{name} was hit with damage of: {hitInfo.Damage}");
         Health -= hitInfo.Damage;
+        return Health <= 0f;
     }
 
     protected virtual void OnHealthChanged(float oldHealth, float newHealth)

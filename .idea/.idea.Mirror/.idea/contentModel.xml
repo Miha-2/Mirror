@@ -242,6 +242,7 @@
             <e p="Test2.cs" t="Include" />
           </e>
         </e>
+        <e p="Chat.cs" t="Include" />
         <e p="Items" t="Include">
           <e p="Item.cs" t="Include" />
           <e p="Weapons" t="Include">
@@ -250,12 +251,16 @@
             </e>
           </e>
         </e>
+        <e p="NameInput.cs" t="Include" />
         <e p="Other" t="Include">
           <e p="Bullet Holes" t="Include">
             <e p="HoleProjector.cs" t="Include" />
           </e>
           <e p="BulletTrail" t="Include">
             <e p="BulletTrail.cs" t="Include" />
+          </e>
+          <e p="Crosshair" t="Include">
+            <e p="Crosshair.cs" t="Include" />
           </e>
           <e p="HitIndicator" t="Include">
             <e p="HitObject.cs" t="Include" />
@@ -268,6 +273,7 @@
             <e p="WorldHealthBar.cs" t="Include" />
           </e>
           <e p="Scripts" t="Include">
+            <e p="PlayerInfo.cs" t="Include" />
             <e p="PlayerItem.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerObject.cs" t="Include" />
@@ -303,6 +309,7 @@
             <e p="IHittable.cs" t="Include" />
             <e p="Interfaces.cs" t="Include" />
             <e p="ParentSpawn.cs" t="Include" />
+            <e p="ServerInfo.cs" t="Include" />
             <e p="Singelton.cs" t="Include" />
           </e>
         </e>

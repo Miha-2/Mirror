@@ -27,6 +27,18 @@ namespace MirrorProject.TestSceneTwo
             CmdSpawnPlayer(false);
         }
 
+        public override void OnStartServer()
+        {
+            base.OnStartServer();
+            ServerInfo.AddChat.AddListener(delegate(string arg0) { TargetRpcUpdateChat(connectionToClient, arg0); });
+        }
+
+        [TargetRpc]
+        private void TargetRpcUpdateChat(NetworkConnection target, string newLine)
+        {
+            FindObjectOfType<Chat>().AddLine(newLine);
+        }
+
         [Command]
         private void CmdSpawnPlayer(bool delay)
         {

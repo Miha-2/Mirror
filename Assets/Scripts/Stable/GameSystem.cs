@@ -68,6 +68,7 @@ public static class GameSystem
     }
 
     public static UnityEvent<Camera> ActiveCameraChanged = new UnityEvent<Camera>();
+    public static Camera ActiveCamera;
 
     public static bool OnPause = false;
     

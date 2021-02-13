@@ -16,7 +16,8 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
 
     [SerializeField] private TextMeshProUGUI amountText = null;
 
-    [SerializeField] private Camera _playerCamera = null;
+    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private Crosshair crosshair = null;
     [SerializeField] private Transform weaponPivot = null;
     
     [SerializeField] private Animator _animator = null;
@@ -29,6 +30,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
     [SerializeField] private Image actionIndicator = null;
     private bool inAction;
     private float actionLenght;
+    [Space] [SerializeField] private Item defaultItem = null;
 
 
     // private bool isActive = false;
@@ -44,20 +46,21 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
 
             _item = value;
 
-            if (!_item) return;
+            if (!_item)
+                return;
             if(!hasAuthority) return;
             _item.SetupItem(PlayerInput);
             _item.amountChanged.AddListener(delegate(int arg0) { amountText.text = arg0.ToString(); });
             _item.actionStarted.AddListener(delegate(float arg0)
             {
                 actionIndicator.fillAmount = 0f;
-                inAction = true;
+                InAction = true;
                 actionLenght = arg0;
                 actionIndicator.enabled = true;
             });
             _item.actionEnded.AddListener(delegate
             {
-                inAction = false;
+                InAction = false;
                 actionIndicator.enabled = false;
             });
             
@@ -67,24 +70,43 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
         }
     }
 
+    private bool InAction
+    {
+        get => inAction;
+        set
+        {
+            if(inAction != value)
+                PlayerInfo.OnActionState.Invoke(value);
+            inAction = value;
+        }
+    }
+
     private void Start()
     {
         amountText.enabled = false;
         _overrideController = (AnimatorOverrideController)_animator.runtimeAnimatorController;
         _networkAnimator = GetComponent<NetworkAnimator>();
-        print(hasAuthority);
+        
         if (hasAuthority)
         {
+            PlayerInfo.Crosshair = crosshair;
             PlayerInput = GameSystem.PlayerGlobalInput;
             if(!GameSystem.OnPause)
                 PlayerInput.ItemInteractions.Enable();
+            EquipItem(defaultItem);
         }
     }
 
     public void EquipItem(Item item)
     {
-        /*if (Item) Destroy(Item.gameObject);
-        else*/ amountText.enabled = true;
+        if (Item)
+        {
+            Item.RemoveInput();
+            InAction = false;
+            actionIndicator.enabled = false;
+        }
+        else
+            amountText.enabled = true;
 
         CmdEquipItem(GameSystem.WeaponToByte(item));
         
@@ -102,7 +124,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
         Item.transform.localPosition = Vector3.zero;
         Item.transform.localRotation = quaternion.identity;
         Item.parentNetId = netId;
-        Item.Camera = _playerCamera;
+        Item.Camera = playerCamera;
 
         NetworkServer.Spawn(Item.gameObject, connectionToClient);
     }
@@ -111,6 +133,8 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
     {
         if(!Item) return;
         amountText.enabled = false;
+        InAction = false;
+        actionIndicator.enabled = false;
         
         Item.RemoveInput();
         Item.amountChanged.RemoveAllListeners();
@@ -135,7 +159,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
 
     private void Update()
     {
-        if (inAction)
+        if (InAction)
             actionIndicator.fillAmount += Time.deltaTime / actionLenght;
     }
 

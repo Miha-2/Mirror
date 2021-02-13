@@ -1,13 +1,19 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Mirror;
-using MirrorProject.TestSceneTwo;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using Random = UnityEngine.Random;
 
 public class PlayerState : Destroyable
 {
+    [Header("Name")]
+    [SerializeField] private TextMeshPro nameDisplay = null;
+    [SyncVar(hook = nameof(OnNameChanged))]
+    private string playerName;
     [Header("Data")]
     [SerializeField] private PlayerItem playerItem = null;
     [SerializeField] private PlayerMovement playerMovement = null;
@@ -15,16 +21,23 @@ public class PlayerState : Destroyable
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private CharacterController cc = null;
     [SerializeField] private Transform rightHand = null;
-    [Header("Health")]
+    [SerializeField] private Renderer[] playerRenderers = null;
+    [Header("Player Health")]
     [SerializeField] private HealthBar UI_healthbar = null;
     [SerializeField] private WorldHealthBar world_healthbar = null;
     [Space]
     [SerializeField] private float regenAfter = 5f;
     [SerializeField] private float regenRate = 8f;
     private float regenTimer;
+
+    private bool isDead = false;
     
     private Rigidbody[] ragdollRbs;
     private Collider[] ragdollColliders;
+
+
+    [SyncVar]
+    private float hueShift;
 
     private PlayerInput _playerInput;
     public override float Health
@@ -32,7 +45,10 @@ public class PlayerState : Destroyable
         protected set
         {
             if (base.Health > value)
+            {
                 regenTimer = regenAfter;
+                Debug.Log("Reset regen timer!");
+            }
             base.Health = value;
         }
     }
@@ -43,6 +59,7 @@ public class PlayerState : Destroyable
     {
         headshotMask = LayerMask.GetMask("Ragdoll");
         world_healthbar.owned = hasAuthority;
+        nameDisplay.gameObject.SetActive(!hasAuthority);
             
         world_healthbar.UpdateHealthbar(maxHealth,Health ,Health);
         UI_healthbar.UpdateHealthbar(maxHealth,Health ,Health);
@@ -51,9 +68,22 @@ public class PlayerState : Destroyable
         ragdollColliders = GetComponentsInChildren<Collider>();
 
         if (hasAuthority)
+        {
+            string setName = PlayerPrefs.GetString(PlayerInfo.Pref_Name, $"Mr. {Random.Range(1, 1000)}");
+            nameDisplay.text = setName;
+            CmdUpdateName(setName);
+            
             _playerInput = GameSystem.PlayerGlobalInput;
-        
+        }
+
         SetRagdoll(false);
+    }
+
+    [Command]
+    private void CmdUpdateName(string newName)
+    {
+        playerName = newName;
+        ServerInfo.PlayerData[connectionToClient.connectionId] = new ServerPlayer {HueShift =  ServerInfo.PlayerData[connectionToClient.connectionId].HueShift, PlayerName = newName};
     }
 
     protected override void OnHealthChanged(float oldHealth, float newHealth)
@@ -62,12 +92,36 @@ public class PlayerState : Destroyable
         world_healthbar.UpdateHealthbar(maxHealth,oldHealth, newHealth);
         UI_healthbar.UpdateHealthbar(maxHealth, oldHealth, newHealth);
     }
-    
+
+    private void OnNameChanged(string oldName, string newName)
+    {
+        if (!newName.Equals(string.Empty)) nameDisplay.text = newName;
+    }
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        hueShift = ServerInfo.PlayerData[connectionToClient.connectionId].HueShift;
+    }
+
+    public override void OnStartClient()
+    {
+        foreach (Renderer renderer in playerRenderers)
+        {
+            Color currentColor = renderer.material.GetColor("_BaseColor");
+            float h, s, v;
+            Color.RGBToHSV(currentColor, out h, out s, out v);
+            h = (h + hueShift) % 1;
+            currentColor = Color.HSVToRGB(h, s, v);
+            renderer.material.SetColor("_BaseColor", currentColor);
+        }
+    }
     #region Death
 
     //Server call
     private void Death()
     {
+        isDead = true;
         Invoke(nameof(DeathCleanup), 8f);
         PlayerDeath.Invoke();
         RpcDeath();
@@ -91,6 +145,7 @@ public class PlayerState : Destroyable
                 playerItem.Item.enabled = false;
         }
         
+        nameDisplay.gameObject.SetActive(false);
         playerCamera.gameObject.SetActive(false);
         if(playerItem.Item != null)
             playerItem.Item.transform.SetParent(rightHand, true);
@@ -100,8 +155,10 @@ public class PlayerState : Destroyable
     #endregion
 
     private LayerMask headshotMask;
-    public override void Hit(HitInfo hitInfo)
+    public override bool Hit(HitInfo hitInfo)
     {
+        if (isDead)
+            return false;
         float multiplier = 1f;
         Collider[] colliders = Physics.OverlapSphere(hitInfo.Point, .05f, headshotMask);
         foreach (Collider collider in colliders)
@@ -114,14 +171,19 @@ public class PlayerState : Destroyable
         }
         Health -= hitInfo.Damage * multiplier;
         if (Health <= 0f)
+        {
             Death();
+            return true;
+        }
+
+        return false;
     }
 
+    [ServerCallback]
     private void Update()
     {
-        if(!isServer) return;
         regenTimer -= Time.deltaTime;
-        if (regenTimer <= 0f && Math.Abs(Health - maxHealth) > .01f)
+        if (regenTimer <= 0f && Math.Abs(Health - maxHealth) > .01f && Health > 0f)
             Health += regenRate * Time.deltaTime;
     }
 
@@ -143,4 +205,13 @@ public class PlayerState : Destroyable
 
         cc.enabled = !state;
     }
+
+#if UNITY_EDITOR
+    [ContextMenu("Commit Death")]
+    [Command]
+    private void CmdDie()
+    {
+        Death();
+    }
+#endif
 }

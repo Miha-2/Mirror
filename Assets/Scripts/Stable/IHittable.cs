@@ -5,5 +5,5 @@ using UnityEngine;
 public interface IHittable
 {
     ScriptableMaterial ScriptableMaterial { get; }
-    void Hit(HitInfo hitInfo);
+    bool Hit(HitInfo hitInfo);
 }

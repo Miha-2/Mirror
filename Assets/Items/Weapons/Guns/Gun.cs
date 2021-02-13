@@ -29,31 +29,49 @@ public class Gun : Item
     [SerializeField] private int avalibleAmmo = 160;
     [SerializeField] protected float fireRate = 0.1f; //DONE
     [SerializeField] private float reloadTime = 2f;
-
     [SerializeField] private float bulletPenetration = 10;
+    [Header("Bullet Spread")]
+    [SerializeField] private float maxSpread = .5f;
+    [SerializeField] private float spreadStep = .85f;
+    
+    private float spread;
+    private float Spread
+    {
+        get => spread;
+        set
+        {
+            PlayerInfo.Crosshair.Delta = value;
+            spread = value;
+        }
+    }
+    
+    private float _maxSpread;
+    private float _minSpread;
+    private float _spreadStep;
+
     // [SerializeField] protected float recoilAmount = 10f;
-    [SerializeField][Tooltip("Spread angle in one direction")] protected float bulletSpread = 1.7f;
     [SerializeField][Tooltip("Higher is more accurate, 1 is the same")] protected float aimAccuracyMultiplier = 10f;
     [Header("Gun Other")]
     [SerializeField] private Transform exitPoint = null;
 
-    [SerializeField] private GameObject hitObject = null;
-    
     private float nextFire;
     private int ammo;
-    private float reloadTimer = 0f;
-    private bool isReloading = false;
+    private float reloadTimer;
+    private bool isReloading;
     private LayerMask hitMask;
-    
-    public int Ammo
+
+    private int Ammo
     {
         get => ammo;
         set
         {
             ammo = value;
             amountChanged.Invoke(ammo);
+            if(ammo == 0)
+                TryReload();
         }
     }
+
 
     #endregion
 
@@ -81,13 +99,8 @@ public class Gun : Item
     {
         shooting = false;
     }
-    void Inpt_ReloadPerformed(InputAction.CallbackContext ctx)
-    {
-        if(isReloading || ammo == magazineSize || avalibleAmmo == 0) return;
-        isReloading = true;
-        actionStarted.Invoke(reloadTime);
-        reloadTimer = reloadTime;
-    }
+    void Inpt_ReloadPerformed(InputAction.CallbackContext ctx) => TryReload();
+
     public override void RemoveInput()
     {
         base.RemoveInput();
@@ -104,11 +117,23 @@ public class Gun : Item
     {
         Ammo = magazineSize;
         hitMask = LayerMask.GetMask("Ragdoll", "Default");
+        if (hasAuthority)
+        {
+            MultiplierData _data = PlayerInfo.MultiplierData;
+            _maxSpread = maxSpread * _data.Movement;
+            _minSpread = Mathf.Min((_data.Movement - 1f) / 3, _maxSpread);
+            _spreadStep = spreadStep * _data.Stability;
+            PlayerInfo.OnMultiplierData.AddListener(delegate(MultiplierData data)
+            {
+                _maxSpread = maxSpread * data.Movement;
+                _minSpread = Mathf.Min((data.Movement - 1f) / 3, _maxSpread);
+                _spreadStep = spreadStep * data.Stability;
+            });
+        }
     }
 
     protected override void Update()
     {
-        // print(nameof(hasAuthority) + " : " + hasAuthority);
         base.Update();
         if (reloadTimer > 0f)
             reloadTimer -= Time.deltaTime;
@@ -121,25 +146,31 @@ public class Gun : Item
             actionEnded.Invoke();
         }
 
+        if(Spread > _minSpread && (!shooting || isReloading))
+            Spread = Mathf.Max(Spread - Time.deltaTime, _minSpread);
+        else if (Spread < _minSpread)
+            Spread = _minSpread;
+
         if (nextFire > 0f)
             nextFire -= Time.deltaTime;
         else if (shooting && Ammo > 0 && !isReloading)
             Shoot();
-
-        //shot = isAutomatic && shot;
     }
     
     private void Shoot()
     {
         nextFire = fireRate;
         Ammo -= 1;
-        CmdShoot();
+        CmdShoot(Spread * 5f);
+        Spread = Mathf.Min(Spread + _spreadStep, _maxSpread);
     }
 
+
+    private float noHoleThreshold = .05f;
     [Command]
-    private void CmdShoot()
+    private void CmdShoot(float spread)
     {
-        Vector3 shotDir = BulletSpread();
+        Vector3 shotDir = BulletSpread(spread);
         BulletData bulletData = GameSystem.EventSingleton.bulletData;
         
         #region Forward Cast
@@ -216,14 +247,21 @@ public class Gun : Item
                 //Spawn enter hole
                 if (!isPlayer)
                 {
-                    GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                        enterHits[i].point + enterHits[i].normal * -.0003f,
-                        Quaternion.LookRotation(-enterHits[i].normal)).gameObject;
-                    NetworkServer.Spawn(bulletHole);
+                    bool spawnHole = true;
+                    if (i > 0) 
+                        spawnHole = enterHits[i].distance - (200 - exitHits[i - 1].distance) > noHoleThreshold;
+
+                    if (spawnHole)
+                    {
+                        GameObject bulletHole = Instantiate(bulletData.decalProjector,
+                            enterHits[i].point + enterHits[i].normal * -.004f,
+                            Quaternion.LookRotation(-enterHits[i].normal)).gameObject;
+                        NetworkServer.Spawn(bulletHole);
+                    }
                 }
 
-                Debug.Log($"{damage} * {dropoff} * {hitPower} = {damage * dropoff * hitPower}");
-                hittable.Hit(new HitInfo
+                // Debug.Log($"{damage} * {dropoff} * {hitPower} = {damage * dropoff * hitPower}");
+                bool hasDestroyed = hittable.Hit(new HitInfo
                 {
                     Damage = damage * dropoff * hitPower,
                     Point = enterHits[i].point,
@@ -231,93 +269,90 @@ public class Gun : Item
                     // Force = force * power,
                     Direction = Camera.transform.forward
                 });
+
+                if (hasDestroyed && isPlayer)
+                {
+                    PlayerState p = (PlayerState) hittable;
+                    ServerPlayer killer = ServerInfo.PlayerData[connectionToClient.connectionId];
+                    ServerPlayer victim = ServerInfo.PlayerData[p.connectionToClient.connectionId];
+                    string killInfo =
+                        $"{HueString(killer.PlayerName, killer.HueShift)}" +
+                        $" killed {HueString(victim.PlayerName, victim.HueShift)}" +
+                        $" with {ColorString(ItemName, Color.white)}";
+                    
+                    ServerInfo.AddChat.Invoke(killInfo);
+                }
+                
                 if (avaliblePower <= 0f) break;
 
                 //Spawn exit hole
                 if (!isPlayer)
                 {
-                    GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                        exitHits[i].point + exitHits[i].normal * -.0003f,
-                        Quaternion.LookRotation(-exitHits[i].normal)).gameObject;
-                    NetworkServer.Spawn(bulletHole);
+                    bool spawnHole = true;
+                    if (enterHits.Count > i + 1)
+                        spawnHole = enterHits[i + 1].distance - (200 - exitHits[i].distance) > noHoleThreshold;
+
+                    if (spawnHole)
+                    {
+                        GameObject bulletHole = Instantiate(bulletData.decalProjector,
+                            exitHits[i].point + exitHits[i].normal * -.004f,
+                            Quaternion.LookRotation(-exitHits[i].normal)).gameObject;
+                        NetworkServer.Spawn(bulletHole);
+                    }
                 }
                 
             }
         }
         #endregion
 
-        return;
         
-        print("shot");
-        bool spawnHole = true;
+    }
 
-        if (Physics.Raycast(Camera.transform.position + Camera.transform.forward * .2f, shotDir, out RaycastHit hitPoint, range, hitMask))
-        {
-            if(!hitPoint.collider.TryGetComponent(out Destroyable hittable))
-                hittable = hitPoint.collider.GetComponentInParent<Destroyable>();
-            
-            if (hittable != null)
-            {
-                spawnHole = !(hittable is PlayerState);
-
-
-                float calculatedDamage = hitPoint.distance > startDropoff ? damage - (hitPoint.distance - startDropoff) / (range - startDropoff) * (damage - minDamage) : damage;
-                // calculatedDamage = hitPoint.collider.CompareTag("Head") ? calculatedDamage * headShotMultiplier : calculatedDamage;
-
-                hittable.Hit(new HitInfo(){Damage = calculatedDamage, Direction = shotDir, Point = hitPoint.point});
-            }
-            else
-            {
-                print($"hit {hitPoint.collider.name} isn't of type {nameof(Destroyable)}");
-            }
-
-            ////////////////////////
-
-            if (spawnHole)
-            {
-                GameObject bulletHole = Instantiate(bulletData.decalProjector, hitPoint.point + hitPoint.normal * -.0003f, Quaternion.LookRotation(-hitPoint.normal)).gameObject;
-                NetworkServer.Spawn(bulletHole);
-            }
-
-            #region Commented
-
-            // GameObject hitObj = Instantiate(hitObject, hitPoint.point, Quaternion.identity);
-            // // hitObj.transform.SetParent(hitPoint.transform, true);
-            // NetworkServer.Spawn(hitObj);
-
-            /*float color = hitPoint.distance > startDropoff ? damage - (((hitPoint.distance - startDropoff) / (range - startDropoff)) * damage) : damage;*/
-            
-            //hitObj.GetComponent<MeshRenderer>().material.color = Color.Lerp(Color.yellow, Color.red, color / damage);
-            // hitObj.GetComponent<SelfDestroy>().destructionTime = markTimer;
-
-            #endregion
-        }
+    private void TryReload()
+    {
+        if(isReloading || ammo == magazineSize || avalibleAmmo == 0) return;
+        isReloading = true;
+        actionStarted.Invoke(reloadTime);
+        reloadTimer = reloadTime;
     }
     
-    private Vector3 BulletSpread()
+    private Vector3 BulletSpread(float spread)
     {
-        float spread = bulletSpread;
+        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         // float spread = isAiming ? bulletSpread / aimAccuracyMultiplier : bulletSpread;
         // spread = aimAccuracyMultiplier == 0f && isAiming ? 0f : spread;
-        Vector3 dir = Quaternion.AngleAxis(Random.Range(-spread, spread), Camera.transform.right) * Camera.transform.forward;
-        dir = Quaternion.AngleAxis(Random.Range(-spread, spread), Camera.transform.up) * dir;
+        Vector2 spreadVector = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * Random.Range(0f, spread);
+        Vector3 dir = Quaternion.AngleAxis(spreadVector.x, Camera.transform.right) * Camera.transform.forward;
+        dir = Quaternion.AngleAxis(spreadVector.y, Camera.transform.up) * dir;
         return dir;
     }
 
     private List<RaycastHit> enters = new List<RaycastHit>();
     private List<RaycastHit> exits = new List<RaycastHit>();
+    private readonly float _currentSpread;
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
         foreach (RaycastHit enter in enters)
         {
-            Gizmos.DrawSphere(enter.point, .1f);
+            Gizmos.DrawSphere(enter.point, .05f);
         }
         Gizmos.color = Color.red;
         foreach (RaycastHit exit in exits)
         {
-            Gizmos.DrawSphere(exit.point, .1f);
+            Gizmos.DrawSphere(exit.point, .05f);
         }
+    }
+
+    private string HueString(string inString, float hue)
+    {
+        return ColorString(inString, Color.HSVToRGB(hue, 1f, 1f));
+    }
+
+    private string ColorString(string inString, Color color)
+    {
+        return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{inString}</color>";
     }
 }
 

@@ -11,6 +11,16 @@ using Random = UnityEngine.Random;
 //In this class setup inputs (and other general logic)
 public class Item : ParentSpawn
 {
+    [SerializeField] private string itemName;
+    protected string ItemName
+    {
+        get
+        {
+            if (itemName != String.Empty)
+                return itemName;
+            return $"[{typeof(Item)}]";
+        }
+    }
     [HideInInspector] public Camera Camera;
 
     public AnimationClip anim_draw;

@@ -5,14 +5,13 @@ using UnityEngine.Events;
 
 public class NameTag : MonoBehaviour
 {
-    // private Camera cam;
+    private Camera activeCam;
     private void Start()
     {
-        activeCam = FindObjectOfType<Camera>();
+        activeCam = GameSystem.ActiveCamera;
         GameSystem.ActiveCameraChanged.AddListener(delegate(Camera newCam) { activeCam = newCam; });
         
     }
-    private Camera activeCam;
     private void Update()
     {
         if(!activeCam) return;

@@ -666,6 +666,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sprint"",
+                    ""type"": ""Button"",
+                    ""id"": ""65e38ca9-c8e3-4d6a-ada6-892366b60ac6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -754,6 +762,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
                     ""action"": ""ResetPosition"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8128ae64-c4ad-490f-8067-e87e34f65ebc"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -877,6 +896,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_Jump = m_PlayerMovement.FindAction("Jump", throwIfNotFound: true);
         m_PlayerMovement_MouseDelta = m_PlayerMovement.FindAction("MouseDelta", throwIfNotFound: true);
         m_PlayerMovement_ResetPosition = m_PlayerMovement.FindAction("ResetPosition", throwIfNotFound: true);
+        m_PlayerMovement_Sprint = m_PlayerMovement.FindAction("Sprint", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Ragdoll = m_Test.FindAction("Ragdoll", throwIfNotFound: true);
@@ -1128,6 +1148,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_Jump;
     private readonly InputAction m_PlayerMovement_MouseDelta;
     private readonly InputAction m_PlayerMovement_ResetPosition;
+    private readonly InputAction m_PlayerMovement_Sprint;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -1136,6 +1157,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_PlayerMovement_Jump;
         public InputAction @MouseDelta => m_Wrapper.m_PlayerMovement_MouseDelta;
         public InputAction @ResetPosition => m_Wrapper.m_PlayerMovement_ResetPosition;
+        public InputAction @Sprint => m_Wrapper.m_PlayerMovement_Sprint;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1157,6 +1179,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ResetPosition.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnResetPosition;
                 @ResetPosition.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnResetPosition;
                 @ResetPosition.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnResetPosition;
+                @Sprint.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Sprint.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Sprint.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -1173,6 +1198,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ResetPosition.started += instance.OnResetPosition;
                 @ResetPosition.performed += instance.OnResetPosition;
                 @ResetPosition.canceled += instance.OnResetPosition;
+                @Sprint.started += instance.OnSprint;
+                @Sprint.performed += instance.OnSprint;
+                @Sprint.canceled += instance.OnSprint;
             }
         }
     }
@@ -1285,6 +1313,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnResetPosition(InputAction.CallbackContext context);
+        void OnSprint(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

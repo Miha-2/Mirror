@@ -7,7 +7,10 @@ public class Hittable : MonoBehaviour, IHittable
 {
     [SerializeField] private ScriptableMaterial scriptableMaterial = null;
     public ScriptableMaterial ScriptableMaterial => scriptableMaterial;
-    public void Hit(HitInfo hitInfo){}
+
+    public bool Hit(HitInfo hitInfo)
+    {
+        return false;}
 
     #if UNITY_EDITOR
     private void Awake()

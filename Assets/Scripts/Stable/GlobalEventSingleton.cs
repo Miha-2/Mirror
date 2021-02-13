@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -19,7 +20,11 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
         set
         {
             if (activeCamera != value)
+            {
                 GameSystem.ActiveCameraChanged.Invoke(value);
+                GameSystem.ActiveCamera = value;
+            }
+
             activeCamera = value;
         }
     }
@@ -95,6 +100,7 @@ public class GlobalEventSingleton : Singleton<GlobalEventSingleton>
         playerInput.UiActions.PauseMenu.performed += context => IsPaused = !IsPaused;
         playerInput.UiActions.ToggleCursor.performed += context => CursorLocked = !CursorLocked;
     }
+
     private bool _cursorLocked;
     
     public bool CursorLocked

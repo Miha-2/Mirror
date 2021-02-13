@@ -343,6 +343,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   parentNetId: 0
+  itemName: Vector
   Camera: {fileID: 0}
   anim_draw: {fileID: 7400000, guid: d070d8779543ae541a450a3731e29e54, type: 2}
   amountChanged:
@@ -356,20 +357,17 @@ MonoBehaviour:
       m_Calls: []
   isAutomatic: 1
   canAim: 1
+  startDropoff: 100
   range: 200
   damage: 4
   minDamage: 8
   headShotMultiplier: 1.5
-  hitForce: 8
   magazineSize: 40
+  avalibleAmmo: 240
   fireRate: 0.1
   reloadTime: 2
-  bulletSpread: 0
+  bulletPenetration: 10
+  maxSpread: 0.7
+  spreadStep: 0.15
   aimAccuracyMultiplier: 10
-  startDropoff: 100
   exitPoint: {fileID: 3894272085558076031}
-  hitMask:
-    serializedVersion: 2
-    m_Bits: 567
-  hitObject: {fileID: 8560593493621167639, guid: 40703da3a32bbaf4da1e271bd03e81dd,
-    type: 3}
