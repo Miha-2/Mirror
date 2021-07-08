@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
+using Mirror;
 
-namespace Mirror
-{
+
     [CustomEditor(typeof(NetworkBehaviour), true)]
     [CanEditMultipleObjects]
     public class NetworkBehaviourInspector : Editor
@@ -74,6 +74,12 @@ namespace Mirror
         public override void OnInspectorGUI()
         {
             DrawDefaultInspector();
+            DrawDefaultSyncLists();
+            DrawDefaultSyncSettings();
+        }
+
+        public void DrawNetworking()
+        {
             DrawDefaultSyncLists();
             DrawDefaultSyncSettings();
         }
@@ -180,4 +186,4 @@ namespace Mirror
             }
         }
     }
-} //namespace
+ //namespace

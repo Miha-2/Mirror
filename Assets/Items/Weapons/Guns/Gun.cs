@@ -5,6 +5,7 @@ using System.Linq;
 using Mirror;
 using MirrorProject.TestSceneTwo;
 using Unity.Mathematics;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
@@ -50,7 +51,8 @@ public class Gun : Item
     private float _spreadStep;
 
     // [SerializeField] protected float recoilAmount = 10f;
-    [SerializeField][Tooltip("Higher is more accurate, 1 is the same")] protected float aimAccuracyMultiplier = 10f;
+    [SerializeField] [Tooltip("Higher is more accurate, 1 is the same")] protected float aimAccuracyMultiplier = 10f; //Only in inspector if can aim..
+
     [Header("Gun Other")]
     [SerializeField] private Transform exitPoint = null;
 
@@ -146,8 +148,9 @@ public class Gun : Item
             actionEnded.Invoke();
         }
 
-        if(Spread > _minSpread && (!shooting || isReloading))
-            Spread = Mathf.Max(Spread - Time.deltaTime, _minSpread);
+        //Comment ___________
+        if(Spread > _minSpread/* && (!shooting || isReloading)*/)
+            Spread = Mathf.Max(Spread - 2 *Time.deltaTime, _minSpread);
         else if (Spread < _minSpread)
             Spread = _minSpread;
 
@@ -254,7 +257,7 @@ public class Gun : Item
                     if (spawnHole)
                     {
                         GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                            enterHits[i].point + enterHits[i].normal * -.004f,
+                            enterHits[i].point + enterHits[i].normal * -.019f,
                             Quaternion.LookRotation(-enterHits[i].normal)).gameObject;
                         NetworkServer.Spawn(bulletHole);
                     }
@@ -295,7 +298,7 @@ public class Gun : Item
                     if (spawnHole)
                     {
                         GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                            exitHits[i].point + exitHits[i].normal * -.004f,
+                            exitHits[i].point + exitHits[i].normal * -.019f,
                             Quaternion.LookRotation(-exitHits[i].normal)).gameObject;
                         NetworkServer.Spawn(bulletHole);
                     }
@@ -401,4 +404,25 @@ public struct HitInfo
     }
 
     public float HeadshotMultiplier { get; set; }
+}
+
+[CustomEditor(typeof(Gun), true)]
+public class GunEditor : NetworkBehaviourInspector
+{
+    public override void OnInspectorGUI()
+    {
+        
+        Gun gun = target as Gun;
+        
+        serializedObject.Update();
+        List<string> exclucingProperties = new List<string>();
+        
+        if(!serializedObject.FindProperty("canAim").boolValue)
+            exclucingProperties.Add("aimAccuracyMultiplier");
+        
+        DrawPropertiesExcluding(serializedObject, exclucingProperties.ToArray());
+        serializedObject.ApplyModifiedProperties();
+        
+        DrawNetworking();
+    }
 }

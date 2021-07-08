@@ -442,7 +442,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isAutomatic: 0
-  canAim: 1
+  canAim: 0
   startDropoff: 100
   range: 200
   damage: 9
@@ -455,7 +455,6 @@ MonoBehaviour:
   bulletPenetration: 10
   maxSpread: 0.4
   spreadStep: 0.2
-  aimAccuracyMultiplier: 10
   exitPoint: {fileID: 2558686474973592526}
 --- !u!1 &8274909319560544813
 GameObject:
