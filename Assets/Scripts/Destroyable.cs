@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Mirror;
+using UnityEditor;
 using UnityEngine;
 
 //[RequireComponent(typeof(Renderer))]
@@ -11,6 +12,9 @@ public class Destroyable : NetworkBehaviour, IHittable
     [SerializeField] protected float maxHealth = 20f;
     [SyncVar(hook = nameof(OnHealthChanged))]
     /* [HideInInspector]*/ private float health;
+    
+    [SerializeField] private bool respawn = false;
+    [SerializeField] private float respawnTime = 5f;
 
     [SerializeField] private ScriptableMaterial scriptableMaterial = null;
     public ScriptableMaterial ScriptableMaterial => scriptableMaterial;
@@ -41,7 +45,23 @@ public class Destroyable : NetworkBehaviour, IHittable
     {
         print($"{name} was hit with damage of: {hitInfo.Damage}");
         Health -= hitInfo.Damage;
-        return Health <= 0f;
+
+        if (!(Health <= 0f)) return false;
+        Debug.Log("Unspawning: " + gameObject.name);
+        NetworkServer.UnSpawn(gameObject);
+        
+        if(respawn)
+            Invoke(nameof(Respawn), respawnTime);
+        else
+            gameObject.SetActive(false);
+
+        return true;
+    }
+    
+    private void Respawn()
+    {
+        Health = maxHealth;
+        NetworkServer.Spawn(gameObject);
     }
 
     protected virtual void OnHealthChanged(float oldHealth, float newHealth)
@@ -49,10 +69,27 @@ public class Destroyable : NetworkBehaviour, IHittable
         if (newHealth <= 0f)
         {
             //Destroy(gameObject);
-            NetworkServer.Destroy(gameObject);
+            // NetworkServer.UnSpawn(gameObject);
         }
             
         float gradient = newHealth / maxHealth;
         objectRenderer.material.SetColor("_BaseColor", new Color(gradient, gradient, gradient));
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(Destroyable), true)]
+public class DestroyableEditor : NetworkBehaviourInspector
+{
+    public override void OnInspectorGUI()
+    {
+        serializedObject.Update();
+        string exclude = String.Empty;
+        if (!serializedObject.FindProperty("respawn").boolValue)
+            exclude = "respawnTime";
+        DrawPropertiesExcluding(serializedObject, exclude);
+        serializedObject.ApplyModifiedProperties();
+        DrawNetworking();
+    }
+}
+#endif

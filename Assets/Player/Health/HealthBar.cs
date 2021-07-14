@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public abstract class HealthBar : MonoBehaviour
 {
@@ -9,13 +6,13 @@ public abstract class HealthBar : MonoBehaviour
 
     [SerializeField] protected GameObject barObject = null;
     [SerializeField] private bool startOn = true;
-    [SerializeField] private float smoothingTime = .05f;
+    [SerializeField] [Range(0f, .5f)] private float smoothingTime = .125f;
     protected bool isSmoothing = false;
     protected float deltaTime;
 
-    [SerializeField] private float startDelta;
-    [SerializeField] private float endDelta;
-    [SerializeField] protected float healthDelta;
+    private float startDelta;
+    private float endDelta;
+    protected float healthDelta;
 
     protected virtual void Awake()
     {

@@ -1,0 +1,13 @@
+﻿# Default ignored files
+/shelf/
+/workspace.xml
+# Rider ignored files
+/modules.xml
+/contentModel.xml
+/projectSettingsUpdater.xml
+/.idea.Mirror-e5a4687fc7dcd59cdd88c22a4564143d280c0c50.iml
+# Datasource local storage ignored files
+/../../../../../../../../:\Users\mihap_l0x2sls\Downloads\Mirror-e5a4687fc7dcd59cdd88c22a4564143d280c0c50\.idea\.idea.Mirror-e5a4687fc7dcd59cdd88c22a4564143d280c0c50\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

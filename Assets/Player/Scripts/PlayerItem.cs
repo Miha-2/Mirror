@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Mirror;
 using MirrorProject.TestSceneTwo;
 using TMPro;
@@ -16,7 +17,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
 
     [SerializeField] private TextMeshProUGUI amountText = null;
 
-    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private CinemachineVirtualCamera playerCamera = null;
     [SerializeField] private Crosshair crosshair = null;
     [SerializeField] private Transform weaponPivot = null;
     

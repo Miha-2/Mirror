@@ -68,7 +68,6 @@ namespace MirrorProject.TestSceneTwo
         [TargetRpc]
         private void TargetOnPlayerDeath()
         {
-            _globalEventSingleton.SetActiveMain();
             CmdSpawnPlayer(true);
         }
 

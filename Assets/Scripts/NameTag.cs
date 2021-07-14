@@ -6,12 +6,8 @@ using UnityEngine.Events;
 public class NameTag : MonoBehaviour
 {
     private Camera activeCam;
-    private void Start()
-    {
-        activeCam = GameSystem.ActiveCamera;
-        GameSystem.ActiveCameraChanged.AddListener(delegate(Camera newCam) { activeCam = newCam; });
-        
-    }
+    private void Start() => activeCam = Camera.main;
+
     private void Update()
     {
         if(!activeCam) return;

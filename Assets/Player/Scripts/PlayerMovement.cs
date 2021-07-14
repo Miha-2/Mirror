@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 using Mirror;
 using UnityEngine.InputSystem;
@@ -13,7 +14,6 @@ using Random = UnityEngine.Random;
 public class PlayerMovement : NetworkBehaviour
 {
     [Header("Data")]
-    [SerializeField] private Camera playerCamera = null;
     [SerializeField] private Transform cameraPivot = null;
     [SerializeField] protected Animator playerAnimator = null;
     private CharacterController cc = null;
@@ -67,9 +67,6 @@ public class PlayerMovement : NetworkBehaviour
         if(cc == null)
             cc = GetComponent<CharacterController>();
         
-        playerCamera.gameObject.SetActive(true);
-        GlobalEventSingleton globalEventSingleton = GameSystem.EventSingleton;
-        globalEventSingleton.SetActiveCamera(playerCamera);
         PlayerInput.PlayerMovement.Jump.performed += context => jumped = true;
         PlayerInput.PlayerMovement.ResetPosition.performed += context => reset = 3;
         PlayerInput.PlayerMovement.Sprint.performed += context => isSprinting = true;
@@ -151,11 +148,6 @@ public class PlayerMovement : NetworkBehaviour
             : Mathf.Max(y, 360f + maxDown);
         cameraPivot.localRotation =
             Quaternion.Euler(x,0f, 0f);
-    }
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = hasAuthority ? Color.blue : Color.red;
-        Gizmos.DrawLine(playerCamera.transform.position, playerCamera.transform.forward * 100f);
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using Cinemachine;
 using Mirror;
 using TMPro;
 using UnityEngine;
@@ -17,7 +18,7 @@ public class PlayerState : Destroyable
     [Header("Data")]
     [SerializeField] private PlayerItem playerItem = null;
     [SerializeField] private PlayerMovement playerMovement = null;
-    [SerializeField] private Camera playerCamera = null;
+    [SerializeField] private CinemachineVirtualCamera playerCamera = null;
     [SerializeField] private Animator playerAnimator = null;
     [SerializeField] private CharacterController cc = null;
     [SerializeField] private Transform rightHand = null;
@@ -78,6 +79,8 @@ public class PlayerState : Destroyable
 
         SetRagdoll(false);
     }
+
+    public override void OnStartAuthority() => playerCamera.gameObject.SetActive(true);
 
     [Command]
     private void CmdUpdateName(string newName)
@@ -214,4 +217,10 @@ public class PlayerState : Destroyable
         Death();
     }
 #endif
+    
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = hasAuthority ? Color.blue : Color.red;
+        Gizmos.DrawLine(playerCamera.transform.position, playerCamera.transform.forward * 100f);
+    }
 }

@@ -405,15 +405,12 @@ public struct HitInfo
 
     public float HeadshotMultiplier { get; set; }
 }
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Gun), true)]
 public class GunEditor : NetworkBehaviourInspector
 {
     public override void OnInspectorGUI()
     {
-        
-        Gun gun = target as Gun;
-        
         serializedObject.Update();
         List<string> exclucingProperties = new List<string>();
         
@@ -426,3 +423,4 @@ public class GunEditor : NetworkBehaviourInspector
         DrawNetworking();
     }
 }
+#endif

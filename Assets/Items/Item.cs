@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using Mirror;
 using UnityEngine;
 using UnityEngine.Events;
@@ -21,7 +22,7 @@ public class Item : ParentSpawn
             return $"[{typeof(Item)}]";
         }
     }
-    [HideInInspector] public Camera Camera;
+    [HideInInspector] public CinemachineVirtualCamera Camera;
 
     public AnimationClip anim_draw;
     protected PlayerInput _playerInput;

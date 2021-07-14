@@ -8,8 +8,6 @@ using Object = UnityEngine.Object;
 
 public static class GameSystem
 {
-    private static bool _isLoaded = false;
-    private static List<Item> _weapons = new List<Item>();
     private static GlobalEventSingleton _globalEventSingleton;
     
     
@@ -23,6 +21,10 @@ public static class GameSystem
         }
     }
 
+    #region Weapons Prefabs
+
+    private static bool _isLoaded = false;
+    private static List<Item> _weapons = new List<Item>();
     public static List<Item> Weapons
     {
         get
@@ -45,6 +47,8 @@ public static class GameSystem
         }
     }
 
+    #endregion
+
     public static byte WeaponToByte(Item w)
     {
         for (int i = 0; i < Weapons.Count; i++)
@@ -66,9 +70,6 @@ public static class GameSystem
         }
         return Weapons[b];
     }
-
-    public static UnityEvent<Camera> ActiveCameraChanged = new UnityEvent<Camera>();
-    public static Camera ActiveCamera;
 
     public static bool OnPause = false;
     
