@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 
 //[RequireComponent(typeof(Renderer))]
 public class Destroyable : NetworkBehaviour, IHittable
@@ -20,26 +21,29 @@ public class Destroyable : NetworkBehaviour, IHittable
     public ScriptableMaterial ScriptableMaterial => scriptableMaterial;
 
 
-    public virtual float Health
+    protected virtual float Health
     {
         get => health;
-        protected set => health = Mathf.Clamp(value, 0f, maxHealth);
+        set => health = Mathf.Clamp(value, 0f, maxHealth);
     }
     
-    private Renderer objectRenderer = null;
-
-
+    private Renderer _objectRenderer = null;
+    private Collider _objectCollider = null;
+    private Rigidbody _objectRigidbody = null;
     protected void Awake()
     {
-        objectRenderer = GetComponent<Renderer>();
+        _objectRenderer = GetComponent<Renderer>();
+        _objectCollider = GetComponent<Collider>();
+        _objectRigidbody = GetComponent<Rigidbody>();
         Health = maxHealth;
-
-#if UNITY_EDITOR
+    }
+    private void OnValidate()
+    {
         if(!ScriptableMaterial)
             Debug.LogError($"Hittable object: {name} doesn't have ScriptableMaterial assigned!");
-#endif
     }
-
+    
+    public UnityEvent OnDestroy { get; } = new UnityEvent();
 
     public virtual bool Hit(HitInfo hitInfo)
     {
@@ -47,11 +51,17 @@ public class Destroyable : NetworkBehaviour, IHittable
         Health -= hitInfo.Damage;
 
         if (!(Health <= 0f)) return false;
-        Debug.Log("Unspawning: " + gameObject.name);
+        
+        OnDestroy.Invoke();
         NetworkServer.UnSpawn(gameObject);
         
         if(respawn)
+        {
             Invoke(nameof(Respawn), respawnTime);
+            _objectRenderer.enabled = false;
+            _objectCollider.enabled = false;
+            _objectRigidbody.isKinematic = true;
+        }
         else
             gameObject.SetActive(false);
 
@@ -61,6 +71,9 @@ public class Destroyable : NetworkBehaviour, IHittable
     private void Respawn()
     {
         Health = maxHealth;
+        _objectRenderer.enabled = true;
+        _objectCollider.enabled = true;
+        _objectRigidbody.isKinematic = false;
         NetworkServer.Spawn(gameObject);
     }
 
@@ -73,7 +86,7 @@ public class Destroyable : NetworkBehaviour, IHittable
         }
             
         float gradient = newHealth / maxHealth;
-        objectRenderer.material.SetColor("_BaseColor", new Color(gradient, gradient, gradient));
+        _objectRenderer.material.SetColor("_BaseColor", new Color(gradient, gradient, gradient));
     }
 }
 

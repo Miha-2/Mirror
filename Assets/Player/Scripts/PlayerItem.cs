@@ -51,7 +51,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
                 return;
             if(!hasAuthority) return;
             _item.SetupItem(PlayerInput);
-            _item.amountChanged.AddListener(delegate(int arg0) { amountText.text = arg0.ToString(); });
+            _item.amountChanged.AddListener(delegate(string arg0) { amountText.text = arg0; });
             _item.actionStarted.AddListener(delegate(float arg0)
             {
                 actionIndicator.fillAmount = 0f;

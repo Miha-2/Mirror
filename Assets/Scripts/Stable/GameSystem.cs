@@ -8,9 +8,9 @@ using Object = UnityEngine.Object;
 
 public static class GameSystem
 {
+    #region Global Event Singleton
+
     private static GlobalEventSingleton _globalEventSingleton;
-    
-    
     public static GlobalEventSingleton EventSingleton
     {
         get 
@@ -20,6 +20,11 @@ public static class GameSystem
             return _globalEventSingleton; 
         }
     }
+
+    #endregion
+    
+    public static Queue<BulletHole> PreSpawnedBulletHoles = new Queue<BulletHole>();
+    
 
     #region Weapons Prefabs
 
@@ -49,6 +54,8 @@ public static class GameSystem
 
     #endregion
 
+    #region Weapon indexing
+
     public static byte WeaponToByte(Item w)
     {
         for (int i = 0; i < Weapons.Count; i++)
@@ -71,9 +78,17 @@ public static class GameSystem
         return Weapons[b];
     }
 
+    #endregion
+
+    #region Pause
+
     public static bool OnPause = false;
     
     public static UnityEvent<bool> PauseStatusChanged = new UnityEvent<bool>();
+
+    #endregion
+
+    #region Player Input
 
     private static PlayerInput _playerInput;
 
@@ -87,5 +102,5 @@ public static class GameSystem
         }
     }
 
-    // public static bool ShowHitIndicator = false;
+    #endregion
 }

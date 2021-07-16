@@ -41,9 +41,10 @@ public class PlayerState : Destroyable
     private float hueShift;
 
     private PlayerInput _playerInput;
-    public override float Health
+
+    protected override float Health
     {
-        protected set
+        set
         {
             if (base.Health > value)
             {

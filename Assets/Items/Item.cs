@@ -26,7 +26,7 @@ public class Item : ParentSpawn
 
     public AnimationClip anim_draw;
     protected PlayerInput _playerInput;
-    [HideInInspector] public UnityEvent<int> amountChanged = new UnityEvent<int>();
+    [HideInInspector] public UnityEvent<string> amountChanged = new UnityEvent<string>();
     [HideInInspector] public UnityEvent<float> actionStarted = new UnityEvent<float>();
     [HideInInspector] public UnityEvent actionEnded = new UnityEvent();
 

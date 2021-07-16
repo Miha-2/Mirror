@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2558686474973592526}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Exit Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 8068328648790716227}
   - component: {fileID: 1150398927420701282}
   - component: {fileID: 7061652436108311762}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Barrel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -81,6 +81,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -124,7 +125,7 @@ GameObject:
   - component: {fileID: 5124459105769855410}
   - component: {fileID: 695270628579440711}
   - component: {fileID: 6088918545566296432}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,6 +168,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -211,7 +213,7 @@ GameObject:
   - component: {fileID: 8812223881833218906}
   - component: {fileID: 9133559691007514381}
   - component: {fileID: 4664473489689442219}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GunTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -251,6 +253,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -293,7 +296,7 @@ GameObject:
   - component: {fileID: 3936378094685755166}
   - component: {fileID: 7395402895217909663}
   - component: {fileID: 7683328594384146594}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LightBullet.002
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -333,6 +336,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -375,7 +379,7 @@ GameObject:
   - component: {fileID: 7372461332984538048}
   - component: {fileID: 5977808196901907344}
   - component: {fileID: 3974670020101583748}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: gun_Pistol
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -412,6 +416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &3974670020101583748
@@ -455,7 +460,11 @@ MonoBehaviour:
   bulletPenetration: 10
   maxSpread: 0.4
   spreadStep: 0.2
+  aimAccuracyMultiplier: 10
   exitPoint: {fileID: 2558686474973592526}
+  shotEffect: {fileID: 8300000, guid: 793df1593f6d45c4093f3b2118dcda7d, type: 3}
+  shotSourcePrefab: {fileID: 8735864802098984970, guid: 2f22100685eafd249984abed343b1cfa,
+    type: 3}
 --- !u!1 &8274909319560544813
 GameObject:
   m_ObjectHideFlags: 0
@@ -467,7 +476,7 @@ GameObject:
   - component: {fileID: 2389622789037580017}
   - component: {fileID: 529644400154187968}
   - component: {fileID: 8369813168607195125}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: LightBullet.001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,6 +516,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -547,7 +557,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8656517442273779656}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Pistol_Blend
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -580,7 +590,7 @@ GameObject:
   - component: {fileID: 1829216913677971171}
   - component: {fileID: 4256120885115478243}
   - component: {fileID: 6615830956445603625}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Mag
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,6 +632,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

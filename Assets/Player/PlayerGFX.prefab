@@ -710,7 +710,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1, y: 1}
+    m_SensorSize: {x: 1.7775551, y: 1}
     Iso: 200
     ShutterSpeed: 0.005
     Aperture: 16
@@ -2341,6 +2341,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 0
   serverOnly: 0
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!114 &7487215826397215017
@@ -2410,7 +2411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  playerCamera: {fileID: 7233575742879871319}
   cameraPivot: {fileID: 8290495756098208673}
   playerAnimator: {fileID: 2643905920499120840}
   speed: 4.5
@@ -2436,6 +2436,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   maxHealth: 100
+  respawn: 0
+  respawnTime: 5
   scriptableMaterial: {fileID: 11400000, guid: d4170ea0aee015b488f846c5585cb8cc, type: 2}
   nameDisplay: {fileID: 3289275963521843023}
   playerItem: {fileID: 3479259488872986157}
@@ -3428,7 +3430,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5409587920760411473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.022026129}
+  m_LocalPosition: {x: 0, y: 0, z: 0.022}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2070504882191533804}
@@ -3436,8 +3438,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -82.8, y: 48.40924}
-  m_SizeDelta: {x: 131.34741, y: 75.12891}
+  m_AnchoredPosition: {x: -121.8075, y: 48.4092}
+  m_SizeDelta: {x: 209.3622, y: 75.1289}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4464671717147719735
 CanvasRenderer:
@@ -3467,7 +3469,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 43
+  m_text: 43|123
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

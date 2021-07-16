@@ -6,7 +6,7 @@ using UnityEngine.Rendering.HighDefinition;
 [System.Serializable]
 public struct BulletData
 {
-    public DecalProjector decalProjector;
+    public BulletHole bulletHole;
     public Sprite[] bulletHoles;
     public BulletTrail bulletTrail;
 }

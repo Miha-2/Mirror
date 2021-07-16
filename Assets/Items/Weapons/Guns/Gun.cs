@@ -55,6 +55,9 @@ public class Gun : Item
 
     [Header("Gun Other")]
     [SerializeField] private Transform exitPoint = null;
+    [SerializeField] private AudioClip shotEffect = null;
+    [SerializeField] private AudioSource shotSourcePrefab = null;
+    private Queue<AudioSource> shotSources = new Queue<AudioSource>();
 
     private float nextFire;
     private int ammo;
@@ -68,7 +71,7 @@ public class Gun : Item
         set
         {
             ammo = value;
-            amountChanged.Invoke(ammo);
+            amountChanged.Invoke(ammo + "|" + avalibleAmmo);
             if(ammo == 0)
                 TryReload();
         }
@@ -132,6 +135,16 @@ public class Gun : Item
                 _spreadStep = spreadStep * data.Stability;
             });
         }
+
+        //PreGenerate shot sounds
+        int shotAudios = Mathf.CeilToInt(shotEffect.length / fireRate) + 6;
+        for (int i = 0; i < shotAudios; i++)
+        {
+            AudioSource audioSource = Instantiate(shotSourcePrefab, transform);
+            audioSource.transform.localPosition = Vector3.zero;
+            audioSource.transform.localRotation = Quaternion.identity;
+            shotSources.Enqueue(audioSource);
+        }
     }
 
     protected override void Update()
@@ -143,8 +156,8 @@ public class Gun : Item
         {
             isReloading = false;
             int additionalAmmo = Math.Min(magazineSize - Ammo, avalibleAmmo);
-            Ammo += additionalAmmo;
             avalibleAmmo -= additionalAmmo;
+            Ammo += additionalAmmo;
             actionEnded.Invoke();
         }
 
@@ -164,10 +177,12 @@ public class Gun : Item
     {
         nextFire = fireRate;
         Ammo -= 1;
+        PlayShotSound();
         CmdShoot(Spread * 5f);
         Spread = Mathf.Min(Spread + _spreadStep, _maxSpread);
     }
 
+    
 
     private float noHoleThreshold = .05f;
     [Command]
@@ -175,6 +190,7 @@ public class Gun : Item
     {
         Vector3 shotDir = BulletSpread(spread);
         BulletData bulletData = GameSystem.EventSingleton.bulletData;
+        RpcClientShoot();
         
         #region Forward Cast
         List<RaycastHit> enterHits = Physics.RaycastAll(Camera.transform.position + shotDir * .2f, shotDir, range, hitMask).ToList();
@@ -256,10 +272,14 @@ public class Gun : Item
 
                     if (spawnHole)
                     {
-                        GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                            enterHits[i].point + enterHits[i].normal * -.019f,
-                            Quaternion.LookRotation(-enterHits[i].normal)).gameObject;
-                        NetworkServer.Spawn(bulletHole);
+                        BulletHole bulletHole = GameSystem.PreSpawnedBulletHoles.Dequeue();
+
+                        bulletHole.transform.position = enterHits[i].point + enterHits[i].normal * -.019f;
+                        bulletHole.transform.rotation = Quaternion.LookRotation(-enterHits[i].normal);
+                        
+                        bulletHole.Activate(hittable);
+                        
+                        GameSystem.PreSpawnedBulletHoles.Enqueue(bulletHole);
                     }
                 }
 
@@ -297,20 +317,29 @@ public class Gun : Item
 
                     if (spawnHole)
                     {
-                        GameObject bulletHole = Instantiate(bulletData.decalProjector,
-                            exitHits[i].point + exitHits[i].normal * -.019f,
-                            Quaternion.LookRotation(-exitHits[i].normal)).gameObject;
-                        NetworkServer.Spawn(bulletHole);
+                        BulletHole bulletHole = GameSystem.PreSpawnedBulletHoles.Dequeue();
+
+                        bulletHole.transform.position = exitHits[i].point + exitHits[i].normal * -.019f;
+                        bulletHole.transform.rotation = Quaternion.LookRotation(-exitHits[i].normal);
+                        
+                        bulletHole.Activate(hittable);
+                        
+                        GameSystem.PreSpawnedBulletHoles.Enqueue(bulletHole);
                     }
                 }
                 
             }
         }
         #endregion
-
-        
     }
 
+    [ClientRpc]
+    private void RpcClientShoot()
+    {
+        if(!hasAuthority)
+            PlayShotSound();
+    }
+    
     private void TryReload()
     {
         if(isReloading || ammo == magazineSize || avalibleAmmo == 0) return;
@@ -346,6 +375,14 @@ public class Gun : Item
         {
             Gizmos.DrawSphere(exit.point, .05f);
         }
+    }
+
+    private void PlayShotSound()
+    {
+        AudioSource audioSource = shotSources.Dequeue();
+        audioSource.clip = shotEffect;
+        audioSource.Play();
+        shotSources.Enqueue(audioSource);
     }
 
     private string HueString(string inString, float hue)
