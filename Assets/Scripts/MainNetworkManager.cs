@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 namespace MirrorProject.TestSceneTwo
@@ -36,6 +37,16 @@ namespace MirrorProject.TestSceneTwo
 
         public override void OnStartServer()
         {
+            StartCoroutine(PreSpawnHoles());
+        }
+
+        private IEnumerator PreSpawnHoles()
+        {
+            while (SceneManager.GetActiveScene().name != "Map_01")
+            {
+                yield return null;
+            }
+            
             BulletHole holePrefab = GameSystem.EventSingleton.bulletData.bulletHole;
             Vector3 pos = new Vector3(0f, -10000f, 0f);
             
@@ -53,10 +64,10 @@ namespace MirrorProject.TestSceneTwo
         public override void OnServerConnect(NetworkConnection conn)
         {
             base.OnServerConnect(conn);
-            ServerInfo.PlayerData.Add(conn.connectionId, new ServerPlayer{HueShift = Random.Range(0f, 1f)});
+            ServerInfo.PlayerData.Add(conn.connectionId, new ServerPlayer{Hue = Random.Range(0f, 1f)});
         }
 
-        private void Beat() => Debug.Log("Server status: " + (isNetworkActive ? "active" : "inactive") + $" with {FindObjectOfType<FPSDisplay>().FPS} fps!");
+        private void Beat() => Debug.Log("Server status: " + (isNetworkActive ? "active" : "inactive"));
 
         public override void OnServerDisconnect(NetworkConnection conn)
         {
@@ -64,17 +75,10 @@ namespace MirrorProject.TestSceneTwo
             ServerInfo.PlayerData.Remove(conn.connectionId);
         }
 
-        public override void OnStopClient()
-        {
-            base.OnStopClient();
-            nameInput.gameObject.SetActive(true);
-        }
-
         public override void OnStartClient()
         {
             base.OnStartClient();
             RegisterWeaponPrefabs();
-            nameInput.gameObject.SetActive(false);
         }
     }
 }

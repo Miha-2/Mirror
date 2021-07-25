@@ -4,6 +4,7 @@
     <e p="C:\Users\mihap_l0x2sls\AppData\Local\JetBrains\Rider2020.2\extResources" t="IncludeRecursive" />
     <e p="C:\Users\mihap_l0x2sls\AppData\Local\JetBrains\Rider2020.2\resharper-host\Local\Transient\Rider\v202\SolutionCaches\_Mirror.1483697612.00" t="ExcludeRecursive" />
     <e p="E:\Miha\Custom Games\Mirror" t="IncludeRecursive">
+      <e p="Assembly-CSharp-firstpass.csproj" t="IncludeRecursive" />
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Chat.cs" t="Include" />
@@ -297,6 +298,9 @@
         </e>
         <e p="NameInput.cs" t="Include" />
         <e p="Other" t="Include">
+          <e p="Bullet Holes" t="Include">
+            <e p="HoleProjector.cs" t="Include" />
+          </e>
           <e p="BulletTrail" t="Include">
             <e p="BulletTrail.cs" t="Include" />
           </e>
@@ -308,6 +312,9 @@
           </e>
         </e>
         <e p="Packages" t="Include">
+          <e p="CustomButton" t="Include">
+            <e p="CustomButton.cs" t="Include" />
+          </e>
           <e p="TextMesh Pro" t="Include">
             <e p="Fonts" t="Include">
               <e p="LiberationSans - OFL.txt" t="Include" />
@@ -360,6 +367,22 @@
             <e p="Timer.cs" t="Include" />
           </e>
         </e>
+        <e p="Plugins" t="Include">
+          <e p="Demigiant" t="Include">
+            <e p="DOTween" t="Include">
+              <e p="Modules" t="Include">
+                <e p="DOTweenModuleAudio.cs" t="Include" />
+                <e p="DOTweenModulePhysics.cs" t="Include" />
+                <e p="DOTweenModulePhysics2D.cs" t="Include" />
+                <e p="DOTweenModuleSprite.cs" t="Include" />
+                <e p="DOTweenModuleUI.cs" t="Include" />
+                <e p="DOTweenModuleUnityVersion.cs" t="Include" />
+                <e p="DOTweenModuleUtils.cs" t="Include" />
+              </e>
+              <e p="README.txt" t="Include" />
+            </e>
+          </e>
+        </e>
         <e p="Scenes" t="Include">
           <e p="Network" t="Include">
             <e p="MyNetworkManager.cs" t="Include" />
@@ -374,6 +397,13 @@
           <e p="Hole Decal Data.cs" t="Include" />
           <e p="Input" t="Include">
             <e p="PlayerInput.cs" t="Include" />
+          </e>
+          <e p="MainMenu" t="Include">
+            <e p="HoverPop.cs" t="Include" />
+            <e p="HueSlider.cs" t="Include" />
+            <e p="MainMenu.cs" t="Include" />
+            <e p="MenuInfo.cs" t="Include" />
+            <e p="PlayerDisplay.cs" t="Include" />
           </e>
           <e p="MainNetworkManager.cs" t="Include" />
           <e p="NameTag.cs" t="Include" />
@@ -1469,6 +1499,13 @@
               <e p="Unity.Mathematics.Editor.asmdef" t="Include" />
             </e>
           </e>
+          <e p="com.unity.nuget.newtonsoft-json@2.0.0" t="Include">
+            <e p="Tests" t="Include">
+              <e p="Editor" t="Include">
+                <e p="Unity.Nuget.NewtonsoftJson.EditorTests.asmdef" t="Include" />
+              </e>
+            </e>
+          </e>
           <e p="com.unity.probuilder@5.0.3" t="Include">
             <e p="Addons" t="Include">
               <e p="Fbx.cs" t="Include" />
@@ -1904,6 +1941,49 @@
                 <e p="Torus.cs" t="Include" />
               </e>
               <e p="Unity.ProBuilder.asmdef" t="Include" />
+            </e>
+          </e>
+          <e p="com.unity.remote-config-runtime@1.0.1" t="Include">
+            <e p="Runtime" t="Include">
+              <e p="com.unity.remote-config-runtime.asmdef" t="Include" />
+              <e p="ConfigManager.cs" t="Include" />
+              <e p="ConfigManagerImpl.cs" t="Include" />
+              <e p="IRCUnityWebRequest.cs" t="Include" />
+              <e p="RCUnityWebRequest.cs" t="Include" />
+              <e p="RuntimeConfig.cs" t="Include" />
+            </e>
+            <e p="Tests" t="Include">
+              <e p="Runtime" t="Include">
+                <e p="com.unity.remote-config-runtime.tests.asmdef" t="Include" />
+              </e>
+            </e>
+          </e>
+          <e p="com.unity.remote-config@2.0.1" t="Include">
+            <e p="Core" t="Include">
+              <e p="com.unity.remote-config.core.asmdef" t="Include" />
+              <e p="RemoteConfigEnvConf.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="com.unity.remote-config.editor.asmdef" t="Include" />
+              <e p="RemoteConfigDataStore.cs" t="Include" />
+              <e p="RemoteConfigEnvironmentWindow.cs" t="Include" />
+              <e p="RemoteConfigEnvironmentWindowController.cs" t="Include" />
+              <e p="RemoteConfigUtilities.cs" t="Include" />
+              <e p="RemoteConfigWebApiClient.cs" t="Include" />
+              <e p="RemoteConfigWindow.cs" t="Include" />
+              <e p="RemoteConfigWindowController.cs" t="Include" />
+              <e p="UIComponents" t="Include">
+                <e p="MVRuleJsonModal.cs" t="Include" />
+                <e p="MVRuleSettingsTreeview.cs" t="Include" />
+                <e p="SegmentationRulesTreeview.cs" t="Include" />
+                <e p="SettingsJsonModal.cs" t="Include" />
+                <e p="SettingsTreeview.cs" t="Include" />
+              </e>
+            </e>
+            <e p="Tests" t="Include">
+              <e p="Editor" t="Include">
+                <e p="com.unity.remote-config.editor.tests.asmdef" t="Include" />
+              </e>
             </e>
           </e>
           <e p="com.unity.searcher@4.3.2" t="Include">
@@ -2912,6 +2992,7 @@
       <e p="Unity.Mathematics.csproj" t="IncludeRecursive" />
       <e p="Unity.Mathematics.Editor.csproj" t="IncludeRecursive" />
       <e p="Unity.Mathematics.Tests.csproj" t="IncludeRecursive" />
+      <e p="Unity.Nuget.NewtonsoftJson.EditorTests.csproj" t="IncludeRecursive" />
       <e p="Unity.ProBuilder.AddOns.Editor.csproj" t="IncludeRecursive" />
       <e p="Unity.ProBuilder.AssetIdRemapUtility.csproj" t="IncludeRecursive" />
       <e p="Unity.ProBuilder.Csg.csproj" t="IncludeRecursive" />
@@ -2920,6 +3001,11 @@
       <e p="Unity.ProBuilder.KdTree.csproj" t="IncludeRecursive" />
       <e p="Unity.ProBuilder.Poly2Tri.csproj" t="IncludeRecursive" />
       <e p="Unity.ProBuilder.Stl.csproj" t="IncludeRecursive" />
+      <e p="Unity.RemoteConfig.csproj" t="IncludeRecursive" />
+      <e p="Unity.RemoteConfig.Editor.Core.csproj" t="IncludeRecursive" />
+      <e p="Unity.RemoteConfig.Editor.csproj" t="IncludeRecursive" />
+      <e p="Unity.RemoteConfig.Editor.Tests.csproj" t="IncludeRecursive" />
+      <e p="Unity.RemoteConfig.Tests.csproj" t="IncludeRecursive" />
       <e p="Unity.Rider.Editor.csproj" t="IncludeRecursive" />
       <e p="Unity.Searcher.Editor.csproj" t="IncludeRecursive" />
       <e p="Unity.Searcher.EditorTests.csproj" t="IncludeRecursive" />

@@ -13,8 +13,6 @@ public class PlayerState : Destroyable
 {
     [Header("Name")]
     [SerializeField] private TextMeshPro nameDisplay = null;
-    [SyncVar(hook = nameof(OnNameChanged))]
-    private string playerName;
     [Header("Data")]
     [SerializeField] private PlayerItem playerItem = null;
     [SerializeField] private PlayerMovement playerMovement = null;
@@ -37,10 +35,8 @@ public class PlayerState : Destroyable
     private Collider[] ragdollColliders;
 
 
-    [SyncVar]
-    private float hueShift;
-
-    private PlayerInput _playerInput;
+    [SyncVar] private float playerHue;
+    [SyncVar] private string playerName;
 
     protected override float Health
     {
@@ -69,26 +65,9 @@ public class PlayerState : Destroyable
         ragdollRbs = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
 
-        if (hasAuthority)
-        {
-            string setName = PlayerPrefs.GetString(PlayerInfo.Pref_Name, $"Mr. {Random.Range(1, 1000)}");
-            nameDisplay.text = setName;
-            CmdUpdateName(setName);
-            
-            _playerInput = GameSystem.PlayerGlobalInput;
-        }
-
         SetRagdoll(false);
     }
-
     public override void OnStartAuthority() => playerCamera.gameObject.SetActive(true);
-
-    [Command]
-    private void CmdUpdateName(string newName)
-    {
-        playerName = newName;
-        ServerInfo.PlayerData[connectionToClient.connectionId] = new ServerPlayer {HueShift =  ServerInfo.PlayerData[connectionToClient.connectionId].HueShift, PlayerName = newName};
-    }
 
     protected override void OnHealthChanged(float oldHealth, float newHealth)
     {
@@ -97,25 +76,22 @@ public class PlayerState : Destroyable
         UI_healthbar.UpdateHealthbar(maxHealth, oldHealth, newHealth);
     }
 
-    private void OnNameChanged(string oldName, string newName)
-    {
-        if (!newName.Equals(string.Empty)) nameDisplay.text = newName;
-    }
-
     public override void OnStartServer()
     {
-        base.OnStartServer();
-        hueShift = ServerInfo.PlayerData[connectionToClient.connectionId].HueShift;
+        ServerPlayer playerData = ServerInfo.PlayerData[connectionToClient.connectionId];
+        playerName = playerData.PlayerName;
+        playerHue = playerData.Hue;
     }
-
     public override void OnStartClient()
     {
+        nameDisplay.text = playerName;
+        
         foreach (Renderer renderer in playerRenderers)
         {
             Color currentColor = renderer.material.GetColor("_BaseColor");
             float h, s, v;
             Color.RGBToHSV(currentColor, out h, out s, out v);
-            h = (h + hueShift) % 1;
+            h = (h + playerHue) % 1;
             currentColor = Color.HSVToRGB(h, s, v);
             renderer.material.SetColor("_BaseColor", currentColor);
         }

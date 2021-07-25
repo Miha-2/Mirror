@@ -24,6 +24,7 @@ namespace MirrorProject.TestSceneTwo
             base.OnStartLocalPlayer();
 
             //Camera.main.gameObject.SetActive(false);
+            CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
             CmdSpawnPlayer(false);
         }
 
@@ -31,6 +32,12 @@ namespace MirrorProject.TestSceneTwo
         {
             base.OnStartServer();
             ServerInfo.AddChat.AddListener(delegate(string arg0) { TargetRpcUpdateChat(connectionToClient, arg0); });
+        }
+
+        [Command]
+        private void CmdSendPlayerData(string playerName, float hue)
+        {
+            ServerInfo.PlayerData[connectionToClient.connectionId] = new ServerPlayer {PlayerName = playerName, Hue = hue};
         }
 
         [TargetRpc]

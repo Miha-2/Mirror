@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 469c24fdb3bd6431b92cc1465bd9166b, type: 3}
+  m_Name: RemoteConfigDataStoreAsset
+  m_EditorClassIdentifier: 
+  _rsKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8b9b6a9d-f5fd-4da9-9d11-c944549375c4\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"server_ip\",\r\n      \"type\": \"string\",\r\n     
+    \"value\": \"default\"\r\n    }\r\n  }\r\n]"
+  _rsLastCachedKeyList: "[\r\n  {\r\n    \"metadata\": {\r\n      \"entityId\": \"8b9b6a9d-f5fd-4da9-9d11-c944549375c4\"\r\n   
+    },\r\n    \"rs\": {\r\n      \"key\": \"server_ip\",\r\n      \"type\": \"string\",\r\n     
+    \"value\": \"default\"\r\n    }\r\n  }\r\n]"
+  _environments: "[\r\n  {\r\n    \"projectId\": \"51d3fb5a-4695-4d8e-955d-82e609e7d562\",\r\n   
+    \"name\": \"Production\",\r\n    \"id\": \"e23a8815-6267-4d87-afdb-3dcd07d348a6\",\r\n   
+    \"createdAt\": \"2021-07-24T22:12:48Z\",\r\n    \"updatedAt\": \"2021-07-24T22:12:48Z\",\r\n   
+    \"isDefault\": true\r\n  }\r\n]"
+  _rulesList: '[]'
+  _lastCachedRulesList: '[]'

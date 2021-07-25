@@ -13,5 +13,5 @@ public static class ServerInfo
 public struct ServerPlayer
 {
     public string PlayerName;
-    public float HueShift;
+    public float Hue;
 }

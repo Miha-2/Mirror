@@ -299,8 +299,8 @@ public class Gun : Item
                     ServerPlayer killer = ServerInfo.PlayerData[connectionToClient.connectionId];
                     ServerPlayer victim = ServerInfo.PlayerData[p.connectionToClient.connectionId];
                     string killInfo =
-                        $"{HueString(killer.PlayerName, killer.HueShift)}" +
-                        $" killed {HueString(victim.PlayerName, victim.HueShift)}" +
+                        $"{HueString(killer.PlayerName, killer.Hue)}" +
+                        $" killed {HueString(victim.PlayerName, victim.Hue)}" +
                         $" with {ColorString(ItemName, Color.white)}";
                     
                     ServerInfo.AddChat.Invoke(killInfo);
