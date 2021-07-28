@@ -95,6 +95,8 @@ public class PlayerState : Destroyable
             currentColor = Color.HSVToRGB(h, s, v);
             renderer.material.SetColor("_BaseColor", currentColor);
         }
+        
+            FindObjectOfType<Minimap>().AddPointer(transform, Color.HSVToRGB(playerHue, 1f, 1f), hasAuthority);
     }
     #region Death
 

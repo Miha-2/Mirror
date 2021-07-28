@@ -1,22 +1,29 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using DG.Tweening.Core;
+using DG.Tweening.Plugins.Options;
+using Unity.Mathematics;
 using Unity.RemoteConfig;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
-public class PlayerDisplay : MonoBehaviour
+public class PlayerDisplay : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private HueSlider _hueSlider;
     [SerializeField] private Transform modelTransform;
     private List<Material> _materials = new List<Material>();
     private ColorInfo[] _colorInfos;
-    [SerializeField] private float rotationSpeed = 10f;
     private Image _image;
     private float s, v, a;
+    private PlayerInput _playerInput;
     private void Start()
     {
+        _playerInput = new PlayerInput();
+        _playerInput.UI.Enable();
         _image = GetComponent<Image>();
         Color.RGBToHSV(_image.color, out _, out this.s, out this.v);
         a = _image.color.a;
@@ -39,10 +46,6 @@ public class PlayerDisplay : MonoBehaviour
         _hueSlider.OnHueChanged.AddListener(HueChanged);
     }
 
-    private void Update()
-    {
-        modelTransform.rotation = Quaternion.Euler(0f, modelTransform.eulerAngles.y + Time.deltaTime * rotationSpeed, 0f);
-    }
 
     private void HueChanged(float hue)
     {
@@ -55,6 +58,38 @@ public class PlayerDisplay : MonoBehaviour
             _materials[i].color = Color.HSVToRGB((hue + info.hueOffset) % 1, info.saturation, info.value);
         }
     }
+
+    [SerializeField] private float dragSensitivity = 10f;
+    [SerializeField] private float resetTime = .35f;
+    private TweenerCore<Quaternion, Vector3, QuaternionOptions> lastTween;
+    private float _dragLenght;
+    private bool _isDragging;
+    private float _startRotation;
+    public void OnPointerDown(PointerEventData eventData)
+    {
+        lastTween?.Kill();
+        
+        _startRotation = modelTransform.rotation.eulerAngles.y;
+        _isDragging = true;
+    }
+
+    private void Update()
+    {
+        if (!_isDragging) return;
+        _dragLenght += _playerInput.UI.MouseDelta.ReadValue<Vector2>().x;
+
+        modelTransform.rotation = Quaternion.Euler(0f, _startRotation - _dragLenght / 100 * dragSensitivity, 0f);
+    }
+    
+    
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        _isDragging = false;
+        _dragLenght = 0f;
+        lastTween = modelTransform.DORotate(new Vector3(0f, 180f, 0f), resetTime).SetEase(Ease.OutBack);
+    }
+
+    private void OnDestroy() => _playerInput.UI.Disable();
 }
 
 public struct ColorInfo

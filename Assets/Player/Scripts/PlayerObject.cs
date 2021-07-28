@@ -10,29 +10,17 @@ namespace MirrorProject.TestSceneTwo
     {
         [SerializeField] private PlayerState playerPrefab = null;
         private PlayerState player;
-
-        private GlobalEventSingleton _globalEventSingleton;
-        // [SerializeField] private float respawnDelay = 3f;
-
-        private void Start()
-        {
-            _globalEventSingleton = GameSystem.EventSingleton;
-        }
+        private GameUI gameUI;
 
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
 
-            //Camera.main.gameObject.SetActive(false);
             CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
             CmdSpawnPlayer(false);
         }
-
-        public override void OnStartServer()
-        {
-            base.OnStartServer();
-            ServerInfo.AddChat.AddListener(delegate(string arg0) { TargetRpcUpdateChat(connectionToClient, arg0); });
-        }
+        public override void OnStartServer() => ServerInfo.AddChat.AddListener(delegate(string arg0) { TargetRpcUpdateChat(connectionToClient, arg0); });
+        public override void OnStartAuthority() => gameUI = FindObjectOfType<GameUI>();
 
         [Command]
         private void CmdSendPlayerData(string playerName, float hue)
@@ -56,8 +44,9 @@ namespace MirrorProject.TestSceneTwo
         {
             if (delay)
             {
-                TargetStartSpawnDelay(_globalEventSingleton.serverSettings.respawnTime);
-                yield return new WaitForSeconds(_globalEventSingleton.serverSettings.respawnTime);
+                float respawnDelay = 3f;
+                TargetStartSpawnDelay(respawnDelay);
+                yield return new WaitForSeconds(respawnDelay);
             }
             
             player = Instantiate(playerPrefab, transform.position, transform.rotation);
@@ -73,15 +62,9 @@ namespace MirrorProject.TestSceneTwo
         }
         
         [TargetRpc]
-        private void TargetOnPlayerDeath()
-        {
-            CmdSpawnPlayer(true);
-        }
+        private void TargetOnPlayerDeath() => CmdSpawnPlayer(true);
 
         [TargetRpc]
-        private void TargetStartSpawnDelay(float delay)
-        {
-            GameSystem.EventSingleton.Timer.StartTimer(delay);
-        }
+        private void TargetStartSpawnDelay(float delay) => gameUI.Timer.StartTimer(delay);
     }
 }

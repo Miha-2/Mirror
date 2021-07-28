@@ -121,7 +121,7 @@ public class Gun : Item
     private void Start()
     {
         Ammo = magazineSize;
-        hitMask = LayerMask.GetMask("Ragdoll", "Default");
+        hitMask = LayerMask.GetMask("Ragdoll", "Default", "Movable");
         if (hasAuthority)
         {
             MultiplierData _data = PlayerInfo.MultiplierData;
@@ -189,7 +189,6 @@ public class Gun : Item
     private void CmdShoot(float spread)
     {
         Vector3 shotDir = BulletSpread(spread);
-        BulletData bulletData = GameSystem.EventSingleton.bulletData;
         RpcClientShoot();
         
         #region Forward Cast

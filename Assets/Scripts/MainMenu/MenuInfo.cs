@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
 public static class MenuInfo
@@ -20,4 +21,6 @@ public static class MenuInfo
     }
 
     public static float Hue = 0f;
+
+    public static string CustomIP = String.Empty;
 }

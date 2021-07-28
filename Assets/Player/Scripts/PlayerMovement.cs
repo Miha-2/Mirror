@@ -31,7 +31,6 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float maxUp = 60f;
     [SerializeField] private float maxDown = -60f;
 
-    private GlobalEventSingleton _globalEventSingleton;
     //private float rotationX = 0f;
 
     private bool jumped = false;
@@ -59,7 +58,7 @@ public class PlayerMovement : NetworkBehaviour
         PlayerInfo.OnActionState.AddListener(delegate(bool state) { inAction = state;  });
 
         if (PlayerInput == null)
-            PlayerInput = GameSystem.PlayerGlobalInput;
+            PlayerInput = GameSystem.InputManager.PlayerInput;
         
         if(!GameSystem.OnPause)
             PlayerInput.PlayerMovement.Enable();

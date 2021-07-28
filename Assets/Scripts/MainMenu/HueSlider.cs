@@ -75,5 +75,9 @@ public class HueSlider : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
         return (mousePos.x - .5f) * canvasRect.rect.width;
     }
     
-    private void OnDestroy() => OnHueChanged.RemoveAllListeners();
+    private void OnDestroy()
+    {
+        _playerInput.UI.Disable();
+        OnHueChanged.RemoveAllListeners();
+    }
 }

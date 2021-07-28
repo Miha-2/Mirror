@@ -31,8 +31,6 @@ public class BulletHole : SelfDestroy
    
    public void Activate(IHittable hittable)
    {
-      if(!isServer) Debug.LogError("Should have been server!!");
-      
       gameObject.SetActive(true);
       NetworkServer.Spawn(gameObject);
 

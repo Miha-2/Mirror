@@ -105,6 +105,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""MouseDelta"",
+                    ""type"": ""Value"",
+                    ""id"": ""03c7158d-672d-4270-aea6-865dc0c4d306"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -536,6 +544,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""MousePosition"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c65701c8-cf9f-4ff2-98b1-077d4ab2000d"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""MouseDelta"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -555,6 +574,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""name"": ""ToggleCursor"",
                     ""type"": ""Button"",
                     ""id"": ""94c87aed-cf70-4029-beb0-5ecdbb51404c"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d84fc39-3419-4dd8-93c1-ca69b4a9de07"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -580,6 +607,28 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""MouseKeyboard"",
                     ""action"": ""ToggleCursor"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""330811c5-0a94-49d9-a1a6-cccc6ccc5181"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b6bd820-e3ce-4f53-ad24-5d00c3e5221e"",
+                    ""path"": ""<Keyboard>/leftAlt"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -901,10 +950,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
         m_UI_MousePosition = m_UI.FindAction("MousePosition", throwIfNotFound: true);
+        m_UI_MouseDelta = m_UI.FindAction("MouseDelta", throwIfNotFound: true);
         // Ui Actions
         m_UiActions = asset.FindActionMap("Ui Actions", throwIfNotFound: true);
         m_UiActions_PauseMenu = m_UiActions.FindAction("Pause Menu", throwIfNotFound: true);
         m_UiActions_ToggleCursor = m_UiActions.FindAction("ToggleCursor", throwIfNotFound: true);
+        m_UiActions_Map = m_UiActions.FindAction("Map", throwIfNotFound: true);
         // Item Interactions
         m_ItemInteractions = asset.FindActionMap("Item Interactions", throwIfNotFound: true);
         m_ItemInteractions_PrimaryAction = m_ItemInteractions.FindAction("PrimaryAction", throwIfNotFound: true);
@@ -980,6 +1031,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_UI_TrackedDevicePosition;
     private readonly InputAction m_UI_TrackedDeviceOrientation;
     private readonly InputAction m_UI_MousePosition;
+    private readonly InputAction m_UI_MouseDelta;
     public struct UIActions
     {
         private @PlayerInput m_Wrapper;
@@ -995,6 +1047,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
         public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
         public InputAction @MousePosition => m_Wrapper.m_UI_MousePosition;
+        public InputAction @MouseDelta => m_Wrapper.m_UI_MouseDelta;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1037,6 +1090,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @MousePosition.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMousePosition;
                 @MousePosition.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMousePosition;
                 @MousePosition.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMousePosition;
+                @MouseDelta.started -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseDelta;
+                @MouseDelta.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseDelta;
+                @MouseDelta.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnMouseDelta;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -1074,6 +1130,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @MousePosition.started += instance.OnMousePosition;
                 @MousePosition.performed += instance.OnMousePosition;
                 @MousePosition.canceled += instance.OnMousePosition;
+                @MouseDelta.started += instance.OnMouseDelta;
+                @MouseDelta.performed += instance.OnMouseDelta;
+                @MouseDelta.canceled += instance.OnMouseDelta;
             }
         }
     }
@@ -1084,12 +1143,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private IUiActionsActions m_UiActionsActionsCallbackInterface;
     private readonly InputAction m_UiActions_PauseMenu;
     private readonly InputAction m_UiActions_ToggleCursor;
+    private readonly InputAction m_UiActions_Map;
     public struct UiActionsActions
     {
         private @PlayerInput m_Wrapper;
         public UiActionsActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @PauseMenu => m_Wrapper.m_UiActions_PauseMenu;
         public InputAction @ToggleCursor => m_Wrapper.m_UiActions_ToggleCursor;
+        public InputAction @Map => m_Wrapper.m_UiActions_Map;
         public InputActionMap Get() { return m_Wrapper.m_UiActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1105,6 +1166,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ToggleCursor.started -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnToggleCursor;
                 @ToggleCursor.performed -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnToggleCursor;
                 @ToggleCursor.canceled -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnToggleCursor;
+                @Map.started -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
+                @Map.performed -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
+                @Map.canceled -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
             }
             m_Wrapper.m_UiActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1115,6 +1179,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @ToggleCursor.started += instance.OnToggleCursor;
                 @ToggleCursor.performed += instance.OnToggleCursor;
                 @ToggleCursor.canceled += instance.OnToggleCursor;
+                @Map.started += instance.OnMap;
+                @Map.performed += instance.OnMap;
+                @Map.canceled += instance.OnMap;
             }
         }
     }
@@ -1324,11 +1391,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnTrackedDevicePosition(InputAction.CallbackContext context);
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
         void OnMousePosition(InputAction.CallbackContext context);
+        void OnMouseDelta(InputAction.CallbackContext context);
     }
     public interface IUiActionsActions
     {
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnToggleCursor(InputAction.CallbackContext context);
+        void OnMap(InputAction.CallbackContext context);
     }
     public interface IItemInteractionsActions
     {

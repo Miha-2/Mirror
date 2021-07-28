@@ -8,21 +8,6 @@ using Object = UnityEngine.Object;
 
 public static class GameSystem
 {
-    #region Global Event Singleton
-
-    private static GlobalEventSingleton _globalEventSingleton;
-    public static GlobalEventSingleton EventSingleton
-    {
-        get 
-        { 
-            if (!_globalEventSingleton)
-                _globalEventSingleton = Object.FindObjectOfType<GlobalEventSingleton>();
-            return _globalEventSingleton; 
-        }
-    }
-
-    #endregion
-    
     public static Queue<BulletHole> PreSpawnedBulletHoles = new Queue<BulletHole>();
     
 
@@ -80,27 +65,19 @@ public static class GameSystem
 
     #endregion
 
-    #region Pause
-
+    
     public static bool OnPause = false;
     
-    public static UnityEvent<bool> PauseStatusChanged = new UnityEvent<bool>();
-
-    #endregion
-
-    #region Player Input
-
-    private static PlayerInput _playerInput;
-
-    public static PlayerInput PlayerGlobalInput
+    
+    private static InputManager _inputManager;
+    public static InputManager InputManager
     {
         get
         {
-            if (_playerInput == null)
-                _playerInput = Object.FindObjectOfType<GlobalEventSingleton>().playerInput;
-            return _playerInput;
+            if (_inputManager == null)
+                _inputManager = Object.FindObjectOfType<InputManager>();
+            return _inputManager;
         }
     }
 
-    #endregion
 }

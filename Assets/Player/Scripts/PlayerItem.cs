@@ -91,7 +91,7 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
         if (hasAuthority)
         {
             PlayerInfo.Crosshair = crosshair;
-            PlayerInput = GameSystem.PlayerGlobalInput;
+            PlayerInput = GameSystem.InputManager.PlayerInput;
             if(!GameSystem.OnPause)
                 PlayerInput.ItemInteractions.Enable();
             EquipItem(defaultItem);

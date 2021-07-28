@@ -8,6 +8,7 @@
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
         <e p="Chat.cs" t="Include" />
+        <e p="GameUI.cs" t="Include" />
         <e p="Items" t="Include">
           <e p="Item.cs" t="Include" />
           <e p="Weapons" t="Include">
@@ -307,9 +308,6 @@
           <e p="Crosshair" t="Include">
             <e p="Crosshair.cs" t="Include" />
           </e>
-          <e p="HitIndicator" t="Include">
-            <e p="HitObject.cs" t="Include" />
-          </e>
         </e>
         <e p="Packages" t="Include">
           <e p="CustomButton" t="Include">
@@ -385,7 +383,7 @@
         </e>
         <e p="Scenes" t="Include">
           <e p="Network" t="Include">
-            <e p="MyNetworkManager.cs" t="Include" />
+            <e p="TestShader.cs" t="Include" />
           </e>
         </e>
         <e p="Scripts" t="Include">
@@ -406,6 +404,11 @@
             <e p="PlayerDisplay.cs" t="Include" />
           </e>
           <e p="MainNetworkManager.cs" t="Include" />
+          <e p="Minimap" t="Include">
+            <e p="BigPointer.cs" t="Include" />
+            <e p="Minimap.cs" t="Include" />
+            <e p="Pointer.cs" t="Include" />
+          </e>
           <e p="NameTag.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
@@ -419,9 +422,9 @@
           <e p="ServerSettings.cs" t="Include" />
           <e p="Stable" t="Include">
             <e p="GameSystem.cs" t="Include" />
-            <e p="GlobalEventSingleton.cs" t="Include" />
             <e p="Hittable.cs" t="Include" />
             <e p="IHittable.cs" t="Include" />
+            <e p="InputManager.cs" t="Include" />
             <e p="Interfaces.cs" t="Include" />
             <e p="ParentSpawn.cs" t="Include" />
             <e p="ServerInfo.cs" t="Include" />
@@ -437,6 +440,7 @@
           <e p="55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" t="Include" />
           <e p="56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" t="Include" />
         </e>
+        <e p="StopButtons.cs" t="Include" />
       </e>
       <e p="Cinemachine.csproj" t="IncludeRecursive" />
       <e p="com.unity.cinemachine.editor.csproj" t="IncludeRecursive" />

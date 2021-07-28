@@ -11,9 +11,11 @@ namespace MirrorProject.TestSceneTwo
     public class MainNetworkManager : NetworkManager
     {
         private NameInput nameInput;
+        [HideInInspector] public NetworkStatus networkStatus = NetworkStatus.NotConnected;
 
         [Space]
         [SerializeField] private int preSpawnedBullets = 200;
+        [SerializeField] private BulletHole holePrefab;
         //[SerializeField] private Transform playerOneStartTransform = null, playerTwoStartTransform = null;
 
         public override void Start()
@@ -38,7 +40,10 @@ namespace MirrorProject.TestSceneTwo
         public override void OnStartServer()
         {
             StartCoroutine(PreSpawnHoles());
+            networkStatus = NetworkStatus.Server;
         }
+
+        public override void OnStartHost() => networkStatus = NetworkStatus.Host;
 
         private IEnumerator PreSpawnHoles()
         {
@@ -47,7 +52,6 @@ namespace MirrorProject.TestSceneTwo
                 yield return null;
             }
             
-            BulletHole holePrefab = GameSystem.EventSingleton.bulletData.bulletHole;
             Vector3 pos = new Vector3(0f, -10000f, 0f);
             
             for (int i = 0; i < preSpawnedBullets; i++)
@@ -79,6 +83,19 @@ namespace MirrorProject.TestSceneTwo
         {
             base.OnStartClient();
             RegisterWeaponPrefabs();
+            networkStatus = NetworkStatus.Client;
         }
+
+        public override void OnStopClient()=> networkStatus = NetworkStatus.NotConnected;
+        public override void OnStopHost()=> networkStatus = NetworkStatus.NotConnected;
+        public override void OnStopServer() => networkStatus = NetworkStatus.NotConnected;
     }
+}
+
+public enum NetworkStatus
+{
+    NotConnected,
+    Client,
+    Host,
+    Server
 }

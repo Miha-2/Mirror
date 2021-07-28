@@ -43,7 +43,7 @@ public class MainMenu : MonoBehaviour
             MenuInfo.PlayerName = playerName;
         }
         
-        joinServer.IsEnabled = _serverIP != string.Empty;
+        ipInput.text = MenuInfo.CustomIP;
         ConfigManager.FetchConfigs(new UserAttributes(), new AppAttributes());
         ConfigManager.FetchCompleted += OnFetchCompleted;
         FindObjectOfType<HueSlider>().OnHueChanged.AddListener(delegate(float hue) { MenuInfo.Hue = hue; });
@@ -54,9 +54,11 @@ public class MainMenu : MonoBehaviour
         switch (fetchData.requestOrigin)
         {
             case ConfigOrigin.Default:
+                joinServer.IsEnabled = false;
                 Debug.Log("Cannot access remote configs");
                 break;
             case ConfigOrigin.Cached:
+                // _serverIP = ConfigManager.appConfig.GetString("server_ip");
                 Debug.Log("Remote configs already cached");
                 break;
             case ConfigOrigin.Remote:
@@ -69,14 +71,21 @@ public class MainMenu : MonoBehaviour
 
     public void JoinServer()
     {
-        Manager.StartClient();
+        if(_serverIP == String.Empty)
+        {
+            joinServer.IsEnabled = false;
+            return;
+        }
+
         Manager.networkAddress = _serverIP;
+        Manager.StartClient();
     }
     
     public void JoinIP()
     {
-        Manager.StartClient();
+        MenuInfo.CustomIP = ipInput.text;
         Manager.networkAddress = ipInput.text;
+        Manager.StartClient();
     }
 
     public void LocalHost()
