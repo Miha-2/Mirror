@@ -29,7 +29,7 @@ public class PlayerState : Destroyable
     [SerializeField] private float regenRate = 8f;
     private float regenTimer;
 
-    private bool isDead = false;
+    private bool isDead;
     
     private Rigidbody[] ragdollRbs;
     private Collider[] ragdollColliders;
@@ -51,8 +51,6 @@ public class PlayerState : Destroyable
         }
     }
 
-    [HideInInspector] public UnityEvent PlayerDeath = new UnityEvent();
-
     private void Start()
     {
         headshotMask = LayerMask.GetMask("Ragdoll");
@@ -67,7 +65,11 @@ public class PlayerState : Destroyable
 
         SetRagdoll(false);
     }
-    public override void OnStartAuthority() => playerCamera.gameObject.SetActive(true);
+    public override void OnStartAuthority()
+    {
+        Debug.Log("AUTHORITY STARTED");
+        playerCamera.gameObject.SetActive(true);
+    }
 
     protected override void OnHealthChanged(float oldHealth, float newHealth)
     {
@@ -78,7 +80,7 @@ public class PlayerState : Destroyable
 
     public override void OnStartServer()
     {
-        ServerPlayer playerData = ServerInfo.PlayerData[connectionToClient.connectionId];
+        ServerPlayer playerData = ServerInfo.PlayerData[connectionToClient];
         playerName = playerData.PlayerName;
         playerHue = playerData.Hue;
     }
@@ -96,16 +98,20 @@ public class PlayerState : Destroyable
             renderer.material.SetColor("_BaseColor", currentColor);
         }
         
-            FindObjectOfType<Minimap>().AddPointer(transform, Color.HSVToRGB(playerHue, 1f, 1f), hasAuthority);
+        FindObjectOfType<Minimap>().AddPointer(transform, Color.HSVToRGB(playerHue, 1f, 1f), hasAuthority);
     }
+    
+    
     #region Death
 
+    [HideInInspector] public UnityEvent<NetworkConnection, NetworkConnection> OnPlayerDeath = new UnityEvent<NetworkConnection, NetworkConnection>();
+    
     //Server call
-    private void Death()
+    private void Death(NetworkConnection killer)
     {
         isDead = true;
         Invoke(nameof(DeathCleanup), 8f);
-        PlayerDeath.Invoke();
+        OnPlayerDeath.Invoke(connectionToClient, killer);
         RpcDeath();
     }
 
@@ -136,11 +142,13 @@ public class PlayerState : Destroyable
 
     #endregion
 
+    
+    
     private LayerMask headshotMask;
-    public override bool Hit(HitInfo hitInfo)
+    public override void Hit(HitInfo hitInfo, Item item)
     {
         if (isDead)
-            return false;
+            return;
         float multiplier = 1f;
         Collider[] colliders = Physics.OverlapSphere(hitInfo.Point, .05f, headshotMask);
         foreach (Collider collider in colliders)
@@ -152,13 +160,21 @@ public class PlayerState : Destroyable
             }
         }
         Health -= hitInfo.Damage * multiplier;
+        
         if (Health <= 0f)
         {
-            Death();
-            return true;
+            //When a player is killed
+            ServerPlayer killer = ServerInfo.PlayerData[item.connectionToClient];
+            ServerPlayer victim = ServerInfo.PlayerData[connectionToClient];
+            string killInfo =
+                $"{CustomMethods.HueString(killer.PlayerName, killer.Hue)}" +
+                $" killed {CustomMethods.HueString(victim.PlayerName, victim.Hue)}" +
+                $" with {CustomMethods.ColorString(item.ItemName, Color.white)}";
+                    
+            ServerInfo.AddChat.Invoke(killInfo);
+            
+            Death(item.connectionToClient);
         }
-
-        return false;
     }
 
     [ServerCallback]
@@ -191,15 +207,19 @@ public class PlayerState : Destroyable
 #if UNITY_EDITOR
     [ContextMenu("Commit Death")]
     [Command]
-    private void CmdDie()
-    {
-        Death();
-    }
+    private void CmdDie() => Death(connectionToClient);
 #endif
     
     private void OnDrawGizmos()
     {
         Gizmos.color = hasAuthority ? Color.blue : Color.red;
         Gizmos.DrawLine(playerCamera.transform.position, playerCamera.transform.forward * 100f);
+    }
+
+    
+    [ServerCallback]
+    private void OnDestroy()
+    {
+        OnPlayerDeath.RemoveAllListeners();
     }
 }

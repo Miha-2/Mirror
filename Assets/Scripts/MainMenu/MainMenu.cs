@@ -5,6 +5,7 @@ using Mirror;
 using TMPro;
 using Unity.RemoteConfig;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {

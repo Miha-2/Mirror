@@ -43,16 +43,16 @@ public class Destroyable : NetworkBehaviour, IHittable
             Debug.LogError($"Hittable object: {name} doesn't have ScriptableMaterial assigned!");
     }
     
-    public UnityEvent OnDestroy { get; } = new UnityEvent();
+    public UnityEvent OnDestroyed { get; } = new UnityEvent();
 
-    public virtual bool Hit(HitInfo hitInfo)
+    public virtual void Hit(HitInfo hitInfo, Item item)
     {
         print($"{name} was hit with damage of: {hitInfo.Damage}");
         Health -= hitInfo.Damage;
 
-        if (!(Health <= 0f)) return false;
+        if (Health > 0f) return;
         
-        OnDestroy.Invoke();
+        OnDestroyed.Invoke();
         NetworkServer.UnSpawn(gameObject);
         
         if(respawn)
@@ -64,8 +64,6 @@ public class Destroyable : NetworkBehaviour, IHittable
         }
         else
             gameObject.SetActive(false);
-
-        return true;
     }
     
     private void Respawn()

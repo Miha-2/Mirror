@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d30a904276816d8468785711ecb781a1, type: 3}
-  m_Name: GamePlayer Settings
+  m_Script: {fileID: 11500000, guid: 726489acad5f5d743bbc9167480333d3, type: 3}
+  m_Name: Deathmatch
   m_EditorClassIdentifier: 
-  movementSpeed: 4.2
-  sprintSpeed: 10
-  cameraVerticalMin: -50
-  cameraVerticalMax: 40
+  title: Deathmatch
+  description: 

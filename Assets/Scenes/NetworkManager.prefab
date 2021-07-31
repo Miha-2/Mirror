@@ -61,17 +61,23 @@ MonoBehaviour:
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 6718066208262983437, guid: 25c4e9fd0b3e24a48a6918f5764c0fbe,
+  playerPrefab: {fileID: 5029592601248271980, guid: 003a891db86e3284abea723d6db435cc,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
   spawnPrefabs:
-  - {fileID: 8560593493621167639, guid: 40703da3a32bbaf4da1e271bd03e81dd, type: 3}
   - {fileID: 3479259488872986158, guid: e03696d26e360e34291c5632b3123da5, type: 3}
   - {fileID: 7633678965232573521, guid: 8bdaeb3cdb0aa2b41bcf832a530240fe, type: 3}
   - {fileID: 9016432657029641498, guid: 2c60fdea40fc5b44ea399868a0af40ce, type: 3}
-  networkStatus: 0
+  - {fileID: 5036984573998859689, guid: fde711e708db4794496cd95fb8fa06ce, type: 3}
+  mapScene: 
+  playerObject: {fileID: 3025197498453791659, guid: 25c4e9fd0b3e24a48a6918f5764c0fbe,
+    type: 3}
+  mapPlayerPrefab: {fileID: 1992239135979513127, guid: e03696d26e360e34291c5632b3123da5,
+    type: 3}
   preSpawnedBullets: 200
+  holePrefab: {fileID: 4240246871824507661, guid: 8bdaeb3cdb0aa2b41bcf832a530240fe,
+    type: 3}
 --- !u!114 &2974881914156977755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,13 +85,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2974881914156977752}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   serverIP: 159.89.12.70
-  showGUI: 1
+  showGUI: 0
   offsetX: 0
   offsetY: 0
 --- !u!114 &2974881914156977759
@@ -100,7 +106,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7776
+  Port: 7780
   NoDelay: 1
   Interval: 10
   FastResend: 2
@@ -124,7 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   showPing: 1
   showRoundTripTime: 1
-  position: {x: 20, y: 10}
+  position: {x: 12, y: 960}
   fontSize: 29
   textColor: {r: 1, g: 1, b: 1, a: 0.3137255}
   format: '{0}ms'

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 // ReSharper disable Unity.InefficientPropertyAccess
 
@@ -34,11 +35,16 @@ public class Minimap : MonoBehaviour
         
         mapCamera.Render();
 
-        GameSystem.InputManager.PlayerInput.UiActions.Map.performed +=
-            context => bigMap.gameObject.SetActive(true);
+        GameSystem.InputManager.PlayerInput.UiActions.Map.performed += MapOnPerformed;
+
+        GameSystem.InputManager.PlayerInput.UiActions.Map.canceled += MapOnPerformed;
+    }
+
+    private void MapOnPerformed(InputAction.CallbackContext obj) => bigMap.gameObject.SetActive(obj.performed);
+
+    private void OnChange()
+    {
         
-        GameSystem.InputManager.PlayerInput.UiActions.Map.canceled +=
-            context => bigMap.gameObject.SetActive(false);
     }
 
     private Transform _ownerTransform;
@@ -114,6 +120,13 @@ public class Minimap : MonoBehaviour
                 pointerPair.TargetTransform.position.z - mapCamera.transform.position.z) / mapCamera.orthographicSize;
             pointerPair.BigPointer.SetPosition(normalized, pointerPair.TargetTransform.rotation.eulerAngles.y, bigMap.rect.height);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameSystem.InputManager.PlayerInput.UiActions.Map.performed -= MapOnPerformed;
+
+        GameSystem.InputManager.PlayerInput.UiActions.Map.canceled -= MapOnPerformed;
     }
 }
 

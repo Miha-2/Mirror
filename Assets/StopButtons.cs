@@ -18,25 +18,21 @@ public class StopButtons : MonoBehaviour
         if (manager == null)
             return;
 
-        switch (manager.networkStatus)
+        switch (manager.mode)
         {
-            case NetworkStatus.NotConnected:
+            case NetworkManagerMode.Offline:
                 break;
-            case NetworkStatus.Client:
+            case NetworkManagerMode.ClientOnly:
                 clientButton.SetActive(true);
                 break;
-            case NetworkStatus.Host:
+            case NetworkManagerMode.Host:
                 hostButton.SetActive(true);
                 break;
-            case NetworkStatus.Server:
+            case NetworkManagerMode.ServerOnly:
                 serverButton.SetActive(true);
                 break;
         }
     }
 
-    public void StopClient() => manager.StopClient();
-
-    public void StopServer() => manager.StopServer();
-
-    public void StopHost() => manager.StopHost();
+    public void StopAny() => manager.StopAny();
 }

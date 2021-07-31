@@ -343,11 +343,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2974881914156977755, guid: ee2ff0afdcfbbf442ad2acfb35353936,
-        type: 3}
-      propertyPath: showGUI
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977756, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
       propertyPath: m_RootOrder
@@ -405,14 +400,33 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
-      propertyPath: holePrefab
-      value: 
-      objectReference: {fileID: 4240246871824507661, guid: 8bdaeb3cdb0aa2b41bcf832a530240fe,
+      propertyPath: maxPort
+      value: 7780
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
+      propertyPath: minPort
+      value: 7770
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: mapScene
+      value: Assets/Scenes/Map_01.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: RoomScene
+      value: Assets/New Scene.unity
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: minPlayers
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
       propertyPath: onlineScene
-      value: Assets/Scenes/Map_01.unity
+      value: Assets/Scenes/Lobby.unity
       objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
@@ -421,19 +435,37 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
-      propertyPath: showDebugMessages
-      value: 1
+      propertyPath: GameplayScene
+      value: Assets/Scenes/Map_01.unity
       objectReference: {fileID: 0}
-    - target: {fileID: 9157913824038013496, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
-      propertyPath: position.x
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 9157913824038013496, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+      propertyPath: roomPlayerPrefab
+      value: 
+      objectReference: {fileID: -2291516545291509287, guid: 9a5b30b4d6542c94c91f7f1d272f6baa,
         type: 3}
-      propertyPath: position.y
-      value: 960
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: autoStartServerBuild
+      value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[4]
+      value: 
+      objectReference: {fileID: 5029592601248271980, guid: 003a891db86e3284abea723d6db435cc,
+        type: 3}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[5]
+      value: 
+      objectReference: {fileID: 6718066208262983437, guid: 25c4e9fd0b3e24a48a6918f5764c0fbe,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee2ff0afdcfbbf442ad2acfb35353936, type: 3}
 --- !u!114 &101912958 stripped

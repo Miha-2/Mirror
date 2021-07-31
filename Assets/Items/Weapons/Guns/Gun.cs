@@ -283,27 +283,15 @@ public class Gun : Item
                 }
 
                 // Debug.Log($"{damage} * {dropoff} * {hitPower} = {damage * dropoff * hitPower}");
-                bool hasDestroyed = hittable.Hit(new HitInfo
+                hittable.Hit(new HitInfo
                 {
                     Damage = damage * dropoff * hitPower,
                     Point = enterHits[i].point,
                     HeadshotMultiplier = headShotMultiplier,
                     // Force = force * power,
                     Direction = Camera.transform.forward
-                });
+                }, this);
 
-                if (hasDestroyed && isPlayer)
-                {
-                    PlayerState p = (PlayerState) hittable;
-                    ServerPlayer killer = ServerInfo.PlayerData[connectionToClient.connectionId];
-                    ServerPlayer victim = ServerInfo.PlayerData[p.connectionToClient.connectionId];
-                    string killInfo =
-                        $"{HueString(killer.PlayerName, killer.Hue)}" +
-                        $" killed {HueString(victim.PlayerName, victim.Hue)}" +
-                        $" with {ColorString(ItemName, Color.white)}";
-                    
-                    ServerInfo.AddChat.Invoke(killInfo);
-                }
                 
                 if (avaliblePower <= 0f) break;
 
@@ -382,16 +370,6 @@ public class Gun : Item
         audioSource.clip = shotEffect;
         audioSource.Play();
         shotSources.Enqueue(audioSource);
-    }
-
-    private string HueString(string inString, float hue)
-    {
-        return ColorString(inString, Color.HSVToRGB(hue, 1f, 1f));
-    }
-
-    private string ColorString(string inString, Color color)
-    {
-        return $"<color=#{ColorUtility.ToHtmlStringRGB(color)}>{inString}</color>";
     }
 }
 

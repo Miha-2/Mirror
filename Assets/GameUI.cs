@@ -4,6 +4,6 @@ using UnityEngine;
 
 public class GameUI : MonoBehaviour
 {
-    public Timer Timer;
+    public OldTimer oldTimer;
     public Minimap Minimap;
 }

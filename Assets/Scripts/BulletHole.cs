@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Rendering.HighDefinition;
 using Random = UnityEngine.Random;
+// ReSharper disable Unity.InefficientPropertyAccess
 
 [RequireComponent(typeof(DecalProjector))]
 public class BulletHole : SelfDestroy
@@ -33,11 +34,12 @@ public class BulletHole : SelfDestroy
    {
       gameObject.SetActive(true);
       NetworkServer.Spawn(gameObject);
+      // NetworkServer.Spawn(gameObject);
 
       if (_canTime)
          RpcUpdateLocation(transform.position, transform.rotation);
       
-      _currentEvent = hittable.OnDestroy;
+      _currentEvent = hittable.OnDestroyed;
       _currentEvent.AddListener(OnObjectDestroyed);
 
       _canTime = true;

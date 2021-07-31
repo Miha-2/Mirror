@@ -297,7 +297,6 @@
             <e p="UNetwork.cs" t="Include" />
           </e>
         </e>
-        <e p="NameInput.cs" t="Include" />
         <e p="Other" t="Include">
           <e p="Bullet Holes" t="Include">
             <e p="HoleProjector.cs" t="Include" />
@@ -357,12 +356,12 @@
             <e p="WorldHealthBar.cs" t="Include" />
           </e>
           <e p="Scripts" t="Include">
+            <e p="OldTimer.cs" t="Include" />
             <e p="PlayerInfo.cs" t="Include" />
             <e p="PlayerItem.cs" t="Include" />
             <e p="PlayerMovement.cs" t="Include" />
             <e p="PlayerObject.cs" t="Include" />
             <e p="PlayerState.cs" t="Include" />
-            <e p="Timer.cs" t="Include" />
           </e>
         </e>
         <e p="Plugins" t="Include">
@@ -381,20 +380,27 @@
             </e>
           </e>
         </e>
-        <e p="Scenes" t="Include">
-          <e p="Network" t="Include">
-            <e p="TestShader.cs" t="Include" />
-          </e>
-        </e>
         <e p="Scripts" t="Include">
           <e p="BulletHole.cs" t="Include" />
           <e p="ClientSettings.cs" t="Include" />
+          <e p="CustomMethods.cs" t="Include" />
           <e p="Destroyable.cs" t="Include" />
           <e p="FPSDisplay.cs" t="Include" />
+          <e p="GamemodeManager" t="Include">
+            <e p="Gamemode.cs" t="Include" />
+            <e p="GamemodeManager.cs" t="Include" />
+          </e>
           <e p="GameSettings.cs" t="Include" />
           <e p="Hole Decal Data.cs" t="Include" />
           <e p="Input" t="Include">
             <e p="PlayerInput.cs" t="Include" />
+          </e>
+          <e p="Lobby" t="Include">
+            <e p="LobbyButtons.cs" t="Include" />
+            <e p="LobbyInfo.cs" t="Include" />
+            <e p="LobbyList.cs" t="Include" />
+            <e p="LobbyManager.cs" t="Include" />
+            <e p="LobbyPlayer.cs" t="Include" />
           </e>
           <e p="MainMenu" t="Include">
             <e p="HoverPop.cs" t="Include" />
@@ -412,8 +418,9 @@
           <e p="NameTag.cs" t="Include" />
           <e p="PauseMenu.cs" t="Include" />
           <e p="ScriptableObjects" t="Include">
-            <e p="ClientSettings2.cs" t="Include" />
-            <e p="GamePlayerSettings.cs" t="Include" />
+            <e p="Gamemodes" t="Include">
+              <e p="GamemodeScriptable.cs" t="Include" />
+            </e>
             <e p="Scriptable Materials" t="Include">
               <e p="ScriptableMaterial.cs" t="Include" />
             </e>
@@ -440,6 +447,7 @@
           <e p="55-Mirror__Network Room Player-NewNetworkRoomPlayer.cs.txt" t="Include" />
           <e p="56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" t="Include" />
         </e>
+        <e p="Spawnpoint.cs" t="Include" />
         <e p="StopButtons.cs" t="Include" />
       </e>
       <e p="Cinemachine.csproj" t="IncludeRecursive" />

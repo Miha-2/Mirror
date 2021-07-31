@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Timer : MonoBehaviour
+public class OldTimer : MonoBehaviour
 {
     [SerializeField] private GameObject visuals = null;
     [SerializeField] private RectTransform timerSlider = null;

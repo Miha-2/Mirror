@@ -13,7 +13,7 @@ using Random = UnityEngine.Random;
 public class Item : ParentSpawn
 {
     [SerializeField] private string itemName;
-    protected string ItemName
+    public string ItemName
     {
         get
         {

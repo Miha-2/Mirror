@@ -16,16 +16,17 @@ namespace MirrorProject.TestSceneTwo
         {
             base.OnStartLocalPlayer();
 
-            CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
-            CmdSpawnPlayer(false);
+            Debug.Log("STARTING LOCAL PLAYER");
+            // CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
+            // CmdSpawnPlayer(false);
         }
-        public override void OnStartServer() => ServerInfo.AddChat.AddListener(delegate(string arg0) { TargetRpcUpdateChat(connectionToClient, arg0); });
+        public override void OnStartServer() => ServerInfo.AddChat.AddListener(delegate(string newLine) { TargetRpcUpdateChat(connectionToClient, newLine); });
         public override void OnStartAuthority() => gameUI = FindObjectOfType<GameUI>();
 
         [Command]
         private void CmdSendPlayerData(string playerName, float hue)
         {
-            ServerInfo.PlayerData[connectionToClient.connectionId] = new ServerPlayer {PlayerName = playerName, Hue = hue};
+            ServerInfo.PlayerData[connectionToClient] = new ServerPlayer {PlayerName = playerName, Hue = hue};
         }
 
         [TargetRpc]
@@ -50,14 +51,14 @@ namespace MirrorProject.TestSceneTwo
             }
             
             player = Instantiate(playerPrefab, transform.position, transform.rotation);
-            player.PlayerDeath.AddListener(OnPlayerDeath);
+            // player.OnPlayerDeath.AddListener(OnPlayerDeath);
 
             NetworkServer.Spawn(player.gameObject, connectionToClient);
         }
 
         private void OnPlayerDeath()
         {
-            player.PlayerDeath.RemoveListener(OnPlayerDeath);
+            // player.OnPlayerDeath.RemoveListener(OnPlayerDeath);
             TargetOnPlayerDeath();
         }
         
@@ -65,6 +66,6 @@ namespace MirrorProject.TestSceneTwo
         private void TargetOnPlayerDeath() => CmdSpawnPlayer(true);
 
         [TargetRpc]
-        private void TargetStartSpawnDelay(float delay) => gameUI.Timer.StartTimer(delay);
+        private void TargetStartSpawnDelay(float delay) => gameUI.oldTimer.StartTimer(delay);
     }
 }

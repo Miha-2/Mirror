@@ -226,6 +226,9 @@ MonoBehaviour:
   easeType: 3
   easeTime: 0.2
   hoverColor: {r: 0.93, g: 0.93, b: 0.93, a: 1}
-  hoverScale: 0.96
+  hoverScale: 1.04
   pressColor: {r: 0.84, g: 0.84, b: 0.84, a: 1}
-  pressScale: 0.9075
+  disabledColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  onClickEvent:
+    m_PersistentCalls:
+      m_Calls: []
