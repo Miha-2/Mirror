@@ -158,22 +158,24 @@
             <e p="Attributes.cs" t="Include" />
             <e p="ClientScene.cs" t="Include" />
             <e p="Compression.cs" t="Include" />
-            <e p="DotNetCompatibility.cs" t="Include" />
+            <e p="Empty" t="Include">
+              <e p="DotNetCompatibility.cs" t="Include" />
+              <e p="LogFactory.cs" t="Include" />
+              <e p="LogFilter.cs" t="Include" />
+              <e p="Logging" t="Include">
+                <e p="ConsoleColorLogHandler.cs" t="Include" />
+                <e p="EditorLogSettingsLoader.cs" t="Include" />
+                <e p="LogFactory.cs" t="Include" />
+                <e p="LogSettings.cs" t="Include" />
+                <e p="NetworkHeadlessLogger.cs" t="Include" />
+                <e p="NetworkLogSettings.cs" t="Include" />
+              </e>
+              <e p="StringHash.cs" t="Include" />
+            </e>
             <e p="ExponentialMovingAverage.cs" t="Include" />
             <e p="Extensions.cs" t="Include" />
-            <e p="FloatBytePacker.cs" t="Include" />
             <e p="InterestManagement.cs" t="Include" />
             <e p="LocalConnections.cs" t="Include" />
-            <e p="LogFactory.cs" t="Include" />
-            <e p="LogFilter.cs" t="Include" />
-            <e p="Logging" t="Include">
-              <e p="ConsoleColorLogHandler.cs" t="Include" />
-              <e p="EditorLogSettingsLoader.cs" t="Include" />
-              <e p="LogFactory.cs" t="Include" />
-              <e p="LogSettings.cs" t="Include" />
-              <e p="NetworkHeadlessLogger.cs" t="Include" />
-              <e p="NetworkLogSettings.cs" t="Include" />
-            </e>
             <e p="MessagePacking.cs" t="Include" />
             <e p="Messages.cs" t="Include" />
             <e p="Mirror.asmdef" t="Include" />
@@ -185,6 +187,7 @@
             <e p="NetworkConnectionToServer.cs" t="Include" />
             <e p="NetworkDiagnostics.cs" t="Include" />
             <e p="NetworkIdentity.cs" t="Include" />
+            <e p="NetworkLoop.cs" t="Include" />
             <e p="NetworkManager.cs" t="Include" />
             <e p="NetworkManagerHUD.cs" t="Include" />
             <e p="NetworkMessage.cs" t="Include" />
@@ -198,7 +201,6 @@
             <e p="NetworkWriterPool.cs" t="Include" />
             <e p="Pool.cs" t="Include" />
             <e p="RemoteCallHelper.cs" t="Include" />
-            <e p="StringHash.cs" t="Include" />
             <e p="SyncDictionary.cs" t="Include" />
             <e p="SyncList.cs" t="Include" />
             <e p="SyncObject.cs" t="Include" />
@@ -229,6 +231,7 @@
                   <e p="KcpTransport.cs" t="Include" />
                 </e>
               </e>
+              <e p="LatencySimulation.cs" t="Include" />
               <e p="MiddlewareTransport.cs" t="Include" />
               <e p="MultiplexTransport.cs" t="Include" />
               <e p="SimpleWebTransport" t="Include">
@@ -294,7 +297,7 @@
               </e>
               <e p="Transport.cs" t="Include" />
             </e>
-            <e p="UNetwork.cs" t="Include" />
+            <e p="Utils.cs" t="Include" />
           </e>
         </e>
         <e p="Other" t="Include">
@@ -380,6 +383,8 @@
             </e>
           </e>
         </e>
+        <e p="ResultInfo.cs" t="Include" />
+        <e p="ResultList.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="BulletHole.cs" t="Include" />
           <e p="ClientSettings.cs" t="Include" />
@@ -449,6 +454,9 @@
         </e>
         <e p="Spawnpoint.cs" t="Include" />
         <e p="StopButtons.cs" t="Include" />
+        <e p="TempTest" t="Include">
+          <e p="MyNetworkManager.cs" t="Include" />
+        </e>
       </e>
       <e p="Cinemachine.csproj" t="IncludeRecursive" />
       <e p="com.unity.cinemachine.editor.csproj" t="IncludeRecursive" />

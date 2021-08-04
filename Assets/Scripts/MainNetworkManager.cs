@@ -22,7 +22,7 @@ public class MainNetworkManager : NetworkManager
         base.Start();
         RegisterWeaponPrefabs();
 
-        InvokeRepeating(nameof(Beat), 0f,5f);
+        // InvokeRepeating(nameof(Beat), 0f,5f);
     }
 
     [ContextMenu(nameof(RegisterWeaponPrefabs))]
@@ -38,6 +38,8 @@ public class MainNetworkManager : NetworkManager
     {
         Debug.Log(nameof(PreSpawnHoles).ToUpper());
         Vector3 pos = new Vector3(0f, -10000f, 0f);
+        
+        GameSystem.PreSpawnedBulletHoles = new Queue<BulletHole>();
         
         for (int i = 0; i < preSpawnedBullets; i++)
         {
@@ -83,19 +85,20 @@ public class MainNetworkManager : NetworkManager
             case NetworkManagerMode.ServerOnly:
                 StopServer();
                 break;
+            // StopClient();
             case NetworkManagerMode.Offline:
                 Debug.LogError("Trying to stop network that is already closed!");
                 break;
         }
     }
 
-    private bool _inGame = false;
+    private bool _inGame;
     public void StartGame()
     {
         _inGame = true;
         Debug.Log("START GAME FROM MANAGER");
-
-        ServerChangeScene("Map_01");
+        
+        ServerChangeScene(mapScene);
     }
 
     public override void OnServerAddPlayer(NetworkConnection conn)
@@ -125,13 +128,14 @@ public class MainNetworkManager : NetworkManager
         FindObjectOfType<GamemodeManager>().StartGame(this);
     }
 
+
     public override void OnStopServer() => _inGame = false;
 
     [ContextMenu("Stop game")]
-    private void StopGame()
+    public void StopGame()
     {
         if (!_inGame) return;
         _inGame = false;
         ServerChangeScene("Lobby");
-    }
+    } 
 }

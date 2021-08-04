@@ -41,12 +41,7 @@ public class Minimap : MonoBehaviour
     }
 
     private void MapOnPerformed(InputAction.CallbackContext obj) => bigMap.gameObject.SetActive(obj.performed);
-
-    private void OnChange()
-    {
-        
-    }
-
+    
     private Transform _ownerTransform;
     private readonly List<PointerPair> pointerPairs = new List<PointerPair>();
 
@@ -96,12 +91,12 @@ public class Minimap : MonoBehaviour
         }
         
         
-        foreach (PointerPair pointerPair in pointerPairs)
+        foreach (PointerPair pointerPair in pointerPairs.ToArray())
         {
             if (pointerPair.TargetTransform == null)
             {
-                Destroy(pointerPair.Pointer);
-                Destroy(pointerPair.BigPointer);
+                Destroy(pointerPair.Pointer.gameObject);
+                Destroy(pointerPair.BigPointer.gameObject);
                 
                 pointerPairs.Remove(pointerPair);
                 

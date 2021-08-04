@@ -343,6 +343,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NetworkManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977752, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977756, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
       propertyPath: m_RootOrder
@@ -420,6 +425,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
       propertyPath: minPlayers
       value: 2
       objectReference: {fileID: 0}
@@ -446,13 +456,8 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
-      propertyPath: autoStartServerBuild
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
-        type: 3}
       propertyPath: spawnPrefabs.Array.size
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
         type: 3}
@@ -466,20 +471,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6718066208262983437, guid: 25c4e9fd0b3e24a48a6918f5764c0fbe,
         type: 3}
+    - target: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
+        type: 3}
+      propertyPath: spawnPrefabs.Array.data[6]
+      value: 
+      objectReference: {fileID: 5036984573998859689, guid: 91d8ffc2f538b70469fa390fbbdae052,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ee2ff0afdcfbbf442ad2acfb35353936, type: 3}
---- !u!114 &101912958 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2974881914156977757, guid: ee2ff0afdcfbbf442ad2acfb35353936,
-    type: 3}
-  m_PrefabInstance: {fileID: 101912957}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77e9468a19b025d4a8ea89c0aa9fc702, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &123743856
 GameObject:
   m_ObjectHideFlags: 0
@@ -2385,7 +2384,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30ac6c0668b0d51409b3db9b6d8bdfc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 101912958}
   ipInput: {fileID: 373971979}
   nameInput: {fileID: 44038567}
   joinServer: {fileID: 2010743314592803250}

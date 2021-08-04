@@ -26,6 +26,8 @@ public class LobbyManager : NetworkBehaviour
     [SyncVar(hook = nameof(OnStartingInfo))]
     private string startingInfoText;
 
+    private bool gameStarted;
+
     [ServerCallback]
     private void Update()
     {
@@ -80,6 +82,8 @@ public class LobbyManager : NetworkBehaviour
     [ContextMenu("Force Start")]
     private void StartGame()
     {
+        if(gameStarted) return;
+        gameStarted = true;
         if (!isServer) return;
         Debug.Log("START GAME FROM LOBBY");
         FindObjectOfType<MainNetworkManager>().StartGame();

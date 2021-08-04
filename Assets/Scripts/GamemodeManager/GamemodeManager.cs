@@ -8,10 +8,11 @@ using UnityEditor;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class GamemodeManager : MonoBehaviour
+public class GamemodeManager : NetworkBehaviour
 {
     [Tooltip("Game lenght in seconds")] [SerializeField] private float gameLenght = 5 * 60;
     [SerializeField] private int killGoal = 20;
+    [SerializeField] private float respawnDelay;
 
     #region Spawn Points
 
@@ -32,8 +33,10 @@ public class GamemodeManager : MonoBehaviour
     #endregion
 
     private TextMeshProUGUI _timerText;
+    [SyncVar(hook = nameof(OnTimerChanged))]
     private float _timer;
     private bool _gameStarted;
+
 
     private TextMeshProUGUI TimerText
     {
@@ -50,18 +53,43 @@ public class GamemodeManager : MonoBehaviour
         get => _timer;
         set
         {
-            TimerText.text = $"{Mathf.Floor(value / 60):0}:{Mathf.Floor(value % 60):00}";
-            _timer = value;
+            _timer = Mathf.Max(0f, value);
+            TimerText.text = $"{Mathf.Floor(_timer / 60f):0}:{Mathf.Floor(_timer % 60):00}";
         }
     }
 
+    private ResultList _resultList;
+    private ResultList ResultList
+    {
+        get
+        {
+            if (!_resultList)
+                _resultList = FindObjectOfType<ResultList>();
+            return _resultList;
+        }
+    }
+
+    private MainNetworkManager _manager;
+
+    [ServerCallback]
+    private void Start() => Timer = gameLenght;
+    
+    private void OnTimerChanged(float oldTime, float newTime) => TimerText.text = $"{Mathf.Floor(newTime / 60f):0}:{Mathf.Floor(newTime % 60):00}";
+    
+    
+    private readonly Dictionary<NetworkConnection, ResultInfo> _resultInfos = new Dictionary<NetworkConnection, ResultInfo>();
+
     public void StartGame(MainNetworkManager manager)
     {
+        // NetworkServer.Spawn(gameObject);
+        _manager = manager;
+        
         Timer = gameLenght;
         _gameStarted = true;
-        
+
         foreach (KeyValuePair<NetworkConnection,ServerPlayer> pair in ServerInfo.PlayerData)
         {
+            //Spawn Player
             int randomPosition = Random.Range(0, AvalibleSpawnPoints.Count);
             PlayerState player = Instantiate(manager.mapPlayerPrefab,
                 AvalibleSpawnPoints[randomPosition].transform.position,
@@ -71,6 +99,9 @@ public class GamemodeManager : MonoBehaviour
             player.OnPlayerDeath.AddListener(OnPlayerDeath);
             
             NetworkServer.Spawn(player.gameObject, pair.Key);
+            
+            //Add player stats
+            _resultInfos.Add(pair.Key, ResultList.AddPlayer(pair.Key, pair.Value));
         }
     }
 
@@ -80,20 +111,57 @@ public class GamemodeManager : MonoBehaviour
         if(!_gameStarted) return;
 
         Timer -= Time.deltaTime;
+        
+        if(Timer <= 0f)
+            EndGame();
     }
 
     private static int KILLS = 0;
     private static int DEATHS = 1;
+    private static int ASSISTS = 2;
     
-    private static void OnPlayerDeath(NetworkConnection dead, NetworkConnection killer)
+    private void OnPlayerDeath(NetworkConnection dead, NetworkConnection killer)
     {
         ServerInfo.PlayerData[dead].PlayerStats[DEATHS] += 1;
-
-        Debug.Log(ServerInfo.PlayerData[dead].PlayerName +" has " + ServerInfo.PlayerData[dead].PlayerStats.Length + " deaths");       
+        _resultInfos[dead].Deaths += 1;
         
         if (dead != killer)
+        {
             ServerInfo.PlayerData[killer].PlayerStats[KILLS] += 1;
+            _resultInfos[killer].Kills += 1;
+            if (ServerInfo.PlayerData[killer].PlayerStats[KILLS] == killGoal) 
+                EndGame();
+        }
+
         Debug.Log(ServerInfo.PlayerData[killer].PlayerName +" has " + ServerInfo.PlayerData[killer].PlayerStats[KILLS] + " kills");
+        StartCoroutine(RespawnPlayer(dead));
+    }
+
+    private IEnumerator RespawnPlayer(NetworkConnection conn)
+    {
+        yield return new WaitForSeconds(respawnDelay);
+        int randomPosition = Random.Range(0, AvalibleSpawnPoints.Count);
+        PlayerState player = Instantiate(_manager.mapPlayerPrefab,
+            AvalibleSpawnPoints[randomPosition].transform.position,
+            Quaternion.identity);
+        AvalibleSpawnPoints.RemoveAt(randomPosition);
+            
+        player.OnPlayerDeath.AddListener(OnPlayerDeath);
+            
+        NetworkServer.Spawn(player.gameObject, conn);
+    }
+
+    private void EndGame()
+    {
+        RpcOnEndGame();
+        _manager.Invoke(nameof(_manager.StopGame), 7f);
+    }
+
+    [ClientRpc]
+    private void RpcOnEndGame()
+    {
+        ResultList.OnDisable();
+        ResultList.Activate(true);
     }
     
 }

@@ -9,7 +9,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    [SerializeField] private NetworkManager manager;
+    private NetworkManager manager;
     [SerializeField] private TMP_InputField ipInput;
     [SerializeField] private TMP_InputField nameInput;
     [SerializeField] private CustomButton joinServer;

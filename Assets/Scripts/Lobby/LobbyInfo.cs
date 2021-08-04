@@ -51,7 +51,6 @@ public class LobbyInfo : NetworkBehaviour
     }
     private void OnReady(bool oldReady, bool newReady)
     {
-        Debug.Log(nameof(oldReady) + " = " + oldReady + " --- " + nameof(newReady) + " = " + newReady);
         if (oldReady != newReady)
             readyText.transform.DOScale(new Vector3(1f, 0f, 1f), .15f).onComplete += ONComplete;
     }

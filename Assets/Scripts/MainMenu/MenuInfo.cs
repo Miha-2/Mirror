@@ -22,5 +22,5 @@ public static class MenuInfo
 
     public static float Hue = 0f;
 
-    public static string CustomIP = String.Empty;
+    public static string CustomIP = "localhost";
 }

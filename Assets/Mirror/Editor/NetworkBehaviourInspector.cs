@@ -80,7 +80,7 @@ namespace Mirror
             DrawDefaultSyncLists();
             DrawDefaultSyncSettings();
         }
-
+        
         //Draws network part of inspector
         protected void DrawNetworking()
         {

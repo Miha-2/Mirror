@@ -572,6 +572,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Results Menu",
+                    "type": "Button",
+                    "id": "cf66d2f5-467f-4b46-83d8-bfa2e222fa68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -616,6 +624,17 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Map",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e4c7cc46-d432-41e3-8645-1bb8001e030d",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Results Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

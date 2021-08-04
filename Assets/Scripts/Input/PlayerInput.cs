@@ -585,6 +585,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Results Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""cf66d2f5-467f-4b46-83d8-bfa2e222fa68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -629,6 +637,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e4c7cc46-d432-41e3-8645-1bb8001e030d"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Results Menu"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -956,6 +975,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_UiActions_PauseMenu = m_UiActions.FindAction("Pause Menu", throwIfNotFound: true);
         m_UiActions_ToggleCursor = m_UiActions.FindAction("ToggleCursor", throwIfNotFound: true);
         m_UiActions_Map = m_UiActions.FindAction("Map", throwIfNotFound: true);
+        m_UiActions_ResultsMenu = m_UiActions.FindAction("Results Menu", throwIfNotFound: true);
         // Item Interactions
         m_ItemInteractions = asset.FindActionMap("Item Interactions", throwIfNotFound: true);
         m_ItemInteractions_PrimaryAction = m_ItemInteractions.FindAction("PrimaryAction", throwIfNotFound: true);
@@ -1144,6 +1164,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_UiActions_PauseMenu;
     private readonly InputAction m_UiActions_ToggleCursor;
     private readonly InputAction m_UiActions_Map;
+    private readonly InputAction m_UiActions_ResultsMenu;
     public struct UiActionsActions
     {
         private @PlayerInput m_Wrapper;
@@ -1151,6 +1172,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @PauseMenu => m_Wrapper.m_UiActions_PauseMenu;
         public InputAction @ToggleCursor => m_Wrapper.m_UiActions_ToggleCursor;
         public InputAction @Map => m_Wrapper.m_UiActions_Map;
+        public InputAction @ResultsMenu => m_Wrapper.m_UiActions_ResultsMenu;
         public InputActionMap Get() { return m_Wrapper.m_UiActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1169,6 +1191,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Map.started -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
                 @Map.performed -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
                 @Map.canceled -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnMap;
+                @ResultsMenu.started -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnResultsMenu;
+                @ResultsMenu.performed -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnResultsMenu;
+                @ResultsMenu.canceled -= m_Wrapper.m_UiActionsActionsCallbackInterface.OnResultsMenu;
             }
             m_Wrapper.m_UiActionsActionsCallbackInterface = instance;
             if (instance != null)
@@ -1182,6 +1207,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
+                @ResultsMenu.started += instance.OnResultsMenu;
+                @ResultsMenu.performed += instance.OnResultsMenu;
+                @ResultsMenu.canceled += instance.OnResultsMenu;
             }
         }
     }
@@ -1398,6 +1426,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnPauseMenu(InputAction.CallbackContext context);
         void OnToggleCursor(InputAction.CallbackContext context);
         void OnMap(InputAction.CallbackContext context);
+        void OnResultsMenu(InputAction.CallbackContext context);
     }
     public interface IItemInteractionsActions
     {

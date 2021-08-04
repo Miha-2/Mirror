@@ -28,48 +28,104 @@
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/GameUI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/GameUI.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Items/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Items/Item.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Authenticators/BasicAuthenticator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Authenticators/BasicAuthenticator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/CompilerSymbols/PreprocessorDefine.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/CompilerSymbols/PreprocessorDefine.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/Discovery/NetworkDiscoveryBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/Discovery/NetworkDiscoveryBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/Experimental/NetworkTransformBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/Experimental/NetworkTransformBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/GUIConsole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/GUIConsole.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkAnimator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkAnimator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkPingDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkPingDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkRoomManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkRoomManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkTransformBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Components/NetworkTransformBase.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkScenePostProcess.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkScenePostProcess.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/SceneDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/SceneDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/SyncVarAttributeDrawer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/SyncVarAttributeDrawer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/TargetRpcProcessor.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/Processors/TargetRpcProcessor.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/WeaverTypes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/Weaver/WeaverTypes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Attributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Attributes.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/ClientScene.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/ClientScene.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Compression.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Compression.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/DotNetCompatibility.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/DotNetCompatibility.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/FloatBytePacker.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/FloatBytePacker.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/LocalConnections.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/LocalConnections.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/LogFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/LogFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/LogFilter.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/LogFilter.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/ConsoleColorLogHandler.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/ConsoleColorLogHandler.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/EditorLogSettingsLoader.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/EditorLogSettingsLoader.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/LogFactory.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/LogFactory.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/LogSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/LogSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/NetworkHeadlessLogger.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/NetworkHeadlessLogger.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/NetworkLogSettings.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Logging/NetworkLogSettings.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/MessagePacking.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/MessagePacking.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Messages.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Messages.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkAuthenticator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkAuthenticator.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkBehaviour.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnectionToClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnectionToClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnectionToServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkConnectionToServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkDiagnostics.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkDiagnostics.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkDiagnostics.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkDiagnostics.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NameInput.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/NameInput.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.png.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.png.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Packages/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Packages/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Client Settings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Client Settings.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/GamePlayer Settings.asset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/GamePlayer Settings.asset.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Timer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/Timer.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkReader.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkReader.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkReaderPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkReaderPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkStartPosition.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkStartPosition.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkTime.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkTime.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkVisibility.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkVisibility.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriter.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriterPool.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkWriterPool.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/RemoteCallHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/RemoteCallHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/StringHash.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/StringHash.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncDictionary.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncDictionary.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncSet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/SyncSet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/MirrorTransport/KcpTransport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpClient.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpClient.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpConnection.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpConnection.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/KCP/kcp2k/highlevel/KcpServer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/MultiplexTransport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/MultiplexTransport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/SimpleWebTransport/SimpleWebTransport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/SimpleWebTransport/SimpleWebTransport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Telepathy/Common.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Telepathy/Common.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Telepathy/VERSION" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/Telepathy/VERSION" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/TelepathyTransport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Telepathy/TelepathyTransport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Transport.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Transport.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Transport.cs.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/Transport/Transport.cs.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/UNetwork.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/UNetwork.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Network/TestShader.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Network/TestShader.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Network/Testr.shadergraph" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Network/Testr.shadergraph.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NetworkManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NetworkManager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/BulletHole.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/BulletHole.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FPSDisplay.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FPSDisplay.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptTemplates/51-Mirror__Network Authenticator-NewNetworkAuthenticator.cs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptTemplates/51-Mirror__Network Authenticator-NewNetworkAuthenticator.cs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ScriptTemplates/52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptTemplates/52-Mirror__Network Behaviour-NewNetworkBehaviour.cs.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GamePlayerSettings.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GamePlayerSettings.cs.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Scriptable Materials/ScriptableMaterial.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Scriptable Materials/ScriptableMaterial.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/Hittable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/Hittable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/IHittable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/IHittable.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/StopButtons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/StopButtons.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -101,9 +157,12 @@
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/27/220844eb/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/9e/9352a913/Network.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ResultList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/StopButtons.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/96/7b4656dd/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E2BCE5D3-3E70-4A76-A5C9-576F4D43769B/a9/3a24f860/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8F44D91B-549E-47C9-883E-180579F26EF6/f5/38d1d59f/Editor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" root0="FORCE_HIGHLIGHTING" />
@@ -114,13 +173,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Scenes/Network/TestShader.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GameSettings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GlobalEventSingleton.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/InputManager.cs" />
         <option value="$PROJECT_DIR$/Assets/GameUI.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PauseMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/TestMap.cs" />
@@ -135,15 +187,12 @@
         <option value="$PROJECT_DIR$/Assets/PlayerList.cs" />
         <option value="$PROJECT_DIR$/Assets/Test.cs" />
         <option value="$PROJECT_DIR$/Assets/LobbyList.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GamePlayerSettings.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GamemodeScriptable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Scriptable Materials/ScriptableMaterial.cs" />
         <option value="$PROJECT_DIR$/Assets/LobbyManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
-        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/BulletHole.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Gamemodes/GamemodeManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Gamemode.cs" />
@@ -151,8 +200,6 @@
         <option value="$PROJECT_DIR$/Assets/StopButtons.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/FPSDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Stable/IHittable.cs" />
         <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
@@ -162,9 +209,21 @@
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResultList.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResultInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" />
       </list>
     </option>
   </component>
@@ -315,6 +374,17 @@
       <workItem from="1627736306303" duration="6055000" />
       <workItem from="1627744236767" duration="5662000" />
       <workItem from="1627763059230" duration="7632000" />
+      <workItem from="1627837315981" duration="1048000" />
+      <workItem from="1627845457097" duration="10953000" />
+      <workItem from="1627856755504" duration="134000" />
+      <workItem from="1627901947993" duration="1642000" />
+      <workItem from="1627914756222" duration="3010000" />
+      <workItem from="1627935508498" duration="3208000" />
+      <workItem from="1627939047106" duration="688000" />
+      <workItem from="1628107887673" duration="1132000" />
+      <workItem from="1628109258117" duration="643000" />
+      <workItem from="1628112585935" duration="3567000" />
+      <workItem from="1628116598972" duration="75000" />
     </task>
     <servers />
   </component>
@@ -357,6 +427,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1625772919836" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1628114950513">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628114950513" />
     <state x="759" y="244" key="RiderGenerateDialog" timestamp="1627676875899">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -369,6 +443,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1625696456912" />
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1628109015239">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628109015239" />
     <state x="565" y="131" width="845" height="777" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1626383003319">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
