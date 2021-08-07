@@ -434,7 +434,7 @@ public class GunEditor : NetworkBehaviourInspector
         DrawPropertiesExcluding(serializedObject, exclucingProperties.ToArray());
         serializedObject.ApplyModifiedProperties();
         
-        DrawNetworking();
+        // DrawNetworking();
     }
 }
 #endif

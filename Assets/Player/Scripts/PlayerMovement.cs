@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Cinemachine;
 using UnityEngine;
 using Mirror;
+using UnityEditor;
 using UnityEngine.InputSystem;
 using Random = UnityEngine.Random;
 
@@ -23,7 +24,8 @@ public class PlayerMovement : NetworkBehaviour
     [SerializeField] private float sprintSpeed = 7f;
     [SerializeField] private float gravity = 10f;
     [SerializeField] private float jumpForce = 8f;
-    Vector3 moveVector = Vector3.zero;
+    [SerializeField] Vector3 moveVector = Vector3.zero;
+    [SerializeField] private bool isGrounded;
     Vector2 moveInput;
     [Header("Camera Movement")]
     [SerializeField] private float sensitivityUpDown = 1f;
@@ -67,7 +69,7 @@ public class PlayerMovement : NetworkBehaviour
             cc = GetComponent<CharacterController>();
         
         PlayerInput.PlayerMovement.Jump.performed += context => jumped = true;
-        PlayerInput.PlayerMovement.ResetPosition.performed += context => reset = 3;
+        // PlayerInput.PlayerMovement.ResetPosition.performed += context => reset = 3;
         PlayerInput.PlayerMovement.Sprint.performed += context => isSprinting = true;
         PlayerInput.PlayerMovement.Sprint.canceled += context => isSprinting = false;
     }
@@ -77,12 +79,12 @@ public class PlayerMovement : NetworkBehaviour
         if (!hasAuthority) return;
         if(!authorityStarted)return;
 
-        if (reset > 0)
-        {
-            transform.position = startPos;
-            reset--;
-            return;
-        }
+        // if (reset > 0)
+        // {
+        //     transform.position = startPos;
+        //     reset--;
+        //     return;
+        // }
         
         MovePlayer();
         MoveCamera();
@@ -93,30 +95,39 @@ public class PlayerMovement : NetworkBehaviour
     
     private Vector3 velocity;
     private Vector3 startPos;
+    private bool wasGrounded;
     private void MovePlayer()
     {
-        float forewardSpeed = isSprinting/* && cc.isGrounded */? sprintSpeed : speed;
+        isGrounded = cc.isGrounded;
+        float forewardSpeed = isSprinting /* && cc.isGrounded */ ? sprintSpeed : speed;
         moveInput = PlayerInput.PlayerMovement.Movement.ReadValue<Vector2>();
 
         if (!inAction)
             velocity = transform.forward * (moveInput.y * (moveInput.y > 0f ? forewardSpeed : speed)) +
-                       transform.right * (moveInput.x * (moveInput.y > 0f ? forewardSpeed : speed)) / 2;
+                       transform.right * (moveInput.x * (moveInput.y > 0f ? forewardSpeed : speed)) / 1.3333f;
         else
-            velocity = transform.forward * moveInput.y * speed / 2 + transform.right * moveInput.x * speed / 4;
+            velocity = transform.forward * moveInput.y * speed / 1.5f + transform.right * moveInput.x * speed / 3f;
 
         moveVector.x = velocity.x;
         moveVector.z = velocity.z;
+
+        if (wasGrounded && !cc.isGrounded && moveVector.y < 0f)
+        {
+            moveVector.y = -gravity * Time.deltaTime;
+            Debug.Log("DID IT");
+        }
+
         if(!cc.isGrounded)
             moveVector.y -= gravity * Time.deltaTime;
         else if(jumped)
             moveVector.y = jumpForce;
         else
             moveVector.y = -cc.skinWidth / Time.deltaTime;
+        
+        wasGrounded = cc.isGrounded;
 
         cc.Move(moveVector * Time.deltaTime);
         jumped = false;
-
-
         #region Multipliers
 
         float mMultiplier = cc.isGrounded ? 1f : 1.3f;

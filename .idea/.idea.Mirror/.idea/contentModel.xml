@@ -2522,7 +2522,7 @@
               </e>
             </e>
           </e>
-          <e p="com.unity.timeline@1.5.5" t="Include">
+          <e p="com.unity.timeline@1.5.6" t="Include">
             <e p="DocCodeExamples" t="Include">
               <e p="DocCodeExamples.asmdef" t="Include" />
             </e>

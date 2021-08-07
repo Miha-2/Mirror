@@ -29,8 +29,8 @@ public class PlayerState : Destroyable
     [SerializeField] private float regenRate = 8f;
     private float regenTimer;
 
-    private bool isDead;
-    
+    public bool IsDead { get; private set; }
+
     private Rigidbody[] ragdollRbs;
     private Collider[] ragdollColliders;
 
@@ -101,17 +101,31 @@ public class PlayerState : Destroyable
         FindObjectOfType<Minimap>().AddPointer(transform, Color.HSVToRGB(playerHue, 1f, 1f), hasAuthority);
     }
     
+    private List<KeyValuePair<NetworkConnection, float>> _damageLog = new List<KeyValuePair<NetworkConnection, float>>();
     
     #region Death
 
-    [HideInInspector] public UnityEvent<NetworkConnection, NetworkConnection> OnPlayerDeath = new UnityEvent<NetworkConnection, NetworkConnection>();
+    [HideInInspector] public UnityEvent<NetworkConnection, NetworkConnection, NetworkConnection> OnPlayerDeath = new UnityEvent<NetworkConnection, NetworkConnection, NetworkConnection>();
     
     //Server call
     private void Death(NetworkConnection killer)
     {
-        isDead = true;
+        IsDead = true;
         Invoke(nameof(DeathCleanup), 8f);
-        OnPlayerDeath.Invoke(connectionToClient, killer);
+        
+        Dictionary<NetworkConnection, float> damageAmount = new Dictionary<NetworkConnection, float>();
+
+        foreach (KeyValuePair<NetworkConnection,float> pair in _damageLog)
+        {
+            if (damageAmount.ContainsKey(pair.Key))
+                damageAmount[pair.Key] += pair.Value;
+            else
+                damageAmount.Add(pair.Key, pair.Value);
+        }
+
+        NetworkConnection assister = (from pair in damageAmount where ((pair.Value >= maxHealth / 2) && (pair.Key != killer)) select pair.Key).FirstOrDefault();
+
+        OnPlayerDeath.Invoke(connectionToClient, killer, assister);
         RpcDeath();
     }
 
@@ -133,6 +147,7 @@ public class PlayerState : Destroyable
                 playerItem.Item.enabled = false;
         }
         
+        FindObjectOfType<Minimap>().RemovePointer(transform);
         nameDisplay.gameObject.SetActive(false);
         playerCamera.gameObject.SetActive(false);
         if(playerItem.Item != null)
@@ -142,12 +157,10 @@ public class PlayerState : Destroyable
 
     #endregion
 
-    
-    
     private LayerMask headshotMask;
     public override void Hit(HitInfo hitInfo, Item item)
     {
-        if (isDead)
+        if (IsDead)
             return;
         float multiplier = 1f;
         Collider[] colliders = Physics.OverlapSphere(hitInfo.Point, .05f, headshotMask);
@@ -159,7 +172,12 @@ public class PlayerState : Destroyable
                 break;
             }
         }
-        Health -= hitInfo.Damage * multiplier;
+
+        float damage = hitInfo.Damage * multiplier;
+        
+        Health -= damage;
+        
+        _damageLog.Add(new KeyValuePair<NetworkConnection, float>(item.connectionToClient, damage));
         
         if (Health <= 0f)
         {
@@ -182,7 +200,28 @@ public class PlayerState : Destroyable
     {
         regenTimer -= Time.deltaTime;
         if (regenTimer <= 0f && Math.Abs(Health - maxHealth) > .01f && Health > 0f)
-            Health += regenRate * Time.deltaTime;
+        {
+            float regenHealth = regenRate * Time.deltaTime;
+            
+            Health += regenHealth;
+
+            while (regenHealth > 0f)
+            {
+                if(_damageLog.Count == 0)
+                    break;
+                
+                if (_damageLog[0].Value <= regenHealth)
+                {
+                    regenHealth -= _damageLog[0].Value;
+                    _damageLog.RemoveAt(0);
+                }
+                else
+                {
+                    _damageLog[0] = new KeyValuePair<NetworkConnection, float>(_damageLog[0].Key, _damageLog[0].Value - regenHealth);
+                    break;
+                }
+            }
+        }
     }
 
     private void SetRagdoll(bool state)

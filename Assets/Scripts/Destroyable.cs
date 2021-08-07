@@ -100,7 +100,7 @@ public class DestroyableEditor : NetworkBehaviourInspector
             exclude = "respawnTime";
         DrawPropertiesExcluding(serializedObject, exclude);
         serializedObject.ApplyModifiedProperties();
-        DrawNetworking();
+        // DrawNetworking();
     }
 }
 #endif

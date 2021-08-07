@@ -47,21 +47,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
+  PersistNetworkManagerToOfflineScene: 0
   runInBackground: 1
   autoStartServerBuild: 1
-  showDebugMessages: 0
-  serverTickRate: 30
-  serverBatching: 0
+  serverTickRate: 60
+  serverBatching: 1
   serverBatchInterval: 0
   offlineScene: 
   onlineScene: 
   transport: {fileID: 2974881914156977759}
   networkAddress: localhost
-  maxConnections: 5
+  maxConnections: 8
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 5029592601248271980, guid: 003a891db86e3284abea723d6db435cc,
+  playerPrefab: {fileID: 8417804094640963806, guid: 79591b30ca04cda498e7105693059bc9,
     type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 1
@@ -90,7 +90,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  serverIP: 159.89.12.70
   showGUI: 0
   offsetX: 0
   offsetY: 0
@@ -106,7 +105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 7780
+  Port: 7785
   NoDelay: 1
   Interval: 10
   FastResend: 2
@@ -128,9 +127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc654f29862fc2643b948f772ebb9e68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  showPing: 1
-  showRoundTripTime: 1
-  position: {x: 12, y: 960}
-  fontSize: 29
-  textColor: {r: 1, g: 1, b: 1, a: 0.3137255}
-  format: '{0}ms'
+  color: {r: 0.33, g: 0.33, b: 0.33, a: 1}
+  paddingX: 9
+  paddingY: 1

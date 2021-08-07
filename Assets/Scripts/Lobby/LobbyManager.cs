@@ -11,10 +11,16 @@ public class LobbyManager : NetworkBehaviour
 {
     public List<LobbyPlayer> PlayerList = new List<LobbyPlayer>();
 
+    [SerializeField] private LobbyPlayer prefabLobbyPlayer;
+
     [SerializeField] private TextMeshProUGUI playersInfo;
     [SerializeField] private TextMeshProUGUI startingInfo;
 
+    [Space]
     [SerializeField] private int minPlayers = 2;
+
+    [SerializeField] private float defaultTime = 120f;
+    [SerializeField] private float readyTime = 5f;
     private bool enoughPlayers;
     private bool allReady;
     
@@ -28,6 +34,30 @@ public class LobbyManager : NetworkBehaviour
 
     private bool gameStarted;
 
+    private void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
+        if (!isServer) return;
+        
+#if UNITY_EDITOR
+        minPlayers = 1;
+#endif
+
+        foreach (KeyValuePair<NetworkConnection, ServerPlayer> pair in ServerInfo.PlayerData)
+        {
+            if (PlayerList.Any(lobbyPlayer => lobbyPlayer.connectionToClient == pair.Key))
+                return;
+            
+            LobbyPlayer player = Instantiate(prefabLobbyPlayer);
+        
+            PlayerList.Add(player);
+        
+            NetworkServer.Spawn(player.gameObject, pair.Key);
+        }
+    }
+
     [ServerCallback]
     private void Update()
     {
@@ -39,13 +69,13 @@ public class LobbyManager : NetworkBehaviour
         int readyPlayers = PlayerList.Count(lobbyPlayer => lobbyPlayer.IsReady);
 
         if (!enoughPlayers && playerCount >= minPlayers)
-            pureTimer = 60f;
+            pureTimer = defaultTime;
         enoughPlayers = playerCount >= minPlayers;
 
         if (!allReady && readyPlayers == playerCount)
-            pureTimer = 5f;
+            pureTimer = readyTime;
         else if (allReady && readyPlayers != playerCount)
-            pureTimer = 60f;
+            pureTimer = defaultTime;
         allReady = readyPlayers == playerCount;
         
         playersInfoText = $"Players Ready {readyPlayers}/{playerCount}";
@@ -73,6 +103,18 @@ public class LobbyManager : NetworkBehaviour
             startingInfo.text = startingText;
             startingInfoText = startingText;
         }
+    }
+
+    public void PlayerJoined(NetworkConnection conn)
+    {
+        if (PlayerList.Any(lobbyPlayer => lobbyPlayer.connectionToClient == conn))
+            return;
+
+        LobbyPlayer player = Instantiate(prefabLobbyPlayer);
+        
+        PlayerList.Add(player);
+        
+        NetworkServer.Spawn(player.gameObject, conn);
     }
 
     private void OnPlayerInfo(string oldInfo, string newInfo) => playersInfo.text = newInfo;

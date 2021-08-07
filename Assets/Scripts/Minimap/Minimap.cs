@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -69,6 +70,23 @@ public class Minimap : MonoBehaviour
         }
 
         pointerPairs.Add(new PointerPair { Pointer = pointer, BigPointer = bigPointer, TargetTransform = targetTransform});
+    }
+
+    public void RemovePointer(Transform removeTransform)
+    {
+        bool foundMatch = false;
+        foreach (PointerPair pointerPair in pointerPairs.Where(pointerPair => pointerPair.TargetTransform == removeTransform))
+        {
+            foundMatch = true;
+                
+            Destroy(pointerPair.Pointer.gameObject);
+            Destroy(pointerPair.BigPointer.gameObject);
+                
+            pointerPairs.Remove(pointerPair);
+            break;
+        }
+
+        Debug.Log(foundMatch ? "Successfully removed a player from minimap" : "Couldn't find player to remove from minimap");
     }
 
     private void LateUpdate()

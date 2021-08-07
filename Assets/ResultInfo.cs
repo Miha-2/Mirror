@@ -30,6 +30,7 @@ public class ResultInfo : NetworkBehaviour
     private string _name;
     public string Name
     {
+        get => _name;
         set
         {
             _name = value;
@@ -60,6 +61,8 @@ public class ResultInfo : NetworkBehaviour
         Debug.Log("ON START CLIENT RES");
 
         _resultList = FindObjectOfType<ResultList>();
+        if(!isServer)
+            _resultList.ResultInfos.Add(this);
         transform.SetParent(_resultList.layoutRoot, false);
 
         hueImage.color = Color.HSVToRGB(_hue, 1f, 1f);

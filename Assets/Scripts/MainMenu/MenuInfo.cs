@@ -22,5 +22,10 @@ public static class MenuInfo
 
     public static float Hue = 0f;
 
-    public static string CustomIP = "localhost";
+    public static string CustomIP =
+#if UNITY_EDITOR
+        "localhost";
+#else
+        String.Empty;
+#endif
 }

@@ -30,7 +30,7 @@ public class MainNetworkManager : NetworkManager
     {
         foreach (Item w in GameSystem.Weapons)
         {
-            ClientScene.RegisterPrefab(w.gameObject);
+            NetworkClient.RegisterPrefab(w.gameObject);
         }
     }
 
@@ -56,6 +56,12 @@ public class MainNetworkManager : NetworkManager
     {
         base.OnServerConnect(conn);
         ServerInfo.PlayerData.Add(conn, new ServerPlayer{Hue = Random.Range(0f, 1f)});
+
+        if (!_inGame)
+            FindObjectOfType<LobbyManager>().PlayerJoined(conn);
+        else
+            FindObjectOfType<GamemodeManager>().PlayerJoined(conn);
+        //Get info data then spawn the player
     }
 
     private void Beat() => Debug.Log("Server status: " + (isNetworkActive ? "active" : "inactive"));
@@ -101,33 +107,26 @@ public class MainNetworkManager : NetworkManager
         ServerChangeScene(mapScene);
     }
 
-    public override void OnServerAddPlayer(NetworkConnection conn)
-    {
-        if (!_inGame)
-            base.OnServerAddPlayer(conn);
-    }
-
     public override void OnServerSceneChanged(string sceneName)
     {
         base.OnServerSceneChanged(sceneName);
         
         if(!_inGame)return;
         
-        foreach (KeyValuePair<NetworkConnection, ServerPlayer> conn in ServerInfo.PlayerData)
-        {
-            Transform startPos = GetStartPosition();
-            GameObject player = startPos != null
-                ? Instantiate(playerObject.gameObject, startPos.position, startPos.rotation)
-                : Instantiate(playerObject.gameObject);
-
-            NetworkServer.AddPlayerForConnection(conn.Key, player);
-        }
+        // foreach (KeyValuePair<NetworkConnection, ServerPlayer> conn in ServerInfo.PlayerData)
+        // {
+        //     Transform startPos = GetStartPosition();
+        //     GameObject player = startPos != null
+        //         ? Instantiate(playerObject.gameObject, startPos.position, startPos.rotation)
+        //         : Instantiate(playerObject.gameObject);
+        //
+        //     NetworkServer.AddPlayerForConnection(conn.Key, player);
+        // }
         
         PreSpawnHoles();
         
         FindObjectOfType<GamemodeManager>().StartGame(this);
     }
-
 
     public override void OnStopServer() => _inGame = false;
 
@@ -137,5 +136,9 @@ public class MainNetworkManager : NetworkManager
         if (!_inGame) return;
         _inGame = false;
         ServerChangeScene("Lobby");
-    } 
+    }
+
+    [SerializeField] private NetworkManagerMode _mode;
+
+    private void Update() => _mode = mode;
 }

@@ -9,5 +9,8 @@ public class Spawnpoint : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         Gizmos.DrawSphere(transform.position, 1f);
+        
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, FindObjectOfType<GamemodeManager>().SpawnPointTreshold);
     }
 }

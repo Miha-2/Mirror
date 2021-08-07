@@ -31,7 +31,6 @@ public class LobbyPlayer : NetworkBehaviour
     [Command]
     private void CmdSendPlayerData(string playerName, float hue)
     {
-        FindObjectOfType<LobbyManager>().PlayerList.Add(this);
         ServerInfo.PlayerData[connectionToClient] = new ServerPlayer {PlayerName = playerName, Hue = hue, PlayerStats = new int[3]};
         Debug.Log("Lenght: " + ServerInfo.PlayerData[connectionToClient].PlayerStats.Length);
         _lobbyInfo = FindObjectOfType<LobbyList>().AddPlayer(hue, playerName, connectionToClient);

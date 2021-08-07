@@ -37,6 +37,9 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+
         if (PlayerPrefs.HasKey(PLAYER_NAME))
         {
             string playerName = PlayerPrefs.GetString(PLAYER_NAME);

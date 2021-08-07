@@ -20,22 +20,26 @@ public class ResultList : NetworkBehaviour
         
         NetworkServer.Spawn(resultInfo.gameObject, conn);
         
-        _resultInfos.Add(resultInfo);
+        ResultInfos.Add(resultInfo);
         return resultInfo;
     }
 
     public Image image;
-    
-    private readonly List<ResultInfo> _resultInfos = new List<ResultInfo>();
+    public List<ResultInfo> ResultInfos { get; } = new List<ResultInfo>();
 
     public void UpdateInfoOrder()
     {
-        ResultInfo[] orderedInfos = _resultInfos.OrderBy(x => x.Kills).ToArray();
+        ResultInfo[] orderedInfos = ResultInfos.OrderBy(x => x.Kills).ToArray();
 
         for (int i = 0; i < orderedInfos.Length; i++)
         {
+            if (orderedInfos[i] == null)
+            {
+                ResultInfos.Remove(orderedInfos[i]);
+                continue;
+            }
+
             orderedInfos[i].transform.SetSiblingIndex(orderedInfos.Length - 1 - i);
-            Debug.Log(orderedInfos[i].Kills);
         }
     }
 

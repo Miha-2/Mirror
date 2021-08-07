@@ -983,6 +983,8 @@ namespace Mirror
             // internally sends a spawn message for each one to the connection.
             foreach (NetworkIdentity identity in NetworkIdentity.spawned.Values)
             {
+                if(identity == null)
+                    continue;
                 // try with far away ones in ummorpg!
                 if (identity.gameObject.activeSelf) //TODO this is different
                 {

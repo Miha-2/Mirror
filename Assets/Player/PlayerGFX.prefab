@@ -2362,6 +2362,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
 --- !u!114 &6371052396987887868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2380,6 +2383,9 @@ MonoBehaviour:
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01
+  compressRotation: 0
+  interpolateScale: 1
+  syncScale: 1
   target: {fileID: 8290495756098208673}
 --- !u!114 &9044292552751947138
 MonoBehaviour:
@@ -2413,7 +2419,7 @@ MonoBehaviour:
   syncInterval: 0.1
   cameraPivot: {fileID: 8290495756098208673}
   playerAnimator: {fileID: 2643905920499120840}
-  speed: 4.5
+  speed: 6
   sprintSpeed: 8.5
   gravity: 22
   jumpForce: 7
@@ -2453,7 +2459,7 @@ MonoBehaviour:
   world_healthbar: {fileID: 7601480760597899156}
   regenAfter: 5
   regenRate: 12
-  PlayerDeath:
+  OnPlayerDeath:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &3668137067601945098

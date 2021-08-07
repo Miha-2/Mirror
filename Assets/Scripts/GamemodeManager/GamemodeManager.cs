@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Mirror;
+using MirrorProject.TestSceneTwo;
 using TMPro;
 using UnityEditor;
 using UnityEngine;
@@ -13,6 +14,8 @@ public class GamemodeManager : NetworkBehaviour
     [Tooltip("Game lenght in seconds")] [SerializeField] private float gameLenght = 5 * 60;
     [SerializeField] private int killGoal = 20;
     [SerializeField] private float respawnDelay;
+    [SerializeField] private float spawnPointTreshold = 8f;
+    public float SpawnPointTreshold => spawnPointTreshold;
 
     #region Spawn Points
 
@@ -80,8 +83,7 @@ public class GamemodeManager : NetworkBehaviour
     private readonly Dictionary<NetworkConnection, ResultInfo> _resultInfos = new Dictionary<NetworkConnection, ResultInfo>();
 
     public void StartGame(MainNetworkManager manager)
-    {
-        // NetworkServer.Spawn(gameObject);
+    { 
         _manager = manager;
         
         Timer = gameLenght;
@@ -110,6 +112,9 @@ public class GamemodeManager : NetworkBehaviour
     {
         if(!_gameStarted) return;
 
+        if (ServerInfo.PlayerData.Count == 0)
+            _manager.StopGame();
+        
         Timer -= Time.deltaTime;
         
         if(Timer <= 0f)
@@ -120,10 +125,16 @@ public class GamemodeManager : NetworkBehaviour
     private static int DEATHS = 1;
     private static int ASSISTS = 2;
     
-    private void OnPlayerDeath(NetworkConnection dead, NetworkConnection killer)
+    private void OnPlayerDeath(NetworkConnection dead, NetworkConnection killer, NetworkConnection assister)
     {
         ServerInfo.PlayerData[dead].PlayerStats[DEATHS] += 1;
         _resultInfos[dead].Deaths += 1;
+
+        if (assister != null)
+        {
+            ServerInfo.PlayerData[assister].PlayerStats[ASSISTS] += 1;
+            _resultInfos[assister].Assists += 1;
+        }
         
         if (dead != killer)
         {
@@ -134,17 +145,33 @@ public class GamemodeManager : NetworkBehaviour
         }
 
         Debug.Log(ServerInfo.PlayerData[killer].PlayerName +" has " + ServerInfo.PlayerData[killer].PlayerStats[KILLS] + " kills");
-        StartCoroutine(RespawnPlayer(dead));
+        StartCoroutine(RespawnPlayer(dead, respawnDelay));
     }
 
-    private IEnumerator RespawnPlayer(NetworkConnection conn)
+    private IEnumerator RespawnPlayer(NetworkConnection conn, float delay)
     {
-        yield return new WaitForSeconds(respawnDelay);
-        int randomPosition = Random.Range(0, AvalibleSpawnPoints.Count);
+        yield return new WaitForSeconds(delay);
+
+        IEnumerable<PlayerState> alivePlayers = FindObjectsOfType<PlayerState>().Where(x => !x.IsDead);
+
+        List<Spawnpoint> outThresholdSpawnPoints = new List<Spawnpoint>();
+        
+        foreach (Spawnpoint spawnPoint in SpawnPoints)
+        {
+            bool outThreshold = alivePlayers.All(alivePlayer => Vector3.Distance(spawnPoint.transform.position, alivePlayer.transform.position) >= SpawnPointTreshold);
+
+            if(outThreshold)
+                outThresholdSpawnPoints.Add(spawnPoint);
+        }
+
+        Spawnpoint playerSpawnPoint = outThresholdSpawnPoints.Count > 0
+            ? outThresholdSpawnPoints[Random.Range(0, outThresholdSpawnPoints.Count)]
+            : SpawnPoints[Random.Range(0, SpawnPoints.Length)];
+        
+        
         PlayerState player = Instantiate(_manager.mapPlayerPrefab,
-            AvalibleSpawnPoints[randomPosition].transform.position,
+            playerSpawnPoint.transform.position,
             Quaternion.identity);
-        AvalibleSpawnPoints.RemoveAt(randomPosition);
             
         player.OnPlayerDeath.AddListener(OnPlayerDeath);
             
@@ -154,16 +181,23 @@ public class GamemodeManager : NetworkBehaviour
     private void EndGame()
     {
         RpcOnEndGame();
-        _manager.Invoke(nameof(_manager.StopGame), 7f);
+        _manager.Invoke(nameof(_manager.StopGame), 3f);
     }
 
     [ClientRpc]
     private void RpcOnEndGame()
     {
-        ResultList.OnDisable();
+        GameSystem.InputManager.PlayerInput.Disable();
         ResultList.Activate(true);
     }
-    
+
+    public void PlayerJoined(NetworkConnection conn)
+    {
+        //Spawn spectator/player
+        
+        // StartCoroutine(RespawnPlayer(conn, 0f));
+        // _resultInfos.Add(conn, ResultList.AddPlayer(conn, ServerInfo.PlayerData[conn]));
+    }
 }
 
 #if UNITY_EDITOR
