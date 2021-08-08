@@ -761,6 +761,22 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Crouch"",
+                    ""type"": ""Button"",
+                    ""id"": ""605857ac-81b7-4683-8ae3-a40ceaffc2da"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fly"",
+                    ""type"": ""Value"",
+                    ""id"": ""3253e521-5b2c-4cce-8315-7100aef2deb1"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -862,6 +878,83 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Sprint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7c69d8df-56b7-46f5-b797-18298500ce6f"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Crouch"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Shift/Space"",
+                    ""id"": ""25a05e35-ef3f-42a2-8c72-01ca5e7a9300"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""b4210da4-21fb-464f-92dd-9056a7b6e4a4"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""c5ba492b-5513-4482-9536-9e6306d67e38"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Q/E"",
+                    ""id"": ""420990bb-4b2b-404e-83c3-fd1352141db1"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fly"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""2174b33c-4923-4219-a457-9fe919c99e9b"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""76f36d9e-1287-493e-a91b-1125da0fa894"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Fly"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         },
@@ -988,6 +1081,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_PlayerMovement_MouseDelta = m_PlayerMovement.FindAction("MouseDelta", throwIfNotFound: true);
         m_PlayerMovement_ResetPosition = m_PlayerMovement.FindAction("ResetPosition", throwIfNotFound: true);
         m_PlayerMovement_Sprint = m_PlayerMovement.FindAction("Sprint", throwIfNotFound: true);
+        m_PlayerMovement_Crouch = m_PlayerMovement.FindAction("Crouch", throwIfNotFound: true);
+        m_PlayerMovement_Fly = m_PlayerMovement.FindAction("Fly", throwIfNotFound: true);
         // Test
         m_Test = asset.FindActionMap("Test", throwIfNotFound: true);
         m_Test_Ragdoll = m_Test.FindAction("Ragdoll", throwIfNotFound: true);
@@ -1272,6 +1367,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_PlayerMovement_MouseDelta;
     private readonly InputAction m_PlayerMovement_ResetPosition;
     private readonly InputAction m_PlayerMovement_Sprint;
+    private readonly InputAction m_PlayerMovement_Crouch;
+    private readonly InputAction m_PlayerMovement_Fly;
     public struct PlayerMovementActions
     {
         private @PlayerInput m_Wrapper;
@@ -1281,6 +1378,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @MouseDelta => m_Wrapper.m_PlayerMovement_MouseDelta;
         public InputAction @ResetPosition => m_Wrapper.m_PlayerMovement_ResetPosition;
         public InputAction @Sprint => m_Wrapper.m_PlayerMovement_Sprint;
+        public InputAction @Crouch => m_Wrapper.m_PlayerMovement_Crouch;
+        public InputAction @Fly => m_Wrapper.m_PlayerMovement_Fly;
         public InputActionMap Get() { return m_Wrapper.m_PlayerMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1305,6 +1404,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Sprint.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
                 @Sprint.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
                 @Sprint.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnSprint;
+                @Crouch.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
+                @Crouch.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
+                @Crouch.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnCrouch;
+                @Fly.started -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnFly;
+                @Fly.performed -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnFly;
+                @Fly.canceled -= m_Wrapper.m_PlayerMovementActionsCallbackInterface.OnFly;
             }
             m_Wrapper.m_PlayerMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -1324,6 +1429,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Sprint.started += instance.OnSprint;
                 @Sprint.performed += instance.OnSprint;
                 @Sprint.canceled += instance.OnSprint;
+                @Crouch.started += instance.OnCrouch;
+                @Crouch.performed += instance.OnCrouch;
+                @Crouch.canceled += instance.OnCrouch;
+                @Fly.started += instance.OnFly;
+                @Fly.performed += instance.OnFly;
+                @Fly.canceled += instance.OnFly;
             }
         }
     }
@@ -1441,6 +1552,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnMouseDelta(InputAction.CallbackContext context);
         void OnResetPosition(InputAction.CallbackContext context);
         void OnSprint(InputAction.CallbackContext context);
+        void OnCrouch(InputAction.CallbackContext context);
+        void OnFly(InputAction.CallbackContext context);
     }
     public interface ITestActions
     {

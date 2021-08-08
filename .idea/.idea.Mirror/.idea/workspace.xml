@@ -26,36 +26,14 @@
   <component name="ChangeListManager">
     <list default="true" id="c841a182-c860-4ee3-883f-be3b479ae402" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResultInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResultInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ResultList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResultList.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NetworkManager.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NetworkManager.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/ScriptTemplates.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ScriptTemplates.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Spawnpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spawnpoint.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TempPlayer.prefab" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/TempPlayer.prefab.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
@@ -96,6 +74,8 @@
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SpectatorLimit.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/ShotInfo.cs" root0="FORCE_HIGHLIGHTING" />
@@ -104,8 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/TestMap.cs" />
-        <option value="$PROJECT_DIR$/Assets/SelfPointer.cs" />
         <option value="$PROJECT_DIR$/Assets/Pointer.cs" />
         <option value="$PROJECT_DIR$/Assets/BigPointer.cs" />
         <option value="$PROJECT_DIR$/Assets/Minimap.cs" />
@@ -142,7 +120,6 @@
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Components/NetworkPingDisplay.cs" />
@@ -150,11 +127,14 @@
         <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" />
         <option value="$PROJECT_DIR$/Assets/ResultList.cs" />
         <option value="$PROJECT_DIR$/Assets/ResultInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
         <option value="$PROJECT_DIR$/Assets/StopButtons.cs" />
+        <option value="$PROJECT_DIR$/Assets/SpectatorLimit.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs" />
       </list>
     </option>
   </component>
@@ -321,7 +301,9 @@
       <workItem from="1628262490213" duration="4310000" />
       <workItem from="1628277442647" duration="2704000" />
       <workItem from="1628282001280" duration="2757000" />
-      <workItem from="1628372389984" duration="1113000" />
+      <workItem from="1628372389984" duration="1541000" />
+      <workItem from="1628415765549" duration="2268000" />
+      <workItem from="1628431808145" duration="6770000" />
     </task>
     <servers />
   </component>
@@ -388,10 +370,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="565" y="131" width="845" height="777" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1626383003319" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1627418492652">
+    <state x="616" y="240" key="run.anything.popup" timestamp="1628416388729">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="616" y="240" key="run.anything.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627418492652" />
+    <state x="616" y="240" key="run.anything.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628416388729" />
     <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627675354587">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>

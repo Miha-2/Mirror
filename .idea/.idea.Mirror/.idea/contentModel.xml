@@ -366,6 +366,7 @@
             <e p="PlayerObject.cs" t="Include" />
             <e p="PlayerState.cs" t="Include" />
           </e>
+          <e p="SpectatorPlayer.cs" t="Include" />
         </e>
         <e p="Plugins" t="Include">
           <e p="Demigiant" t="Include">
@@ -453,6 +454,7 @@
           <e p="56-Mirror__Network Discovery-NewNetworkDiscovery.cs.txt" t="Include" />
         </e>
         <e p="Spawnpoint.cs" t="Include" />
+        <e p="SpectatorLimit.cs" t="Include" />
         <e p="StopButtons.cs" t="Include" />
         <e p="TempTest" t="Include">
           <e p="MyNetworkManager.cs" t="Include" />

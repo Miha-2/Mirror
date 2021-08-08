@@ -15,6 +15,7 @@ public class GamemodeManager : NetworkBehaviour
     [SerializeField] private int killGoal = 20;
     [SerializeField] private float respawnDelay;
     [SerializeField] private float spawnPointTreshold = 8f;
+    [SerializeField] private GameObject prefabSpectator;
     public float SpawnPointTreshold => spawnPointTreshold;
 
     #region Spawn Points
@@ -193,10 +194,9 @@ public class GamemodeManager : NetworkBehaviour
 
     public void PlayerJoined(NetworkConnection conn)
     {
-        //Spawn spectator/player
-        
-        // StartCoroutine(RespawnPlayer(conn, 0f));
-        // _resultInfos.Add(conn, ResultList.AddPlayer(conn, ServerInfo.PlayerData[conn]));
+        //Spawn spectator
+        GameObject go = Instantiate(prefabSpectator);
+        NetworkServer.Spawn(go, conn);
     }
 }
 
