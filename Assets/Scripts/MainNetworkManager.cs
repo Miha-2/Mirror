@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using kcp2k;
 using UnityEngine;
 using Mirror;
 using MirrorProject.TestSceneTwo;
+using UnityEngine.Localization.SmartFormat.Utilities;
 using UnityEngine.SceneManagement;
 using Random = UnityEngine.Random;
 
@@ -28,12 +30,15 @@ public class MainNetworkManager : NetworkManager
     [ContextMenu(nameof(RegisterWeaponPrefabs))]
     private void RegisterWeaponPrefabs()
     {
-        foreach (Item w in GameSystem.Weapons)
+        foreach (Item w in GameSystem.Items)
         {
             NetworkClient.RegisterPrefab(w.gameObject);
         }
     }
 
+    /// <summary>
+    /// Pre-spawns bullet holes on a server to improve performance
+    /// </summary>
     private void PreSpawnHoles()
     {
         Debug.Log(nameof(PreSpawnHoles).ToUpper());
@@ -48,28 +53,21 @@ public class MainNetworkManager : NetworkManager
             bulletHole.gameObject.SetActive(false);
             GameSystem.PreSpawnedBulletHoles.Enqueue(bulletHole);
         }
-
-        Debug.Log(GameSystem.PreSpawnedBulletHoles.Count + " Bullet Holes!");
     }
 
-    public override void OnServerConnect(NetworkConnection conn)
-    {
-        base.OnServerConnect(conn);
-        ServerInfo.PlayerData.Add(conn, new ServerPlayer{Hue = Random.Range(0f, 1f)});
-
-        if (!_inGame)
-            FindObjectOfType<LobbyManager>().PlayerJoined(conn);
-        else
-            FindObjectOfType<GamemodeManager>().PlayerJoined(conn);
-        //Get info data then spawn the player
-    }
-
+    
+    /// <summary>
+    /// Function logs the server status
+    /// </summary>
     private void Beat() => Debug.Log("Server status: " + (isNetworkActive ? "active" : "inactive"));
 
     public override void OnServerDisconnect(NetworkConnection conn)
     {
         base.OnServerDisconnect(conn);
         ServerInfo.PlayerData.Remove(conn);
+
+        foreach (IPlayerDisconnect playerDisconnect in FindObjectsOfType<MonoBehaviour>().OfType<IPlayerDisconnect>())
+            playerDisconnect.PlayerDisconnected(conn);
     }
 
     public override void OnStartClient()
@@ -78,6 +76,9 @@ public class MainNetworkManager : NetworkManager
         RegisterWeaponPrefabs();
     }
 
+    /// <summary>
+    /// Stops network manager regardless of it's use mode (client, server, local host)
+    /// </summary>
     public void StopAny()
     {
         switch (mode)
@@ -99,10 +100,13 @@ public class MainNetworkManager : NetworkManager
     }
 
     private bool _inGame;
+    
+    /// <summary>
+    /// Starts actual game from a game-ready lobby (on a server)
+    /// </summary>
     public void StartGame()
     {
         _inGame = true;
-        Debug.Log("START GAME FROM MANAGER");
         
         ServerChangeScene(mapScene);
     }
@@ -112,24 +116,18 @@ public class MainNetworkManager : NetworkManager
         base.OnServerSceneChanged(sceneName);
         
         if(!_inGame)return;
-        
-        // foreach (KeyValuePair<NetworkConnection, ServerPlayer> conn in ServerInfo.PlayerData)
-        // {
-        //     Transform startPos = GetStartPosition();
-        //     GameObject player = startPos != null
-        //         ? Instantiate(playerObject.gameObject, startPos.position, startPos.rotation)
-        //         : Instantiate(playerObject.gameObject);
-        //
-        //     NetworkServer.AddPlayerForConnection(conn.Key, player);
-        // }
-        
+
         PreSpawnHoles();
         
-        FindObjectOfType<GamemodeManager>().StartGame(this);
+        FindObjectOfType<DefaultGamemode>().StartGame(this);
     }
 
     public override void OnStopServer() => _inGame = false;
 
+    
+    /// <summary>
+    /// Changes scene to lobby and stops game loop. Can be run on a server
+    /// </summary>
     [ContextMenu("Stop game")]
     public void StopGame()
     {
@@ -138,7 +136,39 @@ public class MainNetworkManager : NetworkManager
         ServerChangeScene("Lobby");
     }
 
-    [SerializeField] private NetworkManagerMode _mode;
+    private bool tryConnecting = false;
+    public override void OnClientConnect(NetworkConnection conn)
+    {
+        base.OnClientConnect(conn);
 
-    private void Update() => _mode = mode;
+        tryConnecting = true;
+    }
+
+    [ClientCallback]
+    private void Update()
+    {
+        if (tryConnecting)
+        {
+            if (NetworkClient.localPlayer == null)
+                return;
+            NetworkClient.localPlayer.GetComponent<PlayerRequests>().CmdSendData(MenuInfo.PlayerName, MenuInfo.Hue);
+            tryConnecting = false;
+        }
+    }
+
+
+    //When a server receives data from newly connected client
+    public void OnServerData(NetworkConnection conn, string playerName, float playerHue)
+    {
+        PlayerData newPlayer = new PlayerData { pName = playerName, pHue = playerHue };
+        ServerInfo.PlayerData.Add(conn, newPlayer);
+        
+        //Join player
+        IPlayerJoinable playerJoinable = FindObjectsOfType<MonoBehaviour>().OfType<IPlayerJoinable>().First();
+        
+        if (playerJoinable != null)
+            playerJoinable.PlayerJoined(conn);
+        else
+            Debug.LogError("There was not an IPlayerJoinable script in the scene when a player joined the game!");
+    }
 }

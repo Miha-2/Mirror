@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="BranchesTreeState">
     <expand>
       <path>
@@ -25,16 +28,65 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="c841a182-c860-4ee3-883f-be3b479ae402" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/contentModel.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Mirror/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Mirror/riderModule.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/DefaultPlayer.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/DefaultPlayer.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Other/Bullet Holes/HoleProjector.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Other/Bullet Holes/HoleProjector.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Packages/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Packages/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/New Material.mat" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/New Material.mat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/PlayerGFX.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Spectator Player.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/Spectator Player.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Pistol.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Pistol.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Vector.prefab" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Resources/Weapons/gun_Vector.prefab.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/ResultList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/ResultList.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Lobby.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/MainMenu.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Map_01.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Input/PlayerInput.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Test.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Test.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Gamemode.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Gamemode.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Gamemodes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby Info.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/Lobby Info.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyButtons.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyButtons.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/Deathmatch.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/Deathmatch.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Spawnpoint.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Spawnpoint.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Tab Info.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Tab Info.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TempTest/Scene 3.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TempTest/Scene 3.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectSettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/ProjectVersion.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -45,96 +97,118 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/WorldHealthBar.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Spawnpoint.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/GraphicRaycaster.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/InventoryItems/Guns/Gun.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyButtons.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E2BCE5D3-3E70-4A76-A5C9-576F4D43769B/35/9f5c7c31/Camera.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://C:/Program Files/Unity Editors/2020.1.13f1/Editor/Data/Resources/PackageManager/BuiltInPackages/com.unity.ugui/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9e/40bffb1f/Void.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/Shoot.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stable/Interfaces.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/ScriptableMaterial.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/GameUI.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/HoverPop.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/27/220844eb/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/9e/9352a913/Network.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/ResultList.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/StopButtons.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/96/7b4656dd/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E2BCE5D3-3E70-4A76-A5C9-576F4D43769B/a9/3a24f860/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8F44D91B-549E-47C9-883E-180579F26EF6/f5/38d1d59f/Editor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/EventSystem/InputModules/BaseInput.cs" root0="SKIP_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/SpectatorLimit.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5BE0EBAA-82DF-43C7-B5C1-B1DB9BDE1E97/f5/ad45b0e3/Editor.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/ShotInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyVoteButton.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/HoverPop.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/df/f734cd01/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8F9A7EA3-47A4-4FFD-AD6C-91B550598CCD/2c/6376ec14/Single.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/StopButtons.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/MainMenu/PlayerDisplay.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyButtons.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Spectator/SpectatorPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/PlayerData.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/SpectatorLimit.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Spawnpoint.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GamemodeManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerInfo.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/fd824cfb55004855b9e6d51b008c90e4568778/bf/3ad20ed6/List`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/CustomReadWriteFunctions.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Editor/GamemodeEditor.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/GameUI.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/InventoryItems/Guns/Gun.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyVoting.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/ResultList.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E2BCE5D3-3E70-4A76-A5C9-576F4D43769B/35/9f5c7c31/Camera.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/TeamScore.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/Shoot.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../Sample-Character/Assets/PenetrationTest/ScriptableMaterial.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/4a29708cee654ac0aca16c9d5624806a144200/b5/e1f4b8b7/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/27/220844eb/UnityEvent`1.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/9e/9352a913/Network.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Scripts/Stable/Interfaces.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.addressables@1.18.11/Runtime/AddressablesImpl.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8F9A7EA3-47A4-4FFD-AD6C-91B550598CCD/3d/fef0950d/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/96/7b4656dd/Behaviour.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/58/11c34634/GameObject.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/63DD8BF9-8CFA-4BA9-85AF-735EF1A56BA9/9e/40bffb1f/Void.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/E2BCE5D3-3E70-4A76-A5C9-576F4D43769B/a9/3a24f860/UnityEvent.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../WTF_Stane/Assets/WorldHealthBar.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ADFA4B62-4008-4918-9388-DF71C9E26E89/5e/489e0fbc/Object.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/8F44D91B-549E-47C9-883E-180579F26EF6/f5/38d1d59f/Editor.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Assets/Pointer.cs" />
-        <option value="$PROJECT_DIR$/Assets/BigPointer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Minimap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Test_NetManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/LayoutInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/LobbyInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/LobbyButtons.cs" />
-        <option value="$PROJECT_DIR$/Assets/PlayerList.cs" />
-        <option value="$PROJECT_DIR$/Assets/Test.cs" />
-        <option value="$PROJECT_DIR$/Assets/LobbyList.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/ClientSettings2.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/GamePlayerSettings.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GamemodeScriptable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Scriptable Materials/ScriptableMaterial.cs" />
-        <option value="$PROJECT_DIR$/Assets/LobbyManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/BulletHole.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Gamemodes/GamemodeManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Gamemode.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/FPSDisplay.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/OldTimer.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CustomMethods.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Stable/IHittable.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Stable/Hittable.cs" />
         <option value="$PROJECT_DIR$/Assets/Items/Item.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerObject.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkIdentity.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManagerHUD.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Minimap/Minimap.cs" />
-        <option value="$PROJECT_DIR$/Assets/Spawnpoint.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" />
-        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MenuInfo.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Components/NetworkPingDisplay.cs" />
-        <option value="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" />
-        <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/Destroyable.cs" />
         <option value="$PROJECT_DIR$/Assets/Mirror/Runtime/NetworkServer.cs" />
-        <option value="$PROJECT_DIR$/Assets/ResultList.cs" />
         <option value="$PROJECT_DIR$/Assets/ResultInfo.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
         <option value="$PROJECT_DIR$/Assets/StopButtons.cs" />
         <option value="$PROJECT_DIR$/Assets/SpectatorLimit.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" />
-        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" />
         <option value="$PROJECT_DIR$/Assets/Player/SpectatorPlayer.cs" />
+        <option value="$PROJECT_DIR$/Library/PackageCache/com.unity.localization@1.0.0-pre.10/Runtime/Localized Reference/LocalizedReference.cs" />
+        <option value="$PROJECT_DIR$/Assets/Packages/CustomButton/CustomButton.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/GameModeScriptable.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyTeam.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyButtons.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyGamemodeInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerMovement.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Gamemodes/Gamemode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerItem.cs" />
+        <option value="$PROJECT_DIR$/Assets/CustomReadWriteFunctions.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/GameSystem.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyList.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/ResultList.cs" />
+        <option value="$PROJECT_DIR$/Assets/TeamScore.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Lobby/LobbyPlayer.cs" />
+        <option value="$PROJECT_DIR$/Assets/PlayerStats.cs" />
+        <option value="$PROJECT_DIR$/Assets/Player/Scripts/PlayerState.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/tEST.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Test1.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/Test.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Stable/ServerInfo.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainMenu/MainMenu.cs" />
+        <option value="$PROJECT_DIR$/Assets/Items/Weapons/Guns/Gun.cs" />
+        <option value="$PROJECT_DIR$/Assets/Mirror/Editor/NetworkBehaviourInspector.cs" />
+        <option value="$PROJECT_DIR$/Assets/Spawnpoint.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/GamemodeManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/MainNetworkManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/GamemodeManager.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/GamemodeManager/DefaultGamemode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/ScriptableObjects/Resources/Gamemodes/Gamemode.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/Editor/GamemodeEditor.cs" />
       </list>
     </option>
   </component>
@@ -146,25 +220,46 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Discover.Launch.Via.Unity" value="true" />
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
-    <property name="vue.rearranger.settings.migration" value="true" />
-  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\mihap_l0x2sls\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\mihap_l0x2sls\\AppData\\Roaming\\JetBrains\\Rider2023.1\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\mihap_l0x2sls\\AppData\\Local\\Symbols\\src&quot;
+    ]
+  }
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/build01/Mirror.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/Builds/Windows-Build\Mirror.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="E:\Miha\Custom Games\Mirror\Builds\build01" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Start Unity" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity Editors\2021.1.16f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-projectPath &quot;E:\Miha\Custom Games\Mirror&quot; -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="E:\Miha\Custom Games\Mirror" />
+      <option name="PASS_PARENT_ENVS" value="1" />
+      <option name="USE_EXTERNAL_CONSOLE" value="0" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unit Tests (batch mode)" type="RunUnityExe" factoryName="Unity Executable">
+      <option name="EXE_PATH" value="C:\Program Files\Unity Editors\2021.1.16f1\Editor\Unity.exe" />
+      <option name="PROGRAM_PARAMETERS" value="-runTests -batchmode -projectPath &quot;E:\Miha\Custom Games\Mirror&quot; -testResults Logs/results.xml -testPlatform EditMode -debugCodeOptimization" />
+      <option name="WORKING_DIRECTORY" value="E:\Miha\Custom Games\Mirror" />
       <option name="PASS_PARENT_ENVS" value="1" />
       <option name="USE_EXTERNAL_CONSOLE" value="0" />
       <method v="2" />
@@ -173,8 +268,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -182,8 +278,9 @@
       <option name="allowRunningInParallel" value="false" />
       <option name="listenPortForConnections" value="false" />
       <option name="pid" />
+      <option name="projectPathOnTarget" />
       <option name="selectedOptions">
-        <set />
+        <list />
       </option>
       <method v="2" />
     </configuration>
@@ -304,12 +401,60 @@
       <workItem from="1628372389984" duration="1541000" />
       <workItem from="1628415765549" duration="2268000" />
       <workItem from="1628431808145" duration="6770000" />
+      <workItem from="1628441242111" duration="148000" />
+      <workItem from="1628456298796" duration="1555000" />
+      <workItem from="1628508439300" duration="2316000" />
+      <workItem from="1628630076006" duration="596000" />
+      <workItem from="1628891500935" duration="1285000" />
+      <workItem from="1629049371181" duration="4269000" />
+      <workItem from="1629057671577" duration="7458000" />
+      <workItem from="1629125898715" duration="2746000" />
+      <workItem from="1629141563087" duration="1856000" />
+      <workItem from="1629194389268" duration="2725000" />
+      <workItem from="1629201568492" duration="3950000" />
+      <workItem from="1629227507650" duration="5515000" />
+      <workItem from="1629301513511" duration="2046000" />
+      <workItem from="1629321005276" duration="2037000" />
+      <workItem from="1629488372533" duration="2577000" />
+      <workItem from="1629710632475" duration="3354000" />
+      <workItem from="1629727307309" duration="2260000" />
+      <workItem from="1631982294232" duration="111000" />
+      <workItem from="1636480107119" duration="4016000" />
+      <workItem from="1636665131411" duration="2117000" />
+      <workItem from="1637358206859" duration="1784000" />
+      <workItem from="1640888612493" duration="1682000" />
+      <workItem from="1641399305153" duration="5215000" />
+      <workItem from="1641589379426" duration="1327000" />
+      <workItem from="1641642170199" duration="2957000" />
+      <workItem from="1641651120536" duration="3125000" />
+      <workItem from="1641657674308" duration="7626000" />
+      <workItem from="1641741804866" duration="3674000" />
+      <workItem from="1641833171370" duration="1373000" />
+      <workItem from="1641845708043" duration="6999000" />
+      <workItem from="1642025260677" duration="2229000" />
+      <workItem from="1642058153209" duration="5186000" />
+      <workItem from="1642085124729" duration="1851000" />
+      <workItem from="1642109074629" duration="4239000" />
+      <workItem from="1642194482381" duration="374000" />
+      <workItem from="1642252522798" duration="3988000" />
+      <workItem from="1642335618303" duration="4678000" />
+      <workItem from="1679137213998" duration="102000" />
+      <workItem from="1679342036133" duration="924000" />
+      <workItem from="1687641791295" duration="175000" />
+      <workItem from="1687642307866" duration="851000" />
+      <workItem from="1687643471563" duration="4052000" />
+      <workItem from="1687708117845" duration="5440000" />
+      <workItem from="1687719634546" duration="191000" />
+      <workItem from="1687719844683" duration="8115000" />
+      <workItem from="1687728572653" duration="1499000" />
+      <workItem from="1687975885943" duration="4553000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="UnityCheckinConfiguration" checkUnsavedScenes="true" />
   <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
   <component name="Vcs.Log.History.Properties">
@@ -332,51 +477,8 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="552" y="161" key="#Plugins" timestamp="1627230315432">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="552" y="161" key="#Plugins/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627230315432" />
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1625772919836">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="640" y="256" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1625772919836" />
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1628114950513">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628114950513" />
-    <state x="759" y="244" key="RiderGenerateDialog" timestamp="1627676875899">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="759" y="244" key="RiderGenerateDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627676875899" />
-    <state x="461" y="165" key="SettingsEditor" timestamp="1627230403523">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="461" y="165" key="SettingsEditor/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627230403523" />
-    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog" timestamp="1625696456912">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="VCS.FileHistoryDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1625696456912" />
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1628109015239">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="92" y="92" width="1736" height="856" key="com.intellij.history.integration.ui.views.FileHistoryDialog/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628109015239" />
-    <state x="565" y="131" width="845" height="777" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1626383003319">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="565" y="131" width="845" height="777" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1626383003319" />
-    <state x="616" y="240" key="run.anything.popup" timestamp="1628416388729">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="240" key="run.anything.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1628416388729" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627675354587">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/-1920.0.1920.1040/0.0.1920.1040@0.0.1920.1040" timestamp="1627675354587" />
   </component>
 </project>

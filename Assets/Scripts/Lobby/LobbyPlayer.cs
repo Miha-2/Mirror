@@ -3,42 +3,54 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 
-public class LobbyPlayer : NetworkBehaviour
+namespace Lobby
 {
-    private LobbyInfo _lobbyInfo;
-    private bool _isReady;
-
-    public bool IsReady
+    public class LobbyPlayer : NetworkBehaviour
     {
-        get => _isReady;
-        set
+        private LobbyInfo _lobbyInfo;
+        public LobbyInfo LobbyInfo => _lobbyInfo; //mb temp
+
+        private bool _isReady;
+
+        public bool IsReady
         {
-            if(_isReady != value && isClient)
-                CmdUpdateStatus(value);
-            _isReady = value;
+            get => _isReady;
+            set
+            {
+                if (_isReady != value && isClient)
+                    CmdUpdateStatus(value);
+                _isReady = value;
+            }
         }
-    }
 
-    public override void OnStartAuthority()
-    {
-        LobbyButtons lobbyButtons = FindObjectOfType<LobbyButtons>();
-        if (lobbyButtons == null) return;
-        lobbyButtons.LobbyPlayer = this;
+        public override void OnStartAuthority()
+        {
+            FindObjectOfType<LobbyManager>().lobbyButtons.LobbyPlayer = this;
+            
+            foreach (LobbyVoteButton button in FindObjectsOfType<LobbyVoteButton>())
+                button.VoteEvent.AddListener(Vote);
+        }
 
-        CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
-    }
+        private void Vote(byte buttonId) => CmdVote(buttonId);
 
-    [Command]
-    private void CmdSendPlayerData(string playerName, float hue)
-    {
-        ServerInfo.PlayerData[connectionToClient] = new ServerPlayer {PlayerName = playerName, Hue = hue, PlayerStats = new int[3]};
-        _lobbyInfo = FindObjectOfType<LobbyList>().AddPlayer(hue, playerName, connectionToClient);
-    }
+        [Command]
+        private void CmdVote(byte voteId) => FindObjectOfType<LobbyVoting>().Vote(connectionToClient, voteId);
 
-    [Command]
-    private void CmdUpdateStatus(bool status)
-    {
-        _isReady = status;
-        _lobbyInfo.IsReady = status;
+
+        public override void OnStartServer()
+        {
+            _lobbyInfo = FindObjectOfType<LobbyList>().AddPlayer(connectionToClient);
+            _lobbyInfo.IsVoting = FindObjectOfType<LobbyManager>().VotingStage;
+        }
+
+        [Command]
+        private void CmdUpdateStatus(bool status)
+        {
+            _isReady = status;
+            _lobbyInfo.IsReady = status;
+        }
+
+        [Command]
+        public void CmdChangeTeam() => FindObjectOfType<LobbyList>().ChangeTeam(_lobbyInfo);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
+[DisallowMultipleComponent]
 public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler
 {
     [SerializeField] private Ease easeType = Ease.OutSine;
@@ -14,7 +15,7 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     [SerializeField] private Color hoverColor = new Color(.93f, .93f, .93f);
     [SerializeField] private float hoverScale = 1.04f;
     [SerializeField] private Color pressColor = new Color(.84f, .84f, .84f);
-    [SerializeField] private Color disabledColor = Color.grey;
+    [SerializeField] private Color disabledColor = new Color(0.64f, 0.64f, 0.64f);
     private Image _image;
     private Vector3 _defaultScale;
     private Color _defaultColor;
@@ -31,7 +32,12 @@ public class CustomButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
                 _image.DOColor(_defaultColor, .1f).SetEase(easeType);
             }
             else
+            {
+                DOTween.Kill(transform);
+                DOTween.Kill(_image);
+                transform.DOScale(_defaultScale, .1f).SetEase(easeType);
                 _image.DOColor(disabledColor, .1f).SetEase(easeType);
+            }
 
             isEnabled = value;
         }

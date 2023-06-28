@@ -109,19 +109,17 @@ public class PlayerItem : NetworkBehaviour, IParentSpawner
         else
             amountText.enabled = true;
 
-        CmdEquipItem(GameSystem.WeaponToByte(item));
+        CmdEquipItem(item);
         
         // IsActive = true;
     }
 
     [Command]
-    private void CmdEquipItem(byte weaponID)
+    private void CmdEquipItem(Item item)
     {
         if (Item) NetworkServer.Destroy(Item.gameObject);
         
-        Item prefab = GameSystem.ByteToWeapon(weaponID);
-        
-        Item = Instantiate(prefab, Vector3.zero, quaternion.identity, weaponPivot);
+        Item = Instantiate(item, Vector3.zero, quaternion.identity, weaponPivot);
         Item.transform.localPosition = Vector3.zero;
         Item.transform.localRotation = quaternion.identity;
         Item.parentNetId = netId;

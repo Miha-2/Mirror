@@ -2423,6 +2423,8 @@ MonoBehaviour:
   sprintSpeed: 8.5
   gravity: 22
   jumpForce: 7
+  moveVector: {x: 0, y: 0, z: 0}
+  isGrounded: 0
   sensitivityUpDown: 0.125
   sensitivityLeftRight: 0.125
   maxUp: 40
@@ -4447,7 +4449,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -2477152504647978758, guid: 7e21564a0f91842458ae8fec70312b5f, type: 3}
+  - {fileID: 2100000, guid: 5494f490b5c55bf45aeda0575c450329, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

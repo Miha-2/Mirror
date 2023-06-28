@@ -38,7 +38,6 @@ public class PlayerMovement : NetworkBehaviour
     private bool jumped = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
-    private int reset = 0;
     private MultiplierData movementMultiplier;
     private bool inAction;
     

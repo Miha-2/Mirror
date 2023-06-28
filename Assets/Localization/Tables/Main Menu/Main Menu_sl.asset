@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: Main Menu_sl
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: sl
+  m_SharedData: {fileID: 11400000, guid: 0c874ba138eccb84bb3e543f011f8464, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 235034869760
+    m_Localized: "Pridru\u017Ei se stre\u017Eniku"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3612573663232
+    m_Localized: "Pridru\u017Ei se z IP-jem"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3746787196928
+    m_Localized: "Lokalni stre\u017Enik"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3846997508096
+    m_Localized: "Vnesi IP stre\u017Enika..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3950701674496
+    m_Localized: Vnesi ime...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4228721115136
+    m_Localized: Lokalni gostitelj
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 1

@@ -81,6 +81,12 @@ namespace Mirror
             DrawDefaultSyncSettings();
         }
 
+        protected void DrawNetworking()
+        {
+            DrawDefaultSyncLists();
+            DrawDefaultSyncSettings();
+        }
+
         /// <summary>
         /// Draws Sync Objects that are IEnumerable
         /// </summary>

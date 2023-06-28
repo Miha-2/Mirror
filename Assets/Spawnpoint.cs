@@ -5,12 +5,13 @@ using UnityEngine;
 
 public class Spawnpoint : MonoBehaviour
 {
+    public bool IsTeamOne = true;
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawSphere(transform.position, 1f);
+        Gizmos.color = IsTeamOne ? Color.blue : Color.red;
+        Gizmos.DrawSphere(transform.position, 1.5f);
         
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, FindObjectOfType<GamemodeManager>().SpawnPointTreshold);
+        Gizmos.DrawWireSphere(transform.position, 8.46f);
     }
 }

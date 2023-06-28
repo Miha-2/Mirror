@@ -35,14 +35,14 @@ public class Gun : Item
     [SerializeField] private float maxSpread = .5f;
     [SerializeField] private float spreadStep = .85f;
     
-    private float spread;
+    private float _spread;
     private float Spread
     {
-        get => spread;
+        get => _spread;
         set
         {
             PlayerInfo.Crosshair.Delta = value;
-            spread = value;
+            _spread = value;
         }
     }
     
@@ -90,30 +90,32 @@ public class Gun : Item
     {
         base.SetupItem(playerInput);
         print("Setup inputs for gun: " + name);
-        _playerInput.ItemInteractions.PrimaryAction.performed += Inpt_PrimaryActionPerformed;
-        _playerInput.ItemInteractions.PrimaryAction.canceled += Inpt_PrimaryActionCancled;
-        _playerInput.ItemInteractions.Reload.performed += Inpt_ReloadPerformed;
+        _playerInput.ItemInteractions.PrimaryAction.performed += Input_PrimaryActionPerformed;
+        _playerInput.ItemInteractions.PrimaryAction.canceled += Input_PrimaryActionCanceled;
+        _playerInput.ItemInteractions.Reload.performed += Input_ReloadPerformed;
     }
-    void Inpt_PrimaryActionPerformed(InputAction.CallbackContext ctx)
+
+    private void Input_PrimaryActionPerformed(InputAction.CallbackContext ctx)
     {
         if(isAutomatic)
             shooting = true;
         else if (Ammo > 0 && !isReloading && nextFire <= 0f) Shoot();
     }
-    void Inpt_PrimaryActionCancled(InputAction.CallbackContext ctx)
+
+    private void Input_PrimaryActionCanceled(InputAction.CallbackContext ctx)
     {
         shooting = false;
     }
-    void Inpt_ReloadPerformed(InputAction.CallbackContext ctx) => TryReload();
+
+    private void Input_ReloadPerformed(InputAction.CallbackContext ctx) => TryReload();
 
     public override void RemoveInput()
     {
         base.RemoveInput();
-        // return;
-        print("Removed inputs for gun: " + name);
-        _playerInput.ItemInteractions.PrimaryAction.performed -= Inpt_PrimaryActionPerformed;
-        _playerInput.ItemInteractions.PrimaryAction.canceled -= Inpt_PrimaryActionCancled;
-        _playerInput.ItemInteractions.Reload.performed -= Inpt_ReloadPerformed;
+        
+        _playerInput.ItemInteractions.PrimaryAction.performed -= Input_PrimaryActionPerformed;
+        _playerInput.ItemInteractions.PrimaryAction.canceled -= Input_PrimaryActionCanceled;
+        _playerInput.ItemInteractions.Reload.performed -= Input_ReloadPerformed;
     }
 
     #endregion
@@ -202,15 +204,16 @@ public class Gun : Item
 
         #region ExitCastInfo
 
+        Vector3 cameraPosition = Camera.transform.position;
         bool rangeInCollider =
-            Physics.CheckSphere(Camera.transform.position + shotDir * (range + .2f), .1f, hitMask);
+            Physics.CheckSphere(cameraPosition + shotDir * (range + .2f), .1f, hitMask);
         
         Vector3 reverseCastPoint =
             !rangeInCollider
-                ? Camera.transform.position + shotDir * (range + .2f)
+                ? cameraPosition + shotDir * (range + .2f)
                 : enterHits[enterHits.Count - 1].point;
         
-        float reverseCastDistance = Vector3.Distance(Camera.transform.position + shotDir * .2f, reverseCastPoint);
+        float reverseCastDistance = Vector3.Distance(cameraPosition + shotDir * .2f, reverseCastPoint);
 
         #endregion
         List<RaycastHit> exitHits = Physics.RaycastAll(reverseCastPoint, -shotDir, reverseCastDistance, hitMask).ToList();
@@ -219,13 +222,13 @@ public class Gun : Item
         #endregion
         
 
-        Debug.Log($"Enter hits: {enterHits.Count}, Exit hits: {exitHits.Count}");
+        // Debug.Log($"Enter hits: {enterHits.Count}, Exit hits: {exitHits.Count}");
         enters = enterHits;
         exits = exitHits;
         
         #region ApplyHit
 
-        float avaliblePower = 1f;
+        float availablePower = 1f;
         for (int i = 0; i < enterHits.Count; i++)
         {
             //Apply hit
@@ -250,9 +253,9 @@ public class Gun : Item
                                     MaterialDensity = hittable.ScriptableMaterial.Density >= 0f
                                         ? hittable.ScriptableMaterial.Density
                                         : Mathf.Infinity
-                                }.PenetrationValue / bulletPenetration, avaliblePower)
-                    : avaliblePower;
-                avaliblePower -= hitPower;
+                                }.PenetrationValue / bulletPenetration, availablePower)
+                    : availablePower;
+                availablePower -= hitPower;
 
                 float dropoff;
                 if(enterHits[i].distance <= startDropoff)
@@ -293,7 +296,7 @@ public class Gun : Item
                 }, this);
 
                 
-                if (avaliblePower <= 0f) break;
+                if (availablePower <= 0f) break;
 
                 //Spawn exit hole
                 if (!isPlayer)
@@ -426,15 +429,16 @@ public class GunEditor : NetworkBehaviourInspector
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        List<string> exclucingProperties = new List<string>();
-        
-        if(!serializedObject.FindProperty("canAim").boolValue)
-            exclucingProperties.Add("aimAccuracyMultiplier");
-        
-        DrawPropertiesExcluding(serializedObject, exclucingProperties.ToArray());
+
+        if (!serializedObject.FindProperty("canAim").boolValue)
+            DrawPropertiesExcluding(serializedObject, "aimAccuracyMultiplier");
+        else
+            DrawDefaultInspector();
+
+
         serializedObject.ApplyModifiedProperties();
         
-        // DrawNetworking();
+        DrawNetworking();
     }
 }
 #endif

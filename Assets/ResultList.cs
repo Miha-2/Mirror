@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Mirror;
+using MirrorProject.TestSceneTwo;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -11,12 +12,12 @@ public class ResultList : NetworkBehaviour
 {
     [SerializeField] private ResultInfo infoPrefab;
     public Transform layoutRoot;
-    public ResultInfo AddPlayer(NetworkConnection conn, ServerPlayer serverPlayer)
+    public ResultInfo AddPlayer(NetworkConnection conn, PlayerData playerData)
     {
         ResultInfo resultInfo = Instantiate(infoPrefab, layoutRoot);
 
-        resultInfo.Hue = serverPlayer.Hue;
-        resultInfo.Name = serverPlayer.PlayerName;
+        resultInfo.Hue = playerData.pHue;
+        resultInfo.Name = playerData.pName;
         
         NetworkServer.Spawn(resultInfo.gameObject, conn);
         
@@ -43,12 +44,12 @@ public class ResultList : NetworkBehaviour
         }
     }
 
-    [ClientCallback]
-    private void Start()
+    public override void OnStartClient()
     {
         GameSystem.InputManager.PlayerInput.UiActions.ResultsMenu.performed += ResultsOnPerformed;
         GameSystem.InputManager.PlayerInput.UiActions.ResultsMenu.canceled += ResultsOnPerformed;
     }
+
     private void ResultsOnPerformed(InputAction.CallbackContext obj) => Activate(obj.performed);
 
     public void Activate(bool state)

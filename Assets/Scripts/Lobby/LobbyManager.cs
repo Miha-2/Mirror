@@ -7,127 +7,221 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LobbyManager : NetworkBehaviour
+
+namespace Lobby
 {
-    public List<LobbyPlayer> PlayerList = new List<LobbyPlayer>();
-
-    [SerializeField] private LobbyPlayer prefabLobbyPlayer;
-
-    [SerializeField] private TextMeshProUGUI playersInfo;
-    [SerializeField] private TextMeshProUGUI startingInfo;
-
-    [Space]
-    [SerializeField] private int minPlayers = 2;
-
-    [SerializeField] private float defaultTime = 120f;
-    [SerializeField] private float readyTime = 5f;
-    private bool enoughPlayers;
-    private bool allReady;
-    
-    private int lobbyTimer;
-    private float pureTimer;
-
-    [SyncVar(hook = nameof(OnPlayerInfo))]
-    private string playersInfoText;
-    [SyncVar(hook = nameof(OnStartingInfo))]
-    private string startingInfoText;
-
-    private bool gameStarted;
-
-    private void Start()
+    public class LobbyManager : NetworkBehaviour, IPlayerJoinable
     {
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        /*[HideInInspector]*/
+        public List<LobbyPlayer> PlayerList = new List<LobbyPlayer>(); //???????
 
-        if (!isServer) return;
+        public LobbyButtons lobbyButtons;
+        [SerializeField] private LobbyPlayer prefabLobbyPlayer;
+        public LobbyList lobbyList;
+
+        [SyncVar]
+        private bool votingStage;
+        public bool VotingStage => votingStage;
+
+        [HideInInspector] [SyncVar] public Gamemode gamemode;
         
-#if UNITY_EDITOR
-        minPlayers = 1;
-#endif
-
-        foreach (KeyValuePair<NetworkConnection, ServerPlayer> pair in ServerInfo.PlayerData)
+        private void Start()
         {
-            if (PlayerList.Any(lobbyPlayer => lobbyPlayer.connectionToClient == pair.Key))
-                return;
-            
-            LobbyPlayer player = Instantiate(prefabLobbyPlayer);
-        
-            PlayerList.Add(player);
-        
-            NetworkServer.Spawn(player.gameObject, pair.Key);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
-    }
 
-    [ServerCallback]
-    private void Update()
-    {
-        for (int i = 0; i < PlayerList.Count; i++)
-            if (PlayerList[i] == null)
-                PlayerList.RemoveAt(i);
-        
-        int playerCount = PlayerList.Count;
-        int readyPlayers = PlayerList.Count(lobbyPlayer => lobbyPlayer.IsReady);
-
-        if (!enoughPlayers && playerCount >= minPlayers)
-            pureTimer = defaultTime;
-        enoughPlayers = playerCount >= minPlayers;
-
-        if (!allReady && readyPlayers == playerCount)
-            pureTimer = readyTime;
-        else if (allReady && readyPlayers != playerCount)
-            pureTimer = defaultTime;
-        allReady = readyPlayers == playerCount;
-        
-        playersInfoText = $"Players Ready {readyPlayers}/{playerCount}";
-        playersInfo.text = $"Players Ready {readyPlayers}/{playerCount}";
-
-        if (enoughPlayers)
+        public override void OnStartServer()
         {
-            pureTimer -= Time.deltaTime;
-            lobbyTimer = Mathf.RoundToInt(pureTimer);
+            foreach (NetworkConnection conn in ServerInfo.PlayerData.Keys)
+                PlayerJoined(conn);
+
+            votingStage = true;
+            lobbyVoting.SetVotes();
+            gamemode = ServerInfo.Gamemode;
+            Debug.Log("Selected: " + gamemode.title);
+        }
+
+        public override void OnStartClient()
+        {
+            lobbyButtons.gameObject.SetActive(!votingStage);
+            gamemodeInfo.gameObject.SetActive(!votingStage);
+            // LobbyButtons.switchTeams.gameObject.SetActive(gamemode.isTeam);
+
+            // gamemodeInfo.Gamemode = gamemode;
+        }
+        public void PlayerJoined(NetworkConnection conn)
+        {
+            if (PlayerList.Any(lobbyPlayer => lobbyPlayer.connectionToClient == conn))
+                return;
+
+            // lobbyList.AddPlayer(conn);
             
-            startingInfo.text = $"Starting in {lobbyTimer} seconds";
-            startingInfoText = $"Starting in {lobbyTimer} seconds";
+            // return;
+            Debug.Log(nameof(PlayerJoined) + " with name: " + ServerInfo.PlayerData[conn]);
+            LobbyPlayer player = Instantiate(prefabLobbyPlayer);
+
+            PlayerList.Add(player);
+
+            NetworkServer.Spawn(player.gameObject, conn);
+        }
+
+
+        [SerializeField] private LobbyVoting lobbyVoting;
+        [ServerCallback]
+        private void Update()
+        {
+            if(votingStage)
+                lobbyVoting.ManagerUpdate(this);
+            else
+                ReadyUpdate();
+        }
+        
+        
+        
+        #region Ready Stage
+        [SerializeField] private LobbyGamemodeInfo gamemodeInfo;
+
+        [SerializeField] private TextMeshProUGUI playersInfo;
+        [SerializeField] private TextMeshProUGUI startingInfo;
+        
+        [SyncVar(hook = nameof(OnPlayerInfo))] private string playersInfoText;
+
+        [SyncVar(hook = nameof(OnStartingInfo))] private string startingInfoText;
+
+
+        public void StartReadyStage()
+        {
+            lobbyList.lobbyInfos.RemoveAll(info => info == null);
+            foreach (LobbyInfo lobbyInfo in lobbyList.lobbyInfos)
+                lobbyInfo.IsVoting = false;
+            votingStage = false;
+            lobbyList.ServerReadyStage();
+            RpcReadyStage();
+        }
+        
+        [ClientRpc]
+        private void RpcReadyStage()
+        {
+            lobbyVoting.gameObject.SetActive(false);
+            lobbyButtons.gameObject.SetActive(true);
+            gamemodeInfo.gameObject.SetActive(true);
+        }
+
+        private string PlayersInfo
+        {
+            set
+            {
+                playersInfoText = value;
+                playersInfo.text = value;
+            }
+        }
+        private string StartingInfo
+        {
+            set
+            {
+                startingInfoText = value;
+                startingInfo.text = value;
+            }
+        }
+        
+        private bool gameStarted;
+        private int RoundedTimer => Mathf.RoundToInt(_startGameTimer);
+
+        [SerializeField] private float defaultTime = 120f;
+        [SerializeField] private float readyTime = 5f;
+        private bool enoughPlayers;
+        private bool allReady;
+
+        private float _startGameTimer;
+
+        private void ReadyUpdate()
+        {
+            //TO BE IMPROVED!!
             
-            if(pureTimer <= 0f)
+            for (int i = 0; i < PlayerList.Count; i++)
+                if (PlayerList[i] == null)
+                    PlayerList.RemoveAt(i);
+
+            int playerCount = PlayerList.Count;
+            int readyPlayers = PlayerList.Count(lobbyPlayer => lobbyPlayer.IsReady);
+
+            int minPlayers = gamemode.minPlayers;
+            
+#if UNITY_EDITOR
+            minPlayers = 1;
+#endif
+            
+            //Reset timer
+            if (!enoughPlayers && playerCount >= minPlayers)
+                _startGameTimer = defaultTime;
+            
+            enoughPlayers = playerCount >= minPlayers;
+
+            //Ready timer
+            if (!allReady && readyPlayers == playerCount)
+                _startGameTimer = readyTime;
+            
+            //Reset timer
+            else if (allReady && readyPlayers != playerCount)
+                _startGameTimer = defaultTime;
+            allReady = readyPlayers == playerCount;
+
+            PlayersInfo = $"Players Ready {readyPlayers}/{playerCount}";
+
+            
+            if(!gamemode.isTeam)
+            {
+                if (enoughPlayers)
+                    RunTimer();
+                else
+                {
+                    PlayersInfo = "Not enough players";
+
+                    int missingPlayers = minPlayers - playerCount;
+                    StartingInfo = missingPlayers == 1
+                        ? "Waiting for 1 player"
+                        : $"Waiting for {missingPlayers} players";
+                }
+            }
+            else
+            {
+                if (ServerInfo.Team1.Length == 0)
+                    StartingInfo = "Team 1 is empty!!";
+#if !UNITY_EDITOR
+                else if (ServerInfo.Team2.Length == 0)
+                    StartingInfo = "Team 2 is empty!!";
+#endif
+                else
+                    RunTimer();
+            }
+        }
+        
+        private void RunTimer()
+        {
+            _startGameTimer -= Time.deltaTime;
+                
+            StartingInfo = $"Starting in {RoundedTimer} seconds";
+
+            if (_startGameTimer <= 0f)
                 StartGame();
         }
-        else
+
+
+        private void OnPlayerInfo(string oldInfo, string newInfo) => playersInfo.text = newInfo;
+
+        private void OnStartingInfo(string oldInfo, string newInfo) => startingInfo.text = newInfo;
+        
+        [ContextMenu("Force Start")]
+        private void StartGame()
         {
-            playersInfoText = "Not enough players";
-            playersInfo.text = "Not enough players";
+            if (!isServer) return;
+            if (gameStarted) return;
+            gameStarted = true;
 
-            string startingText;
-            int missingPlayers = minPlayers - playerCount;
-            startingText = missingPlayers == 1 ? "Waiting for 1 player" : $"Waiting for {missingPlayers} players";
-            startingInfo.text = startingText;
-            startingInfoText = startingText;
+            FindObjectOfType<MainNetworkManager>().StartGame();
         }
-    }
 
-    public void PlayerJoined(NetworkConnection conn)
-    {
-        if (PlayerList.Any(lobbyPlayer => lobbyPlayer.connectionToClient == conn))
-            return;
-
-        LobbyPlayer player = Instantiate(prefabLobbyPlayer);
-        
-        PlayerList.Add(player);
-        
-        NetworkServer.Spawn(player.gameObject, conn);
-    }
-
-    private void OnPlayerInfo(string oldInfo, string newInfo) => playersInfo.text = newInfo;
-
-    private void OnStartingInfo(string oldInfo, string newInfo) => startingInfo.text = newInfo;
-
-    [ContextMenu("Force Start")]
-    private void StartGame()
-    {
-        if(gameStarted) return;
-        gameStarted = true;
-        if (!isServer) return;
-        Debug.Log("START GAME FROM LOBBY");
-        FindObjectOfType<MainNetworkManager>().StartGame();
+        #endregion
     }
 }

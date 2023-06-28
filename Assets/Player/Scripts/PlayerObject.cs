@@ -11,22 +11,20 @@ namespace MirrorProject.TestSceneTwo
         [SerializeField] private PlayerState playerPrefab = null;
         private PlayerState player;
         private GameUI gameUI;
+        
+        #region Logic
 
         public override void OnStartLocalPlayer()
         {
             base.OnStartLocalPlayer();
 
             Debug.Log("STARTING LOCAL PLAYER");
-            // CmdSendPlayerData(MenuInfo.PlayerName, MenuInfo.Hue);
             // CmdSpawnPlayer(false);
         }
         public override void OnStartServer() => ServerInfo.AddChat.AddListener(delegate(string newLine) { TargetRpcUpdateChat(connectionToClient, newLine); });
-        public override void OnStartAuthority() => gameUI = FindObjectOfType<GameUI>();
-
-        [Command]
-        private void CmdSendPlayerData(string playerName, float hue)
+        public override void OnStartAuthority()
         {
-            ServerInfo.PlayerData[connectionToClient] = new ServerPlayer {PlayerName = playerName, Hue = hue};
+            gameUI = FindObjectOfType<GameUI>();
         }
 
         [TargetRpc]
@@ -67,5 +65,7 @@ namespace MirrorProject.TestSceneTwo
 
         [TargetRpc]
         private void TargetStartSpawnDelay(float delay) => gameUI.oldTimer.StartTimer(delay);
+
+        #endregion
     }
 }

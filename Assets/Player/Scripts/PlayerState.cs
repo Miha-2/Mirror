@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
 using Mirror;
+using MirrorProject.TestSceneTwo;
+using Telepathy;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -65,11 +67,7 @@ public class PlayerState : Destroyable
 
         SetRagdoll(false);
     }
-    public override void OnStartAuthority()
-    {
-        Debug.Log("AUTHORITY STARTED");
-        playerCamera.gameObject.SetActive(true);
-    }
+    public override void OnStartAuthority() => playerCamera.gameObject.SetActive(true);
 
     protected override void OnHealthChanged(float oldHealth, float newHealth)
     {
@@ -80,10 +78,17 @@ public class PlayerState : Destroyable
 
     public override void OnStartServer()
     {
-        ServerPlayer playerData = ServerInfo.PlayerData[connectionToClient];
-        playerName = playerData.PlayerName;
-        playerHue = playerData.Hue;
+        PlayerData playerData = ServerInfo.PlayerData[connectionToClient];
+        playerName = playerData.pName;
+        playerHue = playerData.pHue;
+
+        if (ServerInfo.Gamemode.isTeam)
+            if (ServerInfo.TeamLayout.TryGetValue(connectionToClient, out bool team))
+                teamHue = ServerInfo.TeamHue[team];
     }
+
+    [SyncVar]
+    private float teamHue = -1f;
     public override void OnStartClient()
     {
         nameDisplay.text = playerName;
@@ -91,13 +96,20 @@ public class PlayerState : Destroyable
         foreach (Renderer renderer in playerRenderers)
         {
             Color currentColor = renderer.material.GetColor("_BaseColor");
-            float h, s, v;
-            Color.RGBToHSV(currentColor, out h, out s, out v);
+            Color.RGBToHSV(currentColor, out float h, out float s, out float v);
             h = (h + playerHue) % 1;
             currentColor = Color.HSVToRGB(h, s, v);
             renderer.material.SetColor("_BaseColor", currentColor);
         }
         
+        if(teamHue > 0f)
+        {
+            Color currentColor = playerRenderers[0].material.GetColor("_BaseColor");
+            Color.RGBToHSV(currentColor, out float h, out float s, out float v);
+            currentColor = Color.HSVToRGB(teamHue, s, v);
+            playerRenderers[0].material.SetColor("_BaseColor", currentColor);
+        }
+
         FindObjectOfType<Minimap>().AddPointer(transform, Color.HSVToRGB(playerHue, 1f, 1f), hasAuthority);
     }
     
@@ -162,16 +174,16 @@ public class PlayerState : Destroyable
     {
         if (IsDead)
             return;
+        
+        if(ServerInfo.Gamemode.isTeam)
+            if(ServerInfo.TeamLayout[connectionToClient] == ServerInfo.TeamLayout[item.connectionToClient])
+                return;
+        
         float multiplier = 1f;
         Collider[] colliders = Physics.OverlapSphere(hitInfo.Point, .05f, headshotMask);
-        foreach (Collider collider in colliders)
-        {
-            if (collider.CompareTag("Head"))
-            {
-                multiplier = hitInfo.HeadshotMultiplier;
-                break;
-            }
-        }
+        
+        if (colliders.Any(collider => collider.CompareTag("Head")))
+            multiplier = hitInfo.HeadshotMultiplier;
 
         float damage = hitInfo.Damage * multiplier;
         
@@ -182,11 +194,11 @@ public class PlayerState : Destroyable
         if (Health <= 0f)
         {
             //When a player is killed
-            ServerPlayer killer = ServerInfo.PlayerData[item.connectionToClient];
-            ServerPlayer victim = ServerInfo.PlayerData[connectionToClient];
+            PlayerData killer = ServerInfo.PlayerData[item.connectionToClient];
+            PlayerData victim = ServerInfo.PlayerData[connectionToClient];
             string killInfo =
-                $"{CustomMethods.HueString(killer.PlayerName, killer.Hue)}" +
-                $" killed {CustomMethods.HueString(victim.PlayerName, victim.Hue)}" +
+                $"{CustomMethods.HueString(killer.pName, killer.pHue)}" +
+                $" killed {CustomMethods.HueString(victim.pName, victim.pHue)}" +
                 $" with {CustomMethods.ColorString(item.ItemName, Color.white)}";
                     
             ServerInfo.AddChat.Invoke(killInfo);
